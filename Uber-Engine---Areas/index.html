@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Birmingham Postcode Trainer</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-soft: #1f2937;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --line: #334155;
+      --accent: #f97316;
+      --accent-soft: rgba(249, 115, 22, 0.18);
+      --good: #22c55e;
+      --warn: #f59e0b;
+      --map-base: #243244;
+      --map-outline: #475569;
+      --highlight: #f97316;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0%, var(--bg) 55%);
+      color: var(--text);
+      padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(90px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+    }
+
+    .app {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 370px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    header {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(249,115,22,.24), rgba(15,23,42,.8));
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      border-radius: 22px;
+      padding: 16px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.28);
+    }
+
+    h1 { margin: 0 0 4px; font-size: clamp(1.35rem, 5vw, 2.05rem); }
+    header p { margin: 0; color: var(--muted); line-height: 1.35; font-size: .96rem; }
+
+    .card, .map-card, .list-card {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.28);
+      overflow: hidden;
+    }
+
+    .trainer { padding: 16px; }
+
+    .mode-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--text);
+      padding: 10px 8px;
+      border-radius: 999px;
+      font-weight: 850;
+      cursor: pointer;
+      min-height: 42px;
+      font-size: .9rem;
+    }
+
+    .chip.active {
+      background: var(--accent);
+      color: #111827;
+      border-color: var(--accent);
+    }
+
+    .postcode {
+      font-size: clamp(4.4rem, 22vw, 7.2rem);
+      font-weight: 950;
+      letter-spacing: -0.08em;
+      line-height: 0.9;
+      margin: 12px 0 8px;
+    }
+
+    .areas {
+      font-size: clamp(1.08rem, 4.5vw, 1.28rem);
+      line-height: 1.25;
+      font-weight: 850;
+      color: #fff7ed;
+      margin-bottom: 12px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 10px 0 12px;
+    }
+
+    .meta {
+      background: rgba(31, 41, 55, 0.82);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 10px;
+    }
+
+    .label {
+      font-size: .7rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 850;
+      letter-spacing: .08em;
+      margin-bottom: 4px;
+    }
+
+    .value { font-weight: 850; font-size: .96rem; }
+
+    .hook {
+      background: var(--accent-soft);
+      border: 1px solid rgba(249, 115, 22, 0.38);
+      border-radius: 16px;
+      padding: 11px;
+      color: #fed7aa;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      font-size: .96rem;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 16px;
+      padding: 13px 12px;
+      font-size: 1rem;
+      font-weight: 900;
+      cursor: pointer;
+      color: #111827;
+      background: var(--accent);
+      min-height: 50px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button.secondary { background: #e5e7eb; }
+    button.weak { background: #fbbf24; }
+    button.known { background: #86efac; }
+
+    .map-card { padding: 14px; }
+    .map-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .map-head h2 { margin: 0; font-size: 1.08rem; }
+    .map-head span { color: var(--muted); font-weight: 750; font-size: .88rem; }
+
+    .map-wrap {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #0b1220;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: min(62vh, 640px);
+      min-height: 420px;
+      background: #0b1220;
+    }
+
+    .zone {
+      fill: var(--map-base);
+      stroke: var(--map-outline);
+      stroke-width: 1.5;
+      cursor: pointer;
+      transition: fill .18s ease, opacity .18s ease;
+    }
+
+    .zone:hover { fill: #334155; }
+    .zone.active {
+      fill: var(--highlight);
+      stroke: #ffedd5;
+      stroke-width: 3;
+      filter: drop-shadow(0 0 12px rgba(249, 115, 22, .65));
+    }
+
+    .zone.dim { opacity: .38; }
+
+    .zone-label {
+      pointer-events: none;
+      font-size: 13px;
+      font-weight: 900;
+      fill: #e2e8f0;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .zone-label.active { fill: #111827; font-size: 18px; }
+
+    .compass {
+      fill: none;
+      stroke: #64748b;
+      stroke-width: 2;
+      opacity: .72;
+    }
+
+    .compass-text {
+      fill: #94a3b8;
+      font-size: 14px;
+      font-weight: 900;
+      text-anchor: middle;
+    }
+
+    .list-card {
+      grid-column: 1 / -1;
+      padding: 14px;
+    }
+
+    .list-tools {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    input, select {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 11px 12px;
+      font-weight: 750;
+      min-height: 46px;
+      width: 100%;
+    }
+
+    .postcode-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+      gap: 8px;
+    }
+
+    .mini {
+      background: rgba(31, 41, 55, .72);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 10px;
+      cursor: pointer;
+      min-height: 78px;
+    }
+
+    .mini strong { display: block; font-size: 1.15rem; color: #fed7aa; }
+    .mini span { color: var(--muted); font-size: .84rem; line-height: 1.3; }
+    .mini.active { border-color: var(--accent); background: var(--accent-soft); }
+
+    .mobile-sticky-actions { display: none; }
+
+    @media (max-width: 880px) {
+      body {
+        padding: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) max(92px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+      }
+
+      .app {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      header, .list-card { grid-column: 1; }
+
+      header {
+        padding: 12px;
+        border-radius: 18px;
+      }
+
+      header p { font-size: .88rem; }
+
+      .trainer {
+        padding: 13px;
+        border-radius: 18px;
+      }
+
+      .postcode {
+        margin-top: 8px;
+        font-size: clamp(4.2rem, 28vw, 6.2rem);
+      }
+
+      .areas { margin-bottom: 10px; }
+
+      .hook { margin-bottom: 10px; }
+
+      .map-card {
+        padding: 10px;
+        border-radius: 18px;
+      }
+
+      .map-head { margin-bottom: 8px; }
+      .map-head h2 { font-size: 1rem; }
+      .map-head span { font-size: .82rem; }
+
+      svg {
+        height: 52vh;
+        min-height: 360px;
+      }
+
+      .list-tools {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .postcode-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .desktop-actions {
+        display: none;
+      }
+
+      .mobile-sticky-actions {
+        position: fixed;
+        left: max(8px, env(safe-area-inset-left));
+        right: max(8px, env(safe-area-inset-right));
+        bottom: max(8px, env(safe-area-inset-bottom));
+        z-index: 30;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 8px;
+        padding: 8px;
+        border: 1px solid rgba(148, 163, 184, .32);
+        border-radius: 20px;
+        background: rgba(15, 23, 42, .92);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 -12px 35px rgba(0,0,0,.35);
+      }
+
+      .mobile-sticky-actions button {
+        min-height: 48px;
+        padding: 11px 8px;
+        border-radius: 14px;
+        font-size: .9rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mode-row { gap: 6px; }
+      .chip { font-size: .82rem; padding-inline: 6px; }
+      .postcode-grid { grid-template-columns: 1fr; }
+
+      svg {
+        height: 50vh;
+        min-height: 330px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Birmingham Postcode Trainer</h1>
+      <p>Random visual flashcards for learning Birmingham B postcodes by postcode, area names, direction and map position.</p>
+    </header>
+
+    <section class="card trainer">
+      <div class="mode-row">
+        <button class="chip active" id="randomMode">Random</button>
+        <button class="chip" id="weakMode">Weak</button>
+        <button class="chip" id="allMode">All</button>
+      </div>
+
+      <div class="label">Current postcode</div>
+      <div class="postcode" id="postcodeText">B42</div>
+      <div class="areas" id="areasText">Perry Barr • Great Barr • Hamstead</div>
+
+      <div class="meta-grid">
+        <div class="meta">
+          <div class="label">Position</div>
+          <div class="value" id="positionText">North Birmingham</div>
+        </div>
+        <div class="meta">
+          <div class="label">Memory score</div>
+          <div class="value" id="scoreText">0 known / 0 weak</div>
+        </div>
+      </div>
+
+      <div class="hook" id="hookText">A34 / Perry Barr / Great Barr side. Think north route towards Walsall and M6 side.</div>
+
+      <div class="desktop-actions">
+        <button id="nextBtn">Next random postcode</button>
+        <div class="actions">
+          <button class="known" id="knownBtn">Knew it</button>
+          <button class="weak" id="weakBtn">Need practice</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-card">
+      <div class="map-head">
+        <h2>Visual Birmingham Map</h2>
+        <span id="mapHint">Highlighted: B42</span>
+      </div>
+      <div class="map-wrap">
+        <svg id="mapSvg" viewBox="0 0 800 760" role="img" aria-label="Simplified Birmingham postcode map">
+          <path class="compass" d="M705 80 L705 165 M665 122 L745 122" />
+          <text class="compass-text" x="705" y="68">N</text>
+          <text class="compass-text" x="705" y="190">S</text>
+          <text class="compass-text" x="755" y="127">E</text>
+          <text class="compass-text" x="650" y="127">W</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="list-card">
+      <div class="list-tools">
+        <input id="searchBox" placeholder="Search postcode or area, e.g. B6, Aston, Moseley" />
+        <select id="directionFilter">
+          <option value="">All directions</option>
+          <option>City Centre</option>
+          <option>Inner North</option>
+          <option>North</option>
+          <option>North West</option>
+          <option>North East</option>
+          <option>East</option>
+          <option>South East</option>
+          <option>South</option>
+          <option>South West</option>
+          <option>West</option>
+          <option>Solihull / Airport side</option>
+        </select>
+      </div>
+      <div class="postcode-grid" id="postcodeGrid"></div>
+    </section>
+  </main>
+
+  <div class="mobile-sticky-actions">
+    <button id="mobileNextBtn">Next</button>
+    <button class="known" id="mobileKnownBtn">Knew it</button>
+    <button class="weak" id="mobileWeakBtn">Practice</button>
+  </div>
+
+  <script>
+    const DATA = [
+      {code:'B1', areas:'City Centre, Broad Street east, Jewellery Quarter', pos:'City Centre', hook:'Central core. Think Broad Street / Jewellery Quarter / city traffic.', x:355, y:335, w:54, h:42},
+      {code:'B2', areas:'City Centre, New Street', pos:'City Centre', hook:'New Street core. Very central, station and shopping traffic.', x:408, y:335, w:48, h:42},
+      {code:'B3', areas:'City Centre, Newhall Street', pos:'City Centre', hook:'Central north-west core, near business/JQ edge.', x:355, y:292, w:54, h:42},
+      {code:'B4', areas:'City Centre, Corporation Street north, Aston University', pos:'City Centre', hook:'North city centre / Aston Uni edge.', x:408, y:292, w:48, h:42},
+      {code:'B5', areas:'Digbeth, Highgate, Lee Bank, Edgbaston', pos:'City Centre', hook:'South city centre, Digbeth side. Watch city access and bus lanes.', x:382, y:380, w:62, h:46},
+      {code:'B6', areas:'Aston, Birchfield, Witton', pos:'Inner North', hook:'Inner north. Aston Expressway / Witton / Perry Barr connector.', x:360, y:218, w:70, h:56},
+      {code:'B7', areas:'Nechells, Vauxhall, Ashted, Duddeston', pos:'Inner North', hook:'Inner north-east. Close to city, industrial pockets and A47 side.', x:438, y:225, w:72, h:56},
+      {code:'B8', areas:'Washwood Heath, Ward End, Saltley, Alum Rock, Pelham', pos:'East', hook:'East Birmingham. Alum Rock / Saltley / Ward End corridor.', x:515, y:250, w:88, h:66},
+      {code:'B9', areas:'Bordesley Green, Bordesley, Small Heath', pos:'East', hook:'East inner. Bordesley Green / Small Heath side.', x:488, y:330, w:82, h:58},
+      {code:'B10', areas:'Small Heath, Hay Mills', pos:'South East', hook:'South-east inner. Small Heath / Hay Mills, near Coventry Road.', x:548, y:398, w:76, h:58},
+      {code:'B11', areas:'Sparkhill, Sparkbrook, Tyseley, Greet', pos:'South East', hook:'Sparkhill / Tyseley side. South-east routes and Stratford Road feel.', x:478, y:455, w:88, h:62},
+      {code:'B12', areas:'Balsall Heath, Sparkbrook, Highgate, Deritend', pos:'South East', hook:'Just south/south-east of city. Balsall Heath / Sparkbrook / Digbeth edge.', x:395, y:438, w:82, h:58},
+      {code:'B13', areas:'Moseley, Billesley, Moor Green', pos:'South', hook:'Moseley side. South Birmingham but not as far as Kings Heath/Maypole.', x:392, y:518, w:82, h:62},
+      {code:'B14', areas:'Kings Heath, Yardley Wood, Druids Heath, Maypole', pos:'South', hook:'Kings Heath / Yardley Wood / Maypole. South Birmingham.', x:392, y:590, w:90, h:68},
+      {code:'B15', areas:'Edgbaston, Westside', pos:'West', hook:'Edgbaston and city west. Close to Broad Street / university side.', x:292, y:384, w:78, h:58},
+      {code:'B16', areas:'Ladywood, Edgbaston, Rotton Park', pos:'West', hook:'West of city core. Ladywood / Rotton Park / reservoir side.', x:278, y:318, w:74, h:58},
+      {code:'B17', areas:'Harborne, Edgbaston, Moor Pool', pos:'South West', hook:'Harborne / Edgbaston. South-west of city, useful mental anchor.', x:246, y:454, w:82, h:62},
+      {code:'B18', areas:'Winson Green, Hockley, Soho', pos:'Inner North', hook:'North-west inner. Hockley / Soho / Winson Green.', x:282, y:250, w:76, h:58},
+      {code:'B19', areas:'Lozells, Newtown, Birchfield, Hockley', pos:'Inner North', hook:'North inner, just above city. Lozells / Newtown / Birchfield.', x:336, y:158, w:78, h:56},
+      {code:'B20', areas:'Handsworth Wood, Birchfield, Perry Barr', pos:'North', hook:'North / north-west. Handsworth Wood to Perry Barr.', x:250, y:155, w:82, h:62},
+      {code:'B21', areas:'Handsworth', pos:'North West', hook:'Handsworth side. North-west Birmingham, towards West Bromwich side.', x:200, y:230, w:78, h:62},
+      {code:'B23', areas:'Erdington, Stockland Green, Short Heath', pos:'North East', hook:'North-east. Erdington / Stockland Green.', x:478, y:135, w:86, h:64},
+      {code:'B24', areas:'Erdington, Tyburn, Gravelly Hill', pos:'North East', hook:'Erdington / Tyburn / Spaghetti Junction side.', x:555, y:170, w:84, h:64},
+      {code:'B25', areas:'Yardley', pos:'East', hook:'Yardley. East Birmingham, Coventry Road side.', x:628, y:345, w:76, h:60},
+      {code:'B26', areas:'Yardley, Sheldon, South Yardley', pos:'East', hook:'Yardley / Sheldon. East towards airport side.', x:650, y:420, w:86, h:64},
+      {code:'B27', areas:'Acocks Green', pos:'South East', hook:'Acocks Green. South-east, between Sparkhill and Yardley/Solihull side.', x:570, y:505, w:76, h:60},
+      {code:'B28', areas:'Hall Green', pos:'South East', hook:'Hall Green. South-east, Stratford Road / Solihull approach.', x:520, y:572, w:80, h:62},
+      {code:'B29', areas:'Selly Oak, Bournbrook, Selly Park', pos:'South West', hook:'Selly Oak / University side. South-west of city.', x:268, y:540, w:88, h:64},
+      {code:'B30', areas:'Bournville, Cotteridge, Stirchley, Kings Norton', pos:'South', hook:'Bournville / Stirchley / Cotteridge. South along Pershore Road.', x:300, y:628, w:92, h:66},
+      {code:'B31', areas:'Northfield, Longbridge, West Heath, Frankley', pos:'South West', hook:'Further south-west. Northfield / Longbridge / Frankley.', x:210, y:625, w:92, h:68},
+      {code:'B32', areas:'Quinton, Woodgate, Bartley Green, California, Frankley', pos:'West', hook:'West / south-west edge. Quinton / Bartley Green.', x:150, y:500, w:92, h:68},
+      {code:'B33', areas:'Kitts Green, Stechford, Lea Hall, Garretts Green', pos:'East', hook:'East Birmingham. Stechford / Kitts Green / Lea Hall.', x:645, y:275, w:92, h:64},
+      {code:'B34', areas:'Shard End, Buckland End', pos:'East', hook:'Shard End. East/north-east, beyond Hodge Hill side.', x:650, y:210, w:84, h:60},
+      {code:'B35', areas:'Castle Vale', pos:'North East', hook:'Castle Vale. North-east, near M6/M42 links.', x:610, y:95, w:76, h:58},
+      {code:'B36', areas:'Castle Bromwich, Smiths Wood, Bromford, Hodge Hill, Washwood Heath', pos:'North East', hook:'North-east / Castle Bromwich side. Useful for M6/M42 thinking.', x:620, y:145, w:94, h:62},
+      {code:'B37', areas:'Chelmsley Wood, Marston Green, Kingshurst, Fordbridge', pos:'Solihull / Airport side', hook:'Chelmsley / Marston Green. East/Solihull-airport side.', x:700, y:315, w:86, h:66},
+      {code:'B38', areas:'Kings Norton, Hawkesley, Headley Heath', pos:'South', hook:'Kings Norton. South Birmingham, below B30/B14.', x:315, y:700, w:92, h:48},
+      {code:'B40', areas:'NEC, Birmingham Airport, Resorts World, Bickenhill', pos:'Solihull / Airport side', hook:'Airport / NEC. Far east airport side.', x:700, y:505, w:86, h:66},
+      {code:'B42', areas:'Perry Barr, Great Barr, Hamstead', pos:'North', hook:'A34 / Perry Barr / Great Barr side. Think north towards Walsall/M6.', x:390, y:82, w:88, h:62},
+      {code:'B43', areas:'Great Barr, Hamstead, Pheasey, Newton', pos:'North', hook:'Great Barr / Pheasey. North-west edge toward Walsall/Sandwell.', x:285, y:72, w:92, h:62},
+      {code:'B44', areas:'Perry Barr, Kingstanding, Great Barr, Old Oscott, Queslett', pos:'North', hook:'Kingstanding / Queslett / Perry Barr. North Birmingham.', x:478, y:65, w:92, h:62},
+      {code:'B45', areas:'Rednal, New Frankley, Rubery, Cofton Hackett, Barnt Green, Longbridge', pos:'South West', hook:'Far south-west. Rubery / Rednal / Longbridge edge.', x:170, y:690, w:112, h:54},
+      {code:'B46', areas:'Coleshill, Water Orton, Shustoke, Whitacre Heath', pos:'North East', hook:'Coleshill / Water Orton. Far north-east beyond Birmingham.', x:700, y:80, w:86, h:58},
+      {code:'B47', areas:'Hollywood, Wythall', pos:'South', hook:'Far south / Wythall side, below Kings Heath/Maypole.', x:482, y:700, w:96, h:48},
+      {code:'B48', areas:'Alvechurch', pos:'South', hook:'Alvechurch. Far south, below Longbridge/Redditch approach.', x:398, y:700, w:82, h:48}
+    ];
+
+    const state = {
+      current: DATA.find(d => d.code === 'B42') || DATA[0],
+      weak: new Set(JSON.parse(localStorage.getItem('weakPostcodes') || '[]')),
+      known: new Set(JSON.parse(localStorage.getItem('knownPostcodes') || '[]')),
+      mode: 'random'
+    };
+
+    const els = {
+      postcodeText: document.getElementById('postcodeText'),
+      areasText: document.getElementById('areasText'),
+      positionText: document.getElementById('positionText'),
+      hookText: document.getElementById('hookText'),
+      scoreText: document.getElementById('scoreText'),
+      nextBtn: document.getElementById('nextBtn'),
+      knownBtn: document.getElementById('knownBtn'),
+      weakBtn: document.getElementById('weakBtn'),
+      mobileNextBtn: document.getElementById('mobileNextBtn'),
+      mobileKnownBtn: document.getElementById('mobileKnownBtn'),
+      mobileWeakBtn: document.getElementById('mobileWeakBtn'),
+      mapSvg: document.getElementById('mapSvg'),
+      mapHint: document.getElementById('mapHint'),
+      postcodeGrid: document.getElementById('postcodeGrid'),
+      searchBox: document.getElementById('searchBox'),
+      directionFilter: document.getElementById('directionFilter'),
+      randomMode: document.getElementById('randomMode'),
+      weakMode: document.getElementById('weakMode'),
+      allMode: document.getElementById('allMode')
+    };
+
+    function saveProgress() {
+      localStorage.setItem('weakPostcodes', JSON.stringify([...state.weak]));
+      localStorage.setItem('knownPostcodes', JSON.stringify([...state.known]));
+    }
+
+    function randomFrom(list) {
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function chooseNext() {
+      let pool = DATA;
+      if (state.mode === 'weak' && state.weak.size > 0) {
+        pool = DATA.filter(d => state.weak.has(d.code));
+      }
+      if (state.mode === 'random') {
+        const weighted = [];
+        DATA.forEach(d => {
+          weighted.push(d);
+          if (state.weak.has(d.code)) weighted.push(d, d, d);
+          if (!state.known.has(d.code)) weighted.push(d);
+        });
+        pool = weighted;
+      }
+      let next = randomFrom(pool);
+      if (pool.length > 1) {
+        while (next.code === state.current.code) next = randomFrom(pool);
+      }
+      state.current = next;
+      render();
+    }
+
+    function renderMap() {
+      [...els.mapSvg.querySelectorAll('.zone, .zone-label')].forEach(n => n.remove());
+
+      DATA.forEach(d => {
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', d.x);
+        rect.setAttribute('y', d.y);
+        rect.setAttribute('width', d.w);
+        rect.setAttribute('height', d.h);
+        rect.setAttribute('rx', 13);
+        rect.dataset.code = d.code;
+        rect.classList.add('zone');
+        if (d.code === state.current.code) rect.classList.add('active');
+        else rect.classList.add('dim');
+        rect.addEventListener('click', () => {
+          state.current = d;
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        els.mapSvg.appendChild(rect);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', d.x + d.w / 2);
+        text.setAttribute('y', d.y + d.h / 2);
+        text.textContent = d.code;
+        text.classList.add('zone-label');
+        if (d.code === state.current.code) text.classList.add('active');
+        els.mapSvg.appendChild(text);
+      });
+    }
+
+    function renderList() {
+      const q = els.searchBox.value.trim().toLowerCase();
+      const dir = els.directionFilter.value;
+      els.postcodeGrid.innerHTML = '';
+
+      DATA
+        .filter(d => !dir || d.pos === dir)
+        .filter(d => !q || d.code.toLowerCase().includes(q) || d.areas.toLowerCase().includes(q) || d.pos.toLowerCase().includes(q))
+        .forEach(d => {
+          const item = document.createElement('div');
+          item.className = 'mini' + (d.code === state.current.code ? ' active' : '');
+          item.innerHTML = `<strong>${d.code}</strong><span>${d.areas}<br>${d.pos}</span>`;
+          item.addEventListener('click', () => {
+            state.current = d;
+            render();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+          els.postcodeGrid.appendChild(item);
+        });
+    }
+
+    function render() {
+      els.postcodeText.textContent = state.current.code;
+      els.areasText.textContent = state.current.areas.replaceAll(', ', ' • ');
+      els.positionText.textContent = state.current.pos;
+      els.hookText.textContent = state.current.hook;
+      els.mapHint.textContent = `Highlighted: ${state.current.code}`;
+      els.scoreText.textContent = `${state.known.size} known / ${state.weak.size} weak`;
+      renderMap();
+      renderList();
+    }
+
+    function setMode(mode) {
+      state.mode = mode;
+      els.randomMode.classList.toggle('active', mode === 'random');
+      els.weakMode.classList.toggle('active', mode === 'weak');
+      els.allMode.classList.toggle('active', mode === 'all');
+    }
+
+    function markKnown() {
+      state.known.add(state.current.code);
+      state.weak.delete(state.current.code);
+      saveProgress();
+      chooseNext();
+    }
+
+    function markWeak() {
+      state.weak.add(state.current.code);
+      state.known.delete(state.current.code);
+      saveProgress();
+      chooseNext();
+    }
+
+    els.nextBtn.addEventListener('click', chooseNext);
+    els.knownBtn.addEventListener('click', markKnown);
+    els.weakBtn.addEventListener('click', markWeak);
+    els.mobileNextBtn.addEventListener('click', chooseNext);
+    els.mobileKnownBtn.addEventListener('click', markKnown);
+    els.mobileWeakBtn.addEventListener('click', markWeak);
+
+    els.randomMode.addEventListener('click', () => setMode('random'));
+    els.weakMode.addEventListener('click', () => setMode('weak'));
+    els.allMode.addEventListener('click', () => setMode('all'));
+    els.searchBox.addEventListener('input', renderList);
+    els.directionFilter.addEventListener('change', renderList);
+
+    render();
+  </script>
+</body>
+</html>

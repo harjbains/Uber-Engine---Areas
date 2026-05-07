@@ -113,6 +113,10 @@
       margin: 10px 0 12px;
     }
 
+    .meta-grid.single {
+      grid-template-columns: 1fr;
+    }
+
     .meta {
       background: rgba(31, 41, 55, 0.82);
       border: 1px solid var(--line);
@@ -168,6 +172,13 @@
     button.known { background: #86efac; }
 
     .map-card { padding: 14px; }
+
+    .embedded-map {
+      margin: 10px 0 12px;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.72);
+    }
     .map-head {
       display: flex;
       justify-content: space-between;
@@ -190,8 +201,8 @@
     svg {
       display: block;
       width: 100%;
-      height: min(62vh, 640px);
-      min-height: 420px;
+      height: min(48vh, 520px);
+      min-height: 340px;
       background: #0b1220;
     }
 
@@ -325,8 +336,8 @@
       .map-head span { font-size: .82rem; }
 
       svg {
-        height: 52vh;
-        min-height: 360px;
+        height: 42vh;
+        min-height: 300px;
       }
 
       .list-tools {
@@ -377,20 +388,15 @@
       .postcode-grid { grid-template-columns: 1fr; }
 
       svg {
-        height: 50vh;
-        min-height: 330px;
+        height: 38vh;
+        min-height: 280px;
       }
     }
   </style>
 </head>
 <body>
   <main class="app">
-    <header>
-      <h1>Birmingham Postcode Trainer</h1>
-      <p>Random visual flashcards for learning Birmingham B postcodes by postcode, area names, direction and map position.</p>
-    </header>
-
-    <section class="card trainer">
+<section class="card trainer">
       <div class="mode-row">
         <button class="chip active" id="randomMode">Random</button>
         <button class="chip" id="weakMode">Weak</button>
@@ -401,11 +407,30 @@
       <div class="postcode" id="postcodeText">B42</div>
       <div class="areas" id="areasText">Perry Barr • Great Barr • Hamstead</div>
 
-      <div class="meta-grid">
+      <div class="meta-grid single">
         <div class="meta">
           <div class="label">Position</div>
           <div class="value" id="positionText">North Birmingham</div>
         </div>
+      </div>
+
+      <section class="map-card embedded-map">
+        <div class="map-head">
+          <h2>Visual map</h2>
+          <span id="mapHint">Highlighted: B42</span>
+        </div>
+        <div class="map-wrap">
+          <svg id="mapSvg" viewBox="0 0 800 760" role="img" aria-label="Simplified Birmingham postcode map">
+            <path class="compass" d="M705 80 L705 165 M665 122 L745 122" />
+            <text class="compass-text" x="705" y="68">N</text>
+            <text class="compass-text" x="705" y="190">S</text>
+            <text class="compass-text" x="755" y="127">E</text>
+            <text class="compass-text" x="650" y="127">W</text>
+          </svg>
+        </div>
+      </section>
+
+      <div class="meta-grid single">
         <div class="meta">
           <div class="label">Memory score</div>
           <div class="value" id="scoreText">0 known / 0 weak</div>
@@ -420,22 +445,6 @@
           <button class="known" id="knownBtn">Knew it</button>
           <button class="weak" id="weakBtn">Need practice</button>
         </div>
-      </div>
-    </section>
-
-    <section class="map-card">
-      <div class="map-head">
-        <h2>Visual Birmingham Map</h2>
-        <span id="mapHint">Highlighted: B42</span>
-      </div>
-      <div class="map-wrap">
-        <svg id="mapSvg" viewBox="0 0 800 760" role="img" aria-label="Simplified Birmingham postcode map">
-          <path class="compass" d="M705 80 L705 165 M665 122 L745 122" />
-          <text class="compass-text" x="705" y="68">N</text>
-          <text class="compass-text" x="705" y="190">S</text>
-          <text class="compass-text" x="755" y="127">E</text>
-          <text class="compass-text" x="650" y="127">W</text>
-        </svg>
       </div>
     </section>
 

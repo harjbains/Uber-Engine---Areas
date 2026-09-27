@@ -42,8 +42,8 @@ export function resolveAssetPath(assetPath, fallbackName) {
     // Normalize path by stripping any root prefixes if they were saved in the DB
     resolvedPath = resolvedPath.replace(/^\/?(public\/)?assets\/health-engine\//i, '');
     
-    // Resolve relative to public folder
-    return `/${ASSET_ROOT}${resolvedPath}`;
+    // Resolve relative to index.html to support GitHub Pages hosting
+    return `${ASSET_ROOT}${resolvedPath}`;
 }
 
 export function generatePlaceholder(title) {

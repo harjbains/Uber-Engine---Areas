@@ -122,7 +122,7 @@ export async function renderTvHome(container) {
                     <div class="brand">
                         <div class="brand-icon">${iconDumbbell}</div>
                         <div>
-                            <h1 class="brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.1</span></h1>
+                            <h1 class="brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.3</span></h1>
                             <div class="brand-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                         </div>
                     </div>

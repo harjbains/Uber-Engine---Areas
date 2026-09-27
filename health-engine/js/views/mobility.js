@@ -37,7 +37,7 @@ const iconClock = `<svg viewBox="0 0 24 24" fill="currentColor" width="32" heigh
 
 export async function renderMobility(container) {
     container.innerHTML = `
-        <div style="background: #0b101e;  display: flex; flex-direction: column; color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow: hidden;">
+        <div class="app-container tv-shell">
             <div id="mobility-content" style="flex: 1; display: flex; flex-direction: column;">
                 <div class="spinner" style="margin: auto;"></div>
             </div>
@@ -239,7 +239,7 @@ function getTopBarHTML() {
             <div class="brand">
                 <div class="brand-icon">${iconMobility}</div>
                 <div>
-                    <h1 class="brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.1</span></h1>
+                    <h1 class="brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.3</span></h1>
                     <div class="brand-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                 </div>
             </div>

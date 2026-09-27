@@ -239,7 +239,7 @@ function getTopBarHTML() {
             <div class="brand">
                 <div class="brand-icon">${iconMobility}</div>
                 <div>
-                    <h1 class="brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.8</span></h1>
+                    <h1 class="brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.0</span></h1>
                     <div class="brand-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                 </div>
             </div>
@@ -491,7 +491,7 @@ function renderRest(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body">
+        <div class="main-body tv-main">
             ${getSidebarHTML()}
             <main class="right-panel" style="background: #0b101e;">
                 <div class="rp-content" style="align-items: center; justify-content: center; padding: 0;">
@@ -549,7 +549,7 @@ function renderFeedback(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body">
+        <div class="main-body tv-main">
             ${getSidebarHTML()}
             <main class="right-panel" style="background: #0b101e; justify-content: center; align-items: center;">
                 <div style="background: #13192a; padding: 60px; border-radius: 24px; border: 2px solid #8a2be2; text-align: center; max-width: 1000px; box-shadow: 0 15px 50px rgba(138, 43, 226, 0.2);">
@@ -604,7 +604,7 @@ function renderComplete(content) {
     clearInterval(state.timerInterval);
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body" style="background: #0b101e; justify-content: center; align-items: center; width: 100%;">
+        <div class="main-body tv-main" style="background: #0b101e; justify-content: center; align-items: center; width: 100%;">
             <div style="text-align: center;">
                 <h1 style="font-size: 5rem; color: #8a2be2; margin-bottom: 20px;">MOBILITY COMPLETE</h1>
                 <p style="font-size: 2rem; color: #aaa;">Saving session data...</p>

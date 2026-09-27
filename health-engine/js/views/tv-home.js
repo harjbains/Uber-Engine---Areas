@@ -122,7 +122,7 @@ export async function renderTvHome(container) {
                     <div class="brand">
                         <div class="brand-icon">${iconDumbbell}</div>
                         <div>
-                            <h1 class="brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.3</span></h1>
+                            <h1 class="brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.4</span></h1>
                             <div class="brand-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                         </div>
                     </div>
@@ -242,7 +242,7 @@ export async function renderTvHome(container) {
 
     // Event listeners
     // Make the whole card clickable for TV
-    content.querySelectorAll('.w-card').forEach(card => {
+    container.querySelectorAll('.w-card').forEach(card => {
         card.addEventListener('click', (e) => {
             if (e.target.closest && e.target.closest('.btn-start')) return; 
             if (card.classList.contains('card-blue')) navigate('/strength');

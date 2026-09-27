@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Engine</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div id="app-root">
+        <!-- Application Shell -->
+        <div id="loading-state" class="state-container">
+            <div class="spinner"></div>
+            <p>Loading Health Engine...</p>
+        </div>
+        
+        <div id="auth-state" class="state-container hidden">
+            <div class="panel" style="max-width: 400px; width: 100%; text-align: center;">
+                <h2>Authentication</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Sign in to sync your Health Engine data.</p>
+                <form id="auth-form" style="display: flex; flex-direction: column; gap: 15px;">
+                    <input type="email" id="auth-email" placeholder="Email" required style="padding: 10px; border-radius: 4px; border: 1px solid var(--panel-border); background: var(--bg-dark); color: white;">
+                    <input type="password" id="auth-password" placeholder="Password" required style="padding: 10px; border-radius: 4px; border: 1px solid var(--panel-border); background: var(--bg-dark); color: white;">
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" id="btn-signin" class="btn" style="flex: 1;">Sign In</button>
+                        <button type="button" id="btn-signup" class="btn" style="flex: 1; background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color);">Sign Up</button>
+                    </div>
+                </form>
+                <p id="auth-error" style="color: var(--primary-color); margin-top: 15px; display: none;"></p>
+            </div>
+        </div>
+
+        <div id="error-state" class="state-container hidden">
+            <h2 class="error-title">Error</h2>
+            <p id="error-message"></p>
+            <button id="error-retry" class="btn">Retry</button>
+        </div>
+        
+        <div id="view-container"></div>
+    </div>
+    
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -94,3 +94,15 @@ document.getElementById('error-retry').addEventListener('click', () => {
 
 // Boot
 window.addEventListener('DOMContentLoaded', initApp);
+
+// Global polyfill for TV remotes (Firestick/Silk)
+// Maps Enter/Space on focusable divs to click events
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        const el = document.activeElement;
+        if (el && el.getAttribute('tabindex') === '0' && el.tagName !== 'BUTTON') {
+            e.preventDefault();
+            el.click();
+        }
+    }
+});

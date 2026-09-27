@@ -24,7 +24,7 @@ export function renderCardio(container) {
                             <div class="logo-tag">CARDIO &middot; ENDURANCE &middot; HEALTH</div>
                         </div>
                     </div>
-                    <div class="nav-home" id="btn-home">
+                    <div class="nav-home" tabindex="0" id="btn-home">
                         <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" style="margin-right: 8px;"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
                         Home
                     </div>
@@ -45,9 +45,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-dur">
                                     <div class="ctrl-lbl">DURATION (MIN)</div>
                                     <div class="ctrl-interactive bg-green-grad">
-                                        <div class="ctrl-arrow-container" id="dur-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.duration}</div>
-                                        <div class="ctrl-arrow-container" id="dur-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 1 min</div>
                                 </div>
@@ -55,9 +55,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-dist">
                                     <div class="ctrl-lbl">DISTANCE (KM)</div>
                                     <div class="ctrl-interactive bg-blue-grad">
-                                        <div class="ctrl-arrow-container" id="dist-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.distance.toFixed(1)}</div>
-                                        <div class="ctrl-arrow-container" id="dist-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 0.1 km</div>
                                 </div>
@@ -65,9 +65,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-spd">
                                     <div class="ctrl-lbl">AVG SPEED (KM/H)</div>
                                     <div class="ctrl-interactive bg-purple-grad">
-                                        <div class="ctrl-arrow-container" id="spd-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.speed.toFixed(1)}</div>
-                                        <div class="ctrl-arrow-container" id="spd-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 0.1 km/h</div>
                                 </div>
@@ -75,9 +75,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-inc">
                                     <div class="ctrl-lbl">INCLINE (%)</div>
                                     <div class="ctrl-interactive bg-orange-grad">
-                                        <div class="ctrl-arrow-container" id="inc-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.incline.toFixed(1)}</div>
-                                        <div class="ctrl-arrow-container" id="inc-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 0.5 %</div>
                                 </div>
@@ -93,7 +93,7 @@ export function renderCardio(container) {
                 </div>
                 
                 <footer class="bottom-bar">
-                    <div class="bb-btn-end" id="btn-end">
+                    <div class="bb-btn-end" tabindex="0" id="btn-end">
                         <div class="bb-end-x">&times;</div>
                         <div class="bb-end-text">
                             <div class="bb-end-t1">CANCEL</div>

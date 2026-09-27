@@ -119,7 +119,7 @@ function renderActiveSet(content) {
                         <div class="logo-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                     </div>
                 </div>
-                <div class="nav-home" id="btn-home">
+                <div class="nav-home" tabindex="0" id="btn-home">
                     <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" style="margin-right: 8px;"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
                     Home
                 </div>
@@ -133,7 +133,7 @@ function renderActiveSet(content) {
                 
                 <aside class="left-rail">
                     ${state.exercises.map((e, idx) => `
-                        <div class="rail-item ${idx === state.currentIndex ? 'active' : ''}" data-index="${idx}" style="cursor: pointer; transition: background-color 0.2s;">
+                        <div class="rail-item ${idx === state.currentIndex ? 'active' : ''}" tabindex="0" data-index="${idx}" style="cursor: pointer; transition: background-color 0.2s;">
                             <div class="rail-num">${idx + 1}</div>
                             <img src="${resolveAssetPath(e.image_path)}" class="rail-img" onerror="this.src='${resolveAssetPath(null)}'" />
                             <div class="rail-text-col">
@@ -196,7 +196,7 @@ function renderActiveSet(content) {
             </div>
 
             <footer class="bottom-bar">
-                <div class="bb-btn-end" id="btn-end">
+                <div class="bb-btn-end" tabindex="0" id="btn-end">
                     <div class="bb-end-x">&times;</div>
                     <div class="bb-end-text">
                         <div class="bb-end-t1">END WORKOUT</div>

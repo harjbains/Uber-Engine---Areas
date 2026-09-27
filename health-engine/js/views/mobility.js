@@ -259,7 +259,7 @@ function getSidebarHTML() {
     return `
         <aside class="left-rail">
             ${state.exercises.map((e, idx) => `
-                <div class="rail-item ${idx === state.currentIndex ? 'active' : ''}" data-index="${idx}" style="transition: background-color 0.2s;">
+                <div class="rail-item ${idx === state.currentIndex ? 'active' : ''}" tabindex="0" data-index="${idx}" style="transition: background-color 0.2s;">
                     <div class="rail-num">${idx + 1}</div>
                     <img src="${resolveAssetPath(e.image_path)}" class="rail-img" onerror="this.src='${resolveAssetPath(null)}'" />
                     <div class="rail-text-col">
@@ -316,7 +316,7 @@ function getBottomBarHTML() {
                 </div>
             </div>
             
-            <div class="next-block" id="btn-next-ex" style="cursor: pointer; transition: opacity 0.2s;">
+            <div class="next-block" tabindex="0" id="btn-next-ex" style="cursor: pointer; transition: opacity 0.2s;">
                 <div class="next-text">
                     <div class="next-title">NEXT EXERCISE</div>
                     <div class="next-val">${nextEx ? nextEx.name : 'Finish'}</div>

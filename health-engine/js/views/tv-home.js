@@ -186,7 +186,7 @@ export async function renderTvHome(container) {
                 
                 <!-- Footer Navigation -->
                 <div class="footer">
-                    <div class="footer-btn">
+                    <div class="footer-btn" tabindex="0">
                         <div class="footer-icon" style="color: #fff;">${iconCalendar}</div>
                         <div class="footer-text">
                             <h3 class="footer-title">TODAY</h3>
@@ -194,7 +194,7 @@ export async function renderTvHome(container) {
                         </div>
                         <div class="footer-arrow">&rsaquo;</div>
                     </div>
-                    <div class="footer-btn">
+                    <div class="footer-btn" tabindex="0">
                         <div class="footer-icon" style="color: #fff;">${iconChart}</div>
                         <div class="footer-text">
                             <h3 class="footer-title">HISTORY</h3>
@@ -202,7 +202,7 @@ export async function renderTvHome(container) {
                         </div>
                         <div class="footer-arrow">&rsaquo;</div>
                     </div>
-                    <div class="footer-btn">
+                    <div class="footer-btn" tabindex="0">
                         <div class="footer-icon" style="color: #FFD700;">${iconTrophy}</div>
                         <div class="footer-text">
                             <h3 class="footer-title">BADGES</h3>
@@ -210,7 +210,7 @@ export async function renderTvHome(container) {
                         </div>
                         <div class="footer-arrow">&rsaquo;</div>
                     </div>
-                    <div class="footer-btn" id="btn-admin-bottom">
+                    <div class="footer-btn" tabindex="0" id="btn-admin-bottom">
                         <div class="footer-icon" style="color: #fff;">${iconGear}</div>
                         <div class="footer-text">
                             <h3 class="footer-title">SETTINGS</h3>

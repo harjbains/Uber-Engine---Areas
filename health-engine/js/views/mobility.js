@@ -239,7 +239,7 @@ function getTopBarHTML() {
             <div class="brand">
                 <div class="brand-icon">${iconMobility}</div>
                 <div>
-                    <h1 class="brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.1</span></h1>
+                    <h1 class="brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.2</span></h1>
                     <div class="brand-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                 </div>
             </div>

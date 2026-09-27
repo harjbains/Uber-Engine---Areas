@@ -144,7 +144,7 @@ export async function renderTvHome(container) {
                 <div class="cards-container">
                     
                     <!-- Strength -->
-                    <div class="w-card card-blue">
+                    <div tabindex="0" class="w-card card-blue">
                         <div class="card-bg" style="background-image: url('${strengthBg}');"></div>
                         <div class="card-overlay"></div>
                         <div class="card-content">
@@ -157,7 +157,7 @@ export async function renderTvHome(container) {
                     </div>
                     
                     <!-- Cardio -->
-                    <div class="w-card card-green">
+                    <div tabindex="0" class="w-card card-green">
                         <div class="card-bg" style="background-image: url('${cardioBg}');"></div>
                         <div class="card-overlay"></div>
                         <div class="card-content">
@@ -170,7 +170,7 @@ export async function renderTvHome(container) {
                     </div>
                     
                     <!-- Mobility -->
-                    <div class="w-card card-purple">
+                    <div tabindex="0" class="w-card card-purple">
                         <div class="card-bg" style="background-image: url('${mobilityBg}');"></div>
                         <div class="card-overlay"></div>
                         <div class="card-content">
@@ -241,6 +241,14 @@ export async function renderTvHome(container) {
     setInterval(updateTime, 1000);
 
     // Event listeners
+    // Make the whole card clickable for TV
+    content.querySelectorAll('.w-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const btn = card.querySelector('.btn-start');
+            if (btn) btn.click();
+        });
+    });
+
     document.getElementById('btn-strength').addEventListener('click', () => navigate('/strength'));
     document.getElementById('btn-cardio').addEventListener('click', () => navigate('/cardio'));
     document.getElementById('btn-mobility').addEventListener('click', () => navigate('/mobility'));

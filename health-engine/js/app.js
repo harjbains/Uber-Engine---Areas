@@ -96,11 +96,12 @@ document.getElementById('error-retry').addEventListener('click', () => {
 window.addEventListener('DOMContentLoaded', initApp);
 
 // Global polyfill for TV remotes (Firestick/Silk)
-// Maps Enter/Space on focusable divs to click events
+// Maps Enter/Select on any focused element to a direct click event
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    // Firestick select button usually maps to Enter (keyCode 13)
+    if (e.key === 'Enter' || e.keyCode === 13 || e.key === ' ') {
         const el = document.activeElement;
-        if (el && el.getAttribute('tabindex') === '0' && el.tagName !== 'BUTTON') {
+        if (el && typeof el.click === 'function') {
             e.preventDefault();
             el.click();
         }
@@ -119,7 +120,8 @@ function applyTVScale() {
         const availableWidth = window.innerWidth;
         const availableHeight = window.innerHeight;
         // Scale the fixed 16:9 application canvas uniformly using the smaller of the horizontal and vertical scale factors
-        const scale = Math.min(availableWidth / 1920, availableHeight / 1080);
+        // User requested 15% taller overall scale (uniform boost)
+        const scale = Math.min(availableWidth / 1920, availableHeight / 1080) * 1.15;
         
         container.style.width = '1920px';
         container.style.height = '1080px';

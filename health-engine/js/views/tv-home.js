@@ -57,7 +57,7 @@ export async function renderTvHome(container) {
         <style>
             .home-layout { height: 100vh; display: flex; flex-direction: column; padding: 40px 60px; box-sizing: border-box; background: url('${bgUrl}') no-repeat center center/cover; position: relative; color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
             .home-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 15, 30, 0.7); backdrop-filter: blur(8px); z-index: 0; }
-            .home-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
+            .home-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; justify-content: center; }
             
             .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; }
             .brand { display: flex; align-items: center; gap: 15px; }
@@ -74,7 +74,7 @@ export async function renderTvHome(container) {
             .settings-btn:hover { color: #fff; }
             .settings-btn span { font-size: 0.8rem; letter-spacing: 1px; }
             
-            .cards-container { display: flex; gap: 30px; flex: 1; align-items: stretch; margin-bottom: 30px; }
+            .cards-container { display: flex; gap: 30px; flex: 1; align-items: stretch; margin-top: auto; margin-bottom: auto; max-height: 600px; }
             
             .w-card { flex: 1; border-radius: 24px; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: flex; flex-direction: column; transition: transform 0.2s; }
             .w-card:hover { transform: scale(1.02); }
@@ -122,7 +122,7 @@ export async function renderTvHome(container) {
                     <div class="brand">
                         <div class="brand-icon">${iconDumbbell}</div>
                         <div>
-                            <h1 class="brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.5</span></h1>
+                            <h1 class="brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.6</span></h1>
                             <div class="brand-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                         </div>
                     </div>

@@ -21,7 +21,7 @@ export async function renderStrength(container) {
     const iconDumbbell = `<svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40"><path d="M6 4h2v16H6zm12 0h2v16h-2zM2 8h2v8H2zm18 0h2v8h-2zM8 11h8v2H8z"/></svg>`;
     const iconCheck = `<svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
 
-    container.innerHTML = `<div id="strength-content" style="width: 100vw; height: 100vh;">Loading...</div>`;
+    container.innerHTML = `<div id="strength-content" style=" ">Loading...</div>`;
 
     try {
         const { data: user } = await getSupabase().auth.getUser();
@@ -110,12 +110,12 @@ function renderActiveSet(content) {
     const iconCheck = `<svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
 
     content.innerHTML = `
-<div class="app-container">
-            <header class="top-bar">
+<div class="app-container tv-shell">
+            <header class="top-bar tv-header">
                 <div class="logo-area">
                     <div class="logo-icon">${iconDumbbell}</div>
                     <div class="logo-text-block">
-                        <div class="logo-title">FITNESS <span class="text-blue">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.6</span></div>
+                        <div class="logo-title">FITNESS <span class="text-blue">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.7</span></div>
                         <div class="logo-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ function renderActiveSet(content) {
                 </div>
             </header>
 
-            <div class="main-content">
+            <div class="main-content tv-main">
                 
                 <aside class="left-rail">
                     ${state.exercises.map((e, idx) => `
@@ -195,7 +195,7 @@ function renderActiveSet(content) {
                 </main>
             </div>
 
-            <footer class="bottom-bar">
+            <footer class="bottom-bar tv-footer">
                 <div class="bb-btn-end" tabindex="0" id="btn-end">
                     <div class="bb-end-x">&times;</div>
                     <div class="bb-end-text">
@@ -238,8 +238,8 @@ function renderActiveSet(content) {
             
             /* Global */
             .app-container {
-                width: 100vw;
-                height: 100vh;
+                
+                
                 background-color: #050810;
                 color: white;
                 font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -251,11 +251,11 @@ function renderActiveSet(content) {
             
             /* Top Bar */
             .top-bar {
-                height: 90px;
+                
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                padding: 0 40px;
+                
             }
             .logo-area { display: flex; align-items: center; gap: 15px; width: 380px; }
             .logo-icon { color: #007bff; display: flex; align-items: center; justify-content: center; }
@@ -272,9 +272,9 @@ function renderActiveSet(content) {
             .main-content {
                 display: flex;
                 flex: 1;
-                padding: 0 40px 20px 40px;
+                
                 gap: 30px;
-                height: calc(100vh - 200px); /* 90 top + 110 bottom = 200 */
+                 /* 90 top + 110 bottom = 200 */
             }
             
             /* Left Rail */
@@ -489,7 +489,7 @@ function renderActiveSet(content) {
             .ctrl-val {
                 background-color: #15243d;
                 margin: 0 4px;
-                height: 110px;
+                
                 border-radius: 10px;
                 display: flex;
                 align-items: center;
@@ -548,13 +548,13 @@ function renderActiveSet(content) {
             
             /* Bottom Bar */
             .bottom-bar {
-                height: 110px;
+                
                 background-color: #070b14;
                 border-top: 1px solid rgba(255,255,255,0.05);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                padding: 0 40px;
+                
             }
             
             .bb-btn-end {

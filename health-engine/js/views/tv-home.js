@@ -55,11 +55,11 @@ export async function renderTvHome(container) {
 
     container.innerHTML = `
         <style>
-            .home-layout { height: 100vh; display: flex; flex-direction: column; padding: 40px 60px; box-sizing: border-box; background: url('${bgUrl}') no-repeat center center/cover; position: relative; color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+            .home-layout {  display: flex; flex-direction: column;  box-sizing: border-box; background: url('${bgUrl}') no-repeat center center/cover; position: relative; color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
             .home-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 15, 30, 0.7); backdrop-filter: blur(8px); z-index: 0; }
             .home-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; justify-content: center; }
             
-            .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; }
+            .header { display: flex; justify-content: space-between; align-items: flex-start;  }
             .brand { display: flex; align-items: center; gap: 15px; }
             .brand-icon { width: 50px; height: 50px; color: #2196F3; }
             .brand-title { margin: 0; font-size: 2.5rem; font-weight: bold; letter-spacing: 2px; line-height: 1.1; }
@@ -87,7 +87,7 @@ export async function renderTvHome(container) {
             
             .card-content { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; padding: 40px; text-align: center; }
             
-            .card-icon-container { width: 100px; height: 100px; margin-bottom: auto; margin-top: 40px; }
+            .card-icon-container { width: 100px;  margin-bottom: auto; margin-top: 40px; }
             .card-blue .card-icon-container { color: #5eb5ff; }
             .card-green .card-icon-container { color: #66bb6a; }
             .card-purple .card-icon-container { color: #ab47bc; }
@@ -95,7 +95,7 @@ export async function renderTvHome(container) {
             .card-title { font-size: 3.5rem; font-weight: bold; margin: 0 0 5px 0; letter-spacing: 2px; }
             .card-subtitle { font-size: 1.2rem; color: #ccc; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase; }
             
-            .card-status { background: rgba(0,0,0,0.4); border-radius: 20px; padding: 10px 25px; font-size: 1.1rem; color: #ccc; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
+            .card-status { background: rgba(0,0,0,0.4); border-radius: 20px; padding: 10px 25px; font-size: 1.1rem; color: #ccc;  border: 1px solid rgba(255,255,255,0.05); }
             
             .btn-start { width: 100%; padding: 25px; border-radius: 16px; font-size: 2.2rem; font-weight: bold; color: white; border: none; cursor: pointer; transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px; }
             .btn-start:hover { filter: brightness(1.1); }
@@ -103,7 +103,7 @@ export async function renderTvHome(container) {
             .btn-green { background: #4CAF50; box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4); }
             .btn-purple { background: #9C27B0; box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4); }
             
-            .footer { display: flex; gap: 20px; height: 100px; }
+            .footer { display: flex; gap: 20px;  }
             .footer-btn { flex: 1; background: rgba(20, 25, 35, 0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; display: flex; align-items: center; padding: 0 25px; cursor: pointer; transition: 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
             .footer-btn:hover { background: rgba(30, 35, 50, 0.95); }
             .footer-icon { width: 40px; height: 40px; margin-right: 20px; display: flex; align-items: center; justify-content: center; }
@@ -113,16 +113,16 @@ export async function renderTvHome(container) {
             .footer-arrow { color: #666; font-size: 1.5rem; font-weight: bold; }
         </style>
 
-        <div class="home-layout">
+        <div class="home-layout tv-shell">
             <div class="home-overlay"></div>
-            <div class="home-content">
+            <div class="home-content tv-shell">
                 
                 <!-- Header -->
-                <div class="header">
+                <div class="header tv-header">
                     <div class="brand">
                         <div class="brand-icon">${iconDumbbell}</div>
                         <div>
-                            <h1 class="brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.6</span></h1>
+                            <h1 class="brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.7</span></h1>
                             <div class="brand-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                         </div>
                     </div>
@@ -141,7 +141,7 @@ export async function renderTvHome(container) {
                 </div>
                 
                 <!-- Cards -->
-                <div class="cards-container">
+                <div class="cards-container tv-main">
                     
                     <!-- Strength -->
                     <div tabindex="0" class="w-card card-blue">
@@ -185,7 +185,7 @@ export async function renderTvHome(container) {
                 </div>
                 
                 <!-- Footer Navigation -->
-                <div class="footer">
+                <div class="footer tv-footer">
                     <div class="footer-btn" tabindex="0">
                         <div class="footer-icon" style="color: #fff;">${iconCalendar}</div>
                         <div class="footer-text">

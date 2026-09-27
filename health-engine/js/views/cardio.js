@@ -15,12 +15,12 @@ export function renderCardio(container) {
 
     const render = () => {
         container.innerHTML = `
-            <div class="app-container">
-                <header class="top-bar">
+            <div class="app-container tv-shell">
+                <header class="top-bar tv-header">
                     <div class="logo-area">
                         <div class="logo-icon">${iconRun}</div>
                         <div class="logo-text-block">
-                            <div class="logo-title">FITNESS <span class="text-green">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.6</span></div>
+                            <div class="logo-title">FITNESS <span class="text-green">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.7</span></div>
                             <div class="logo-tag">CARDIO &middot; ENDURANCE &middot; HEALTH</div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ export function renderCardio(container) {
                     </div>
                 </header>
                 
-                <div class="main-content" style="justify-content: center; align-items: center;">
+                <div class="main-content tv-main" style="justify-content: center; align-items: center;">
                     <main class="workout-panel" style="position: relative; overflow: hidden; width: 100%; max-width: 1400px; display: flex; flex-direction: column; align-items: center;">
                         <div class="wp-bg" style="background-image: url('${resolveAssetPath('backgrounds/treadmill-background.png')}');"></div>
                         <div class="wp-overlay"></div>
@@ -92,7 +92,7 @@ export function renderCardio(container) {
                     </main>
                 </div>
                 
-                <footer class="bottom-bar">
+                <footer class="bottom-bar tv-footer">
                     <div class="bb-btn-end" tabindex="0" id="btn-end">
                         <div class="bb-end-x">&times;</div>
                         <div class="bb-end-text">
@@ -107,9 +107,9 @@ export function renderCardio(container) {
                 * { box-sizing: border-box; margin: 0; padding: 0; }
                 button { outline: none; border: none; cursor: pointer; font-family: inherit; }
                 
-                .app-container { width: 100vw; height: 100vh; background-color: #050810; color: white; display: flex; flex-direction: column; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+                .app-container {   background-color: #050810; color: white; display: flex; flex-direction: column; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
                 
-                .top-bar { height: 100px; background-color: #070b14; display: flex; align-items: center; padding: 0 40px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+                .top-bar {  background-color: #070b14; display: flex; align-items: center;  border-bottom: 1px solid rgba(255,255,255,0.05); }
                 .logo-area { display: flex; align-items: center; gap: 15px; width: 350px; }
                 .logo-icon { color: white; }
                 .logo-text-block { display: flex; flex-direction: column; }
@@ -171,7 +171,7 @@ export function renderCardio(container) {
                 .ctrl-val {
                     background-color: #15243d;
                     margin: 0 4px;
-                    height: 110px;
+                    
                     border-radius: 10px;
                     display: flex;
                     align-items: center;
@@ -201,7 +201,7 @@ export function renderCardio(container) {
                 .btn-complete:hover { filter: brightness(1.1); }
                 .btn-complete:disabled { opacity: 0.5; cursor: not-allowed; }
                 
-                .bottom-bar { height: 110px; background-color: #070b14; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: flex-start; padding: 0 40px; }
+                .bottom-bar {  background-color: #070b14; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: flex-start;  }
                 
                 .bb-btn-end { background-color: #111827; border-radius: 16px; height: 70px; padding: 0 25px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: background 0.2s; }
                 .bb-btn-end:hover { background-color: #1a2238; }

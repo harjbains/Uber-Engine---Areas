@@ -37,7 +37,7 @@ const iconClock = `<svg viewBox="0 0 24 24" fill="currentColor" width="32" heigh
 
 export async function renderMobility(container) {
     container.innerHTML = `
-        <div style="background: #0b101e; height: 100vh; display: flex; flex-direction: column; color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow: hidden;">
+        <div style="background: #0b101e;  display: flex; flex-direction: column; color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow: hidden;">
             <div id="mobility-content" style="flex: 1; display: flex; flex-direction: column;">
                 <div class="spinner" style="margin: auto;"></div>
             </div>
@@ -46,7 +46,7 @@ export async function renderMobility(container) {
             * { box-sizing: border-box; }
             button { outline: none; border: none; cursor: pointer; font-family: inherit; }
             
-            .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #070b14; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .top-bar { display: flex; justify-content: space-between; align-items: center;  background: #070b14; border-bottom: 1px solid rgba(255,255,255,0.05); }
             .brand { display: flex; align-items: center; gap: 15px; }
             .brand-icon { width: 40px; height: 40px; color: #8a2be2; }
             .brand-title { margin: 0; font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
@@ -235,11 +235,11 @@ function bindSidebarAndNext() {
 
 function getTopBarHTML() {
     return `
-        <header class="top-bar">
+        <header class="top-bar tv-header">
             <div class="brand">
                 <div class="brand-icon">${iconMobility}</div>
                 <div>
-                    <h1 class="brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.6</span></h1>
+                    <h1 class="brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.7</span></h1>
                     <div class="brand-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                 </div>
             </div>
@@ -294,7 +294,7 @@ function getBottomBarHTML() {
     }
     
     return `
-        <footer class="bottom-bar">
+        <footer class="bottom-bar tv-footer">
             <button class="btn-end" id="btn-end-workout">
                 <div class="btn-end-icon">&times;</div>
                 <div>
@@ -348,7 +348,7 @@ function renderActiveSet(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body">
+        <div class="main-body tv-main">
             ${getSidebarHTML()}
             <main class="right-panel">
                 <div class="rp-bg" id="main-exercise-bg" style="background-image: url('${resolveAssetPath(ex.image_path)}');"></div>

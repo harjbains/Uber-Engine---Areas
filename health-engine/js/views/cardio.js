@@ -20,7 +20,7 @@ export function renderCardio(container) {
                     <div class="logo-area">
                         <div class="logo-icon">${iconRun}</div>
                         <div class="logo-text-block">
-                            <div class="logo-title">FITNESS <span class="text-green">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.7</span></div>
+                            <div class="logo-title">FITNESS <span class="text-green">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v1.8</span></div>
                             <div class="logo-tag">CARDIO &middot; ENDURANCE &middot; HEALTH</div>
                         </div>
                     </div>

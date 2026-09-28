@@ -5,17 +5,17 @@ cardio = cardio.replace(/max-width: 160px;/g, 'max-width: 190px;');
 
 cardio = cardio.replace(/\.ctrl-sub \{ font-size: 0\.55rem; color: #8892a0; margin-top: 6px; height: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; text-align: center; \}/, '.ctrl-sub { font-size: 0.65rem; color: #8892a0; margin-top: 6px; text-align: center; line-height: 1.2; }');
 
-cardio = cardio.replace(/>v2\.15<\/span>/g, '>v2.54</span>');
+cardio = cardio.replace(/>v2\.15<\/span>/g, '>v2.55</span>');
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\cardio.js', cardio);
 
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.15/g, 'v=2.54');
+indexHtml = indexHtml.replace(/v=2\.15/g, 'v=2.55');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.15/g, 'v=2.54');
+appJs = appJs.replace(/v=2\.15/g, 'v=2.55');
 fs.writeFileSync(appJsPath, appJs);
 
 const files = [
@@ -27,7 +27,7 @@ const files = [
 files.forEach(file => {
     if (!fs.existsSync(file)) return;
     let fc = fs.readFileSync(file, 'utf8');
-    fc = fc.replace(/>v2\.15<\/span>/g, '>v2.54</span>');
+    fc = fc.replace(/>v2\.15<\/span>/g, '>v2.55</span>');
     fs.writeFileSync(file, fc);
 });
 

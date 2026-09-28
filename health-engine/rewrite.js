@@ -12,7 +12,7 @@ const activeHTMLStr = "`\n" + `
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">\${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.54</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -118,7 +118,7 @@ const restHTMLStr = "`\n" + `
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">\${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.54</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -206,7 +206,7 @@ const completeHTMLStr = "`\n" + `
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">\${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.54</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -339,19 +339,19 @@ newStyles += `
     .btn-complete:hover { transform: scale(1.02); filter: brightness(1.1); }
 `;
 code = code.replace(/<style>[\s\S]*?<\/style>/, `<style>${newStyles}</style>`);
-code = code.replace(/>v2\.32<\/span>/g, '>v2.54</span>');
+code = code.replace(/>v2\.32<\/span>/g, '>v2.55</span>');
 
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', code);
 
 // Update versions
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.32/g, 'v=2.54');
+indexHtml = indexHtml.replace(/v=2\.32/g, 'v=2.55');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.32/g, 'v=2.54');
+appJs = appJs.replace(/v=2\.32/g, 'v=2.55');
 fs.writeFileSync(appJsPath, appJs);
 
 console.log('Final rewrite applied with hardcoded string literals to avoid undefined vars');

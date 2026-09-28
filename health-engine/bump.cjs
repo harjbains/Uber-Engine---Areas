@@ -11,11 +11,11 @@ function bump(dir) {
             let content = fs.readFileSync(fullPath, 'utf8');
             let changed = false;
             if (content.match(/>v2\.\d+<\/span>/)) {
-                content = content.replace(/>v2\.\d+<\/span>/g, '>v2.54</span>');
+                content = content.replace(/>v2\.\d+<\/span>/g, '>v2.55</span>');
                 changed = true;
             }
             if (content.match(/v=2\.\d+/)) {
-                content = content.replace(/v=2\.\d+/g, 'v=2.54');
+                content = content.replace(/v=2\.\d+/g, 'v=2.55');
                 changed = true;
             }
             if (changed) {

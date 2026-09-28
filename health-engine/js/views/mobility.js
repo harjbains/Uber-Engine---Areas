@@ -566,7 +566,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.54</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -693,7 +693,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.54</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -754,7 +754,7 @@ function renderActiveSet(content) {
                             
                             ${ex.measurement_type === 'TIME' ? `<button class="btn-complete btn-skip" id="btn-skip-timer" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">SKIP</button>` : ''}
                             
-                            ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-complete btn-howto" id="btn-howto" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">HELP</button>` : ''}
+                            <button class="btn-complete btn-howto" id="btn-howto" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">HELP</button>
                         </div>
                     </div>
                 </div>
@@ -842,18 +842,25 @@ function renderActiveSet(content) {
         });
     }
     
+    
     if (howtoBtn) {
         howtoBtn.addEventListener('click', () => {
             const bg = document.querySelector('.wp-bg');
             if (bg.style.backgroundSize === 'contain') {
                 bg.style.backgroundSize = 'cover';
+                bg.style.backgroundImage = `url('${resolveAssetPath(ex.image_path)}')`;
                 howtoBtn.innerHTML = 'HELP';
             } else {
                 bg.style.backgroundSize = 'contain';
+                const parts = ex.image_path.split('.');
+                const ext = parts.pop();
+                const howtoPath = `${parts.join('.')}-howto.${ext}`;
+                bg.style.backgroundImage = `url('${resolveAssetPath(howtoPath)}')`;
                 howtoBtn.innerHTML = 'BACK';
             }
         });
     }
+
  }
 
 function recordSet(actualValue) {
@@ -898,7 +905,7 @@ function renderRest(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.54</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>

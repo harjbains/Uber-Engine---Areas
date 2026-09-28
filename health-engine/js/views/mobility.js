@@ -88,21 +88,8 @@ export async function renderMobility(container) {
             }
             
             /* Left Rail */
-            .left-rail {
-                width: 380px;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-            }
-            .rail-item {
-                display: flex;
-                align-items: center;
-                padding: 10px 15px;
-                border-radius: 12px;
-                background-color: #0b111e;
-                border: 1px solid rgba(255,255,255,0.02);
-                height: 80px;
-            }
+            .left-rail { width: 210px; flex-shrink: 0; display: flex; flex-direction: column; gap: 6px; }
+            .rail-item { display: flex; align-items: center; padding: 6px 8px; border-radius: 10px; background-color: #0b111e; border: 1px solid rgba(255,255,255,0.02); min-height: 56px; box-sizing: border-box; }
             .rail-item:hover:not(.active) {
                 background-color: #121927;
                 border-color: rgba(255,255,255,0.08);
@@ -111,32 +98,13 @@ export async function renderMobility(container) {
                 background-color: #007bff;
                 border-color: #007bff;
             }
-            .rail-num {
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                border: 2px solid #556070;
-                color: #8892a0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: 700;
-                font-size: 1rem;
-                flex-shrink: 0;
-            }
+            .rail-num { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #556070; color: #8892a0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; margin-right: 8px; flex-shrink: 0; }
             .rail-item.active .rail-num {
                 background-color: #050810;
                 border-color: transparent;
                 color: white;
             }
-            .rail-img {
-                width: 65px;
-                height: 45px;
-                border-radius: 6px;
-                object-fit: cover;
-                margin: 0 15px;
-                filter: brightness(0.6);
-            }
+            .rail-img { width: 54px; height: 38px; border-radius: 4px; object-fit: cover; margin-right: 8px; background-color: #15243d; flex-shrink: 0; }
             .rail-item.active .rail-img {
                 filter: brightness(1);
             }
@@ -145,18 +113,10 @@ export async function renderMobility(container) {
                 flex-direction: column;
                 justify-content: center;
             }
-            .rail-title {
-                font-size: 1.1rem;
-                font-weight: 700;
-                color: #8892a0;
-            }
+            .rail-title { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.2px; color: white; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.2; padding-right: 2px; }
             .rail-item.active .rail-title { color: white; }
-            .rail-sub {
-                font-size: 0.8rem;
-                color: #556070;
-                margin-top: 4px;
-            }
-            .rail-item.active .rail-sub { color: rgba(255,255,255,0.8); }
+            
+            .rail-item.active 
             
             /* Workout Panel with Full Background */
             .workout-panel {
@@ -576,7 +536,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.37</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.38</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -611,7 +571,7 @@ function getSidebarHTML() {
                     <img src="${resolveAssetPath(e.image_path)}" class="rail-img" onerror="this.src='${resolveAssetPath(null)}'" />
                     <div class="rail-text-col">
                         <div class="rail-title">${e.name}</div>
-                        <div class="rail-sub">${e.sets} sets &middot; ${e.target_value} ${e.measurement_type === 'TIME' ? 'sec' : 'reps'}</div>
+                        
                     </div>
                 </div>
             `).join('')}
@@ -703,7 +663,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.37</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.38</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -729,7 +689,7 @@ function renderActiveSet(content) {
                     <img src="${resolveAssetPath(e.image_path)}" class="rail-img" onerror="this.src='${resolveAssetPath(null)}'" />
                     <div class="rail-text-col">
                         <div class="rail-title">${e.name}</div>
-                        <div class="rail-sub">${e.sets} sets &middot; ${e.target_value} ${e.measurement_type === 'TIME' ? 'sec' : 'reps'}</div>
+                        
                     </div>
                 </div>
             `).join('')}
@@ -900,7 +860,7 @@ function renderRest(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.37</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.38</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -926,7 +886,7 @@ function renderRest(content) {
                     <img src="${resolveAssetPath(e.image_path)}" class="rail-img" onerror="this.src='${resolveAssetPath(null)}'" />
                     <div class="rail-text-col">
                         <div class="rail-title">${e.name}</div>
-                        <div class="rail-sub">${e.sets} sets &middot; ${e.target_value} ${e.measurement_type === 'TIME' ? 'sec' : 'reps'}</div>
+                        
                     </div>
                 </div>
             `).join('')}

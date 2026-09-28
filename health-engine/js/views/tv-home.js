@@ -74,7 +74,7 @@ export async function renderTvHome(container) {
             .settings-btn:hover { color: #fff; }
             .settings-btn span { font-size: 0.8rem; letter-spacing: 1px; }
             
-            .cards-container { display: flex; gap: 30px; flex: 1; align-items: stretch; margin-top: auto; margin-bottom: auto; max-height: 600px; }
+            .cards-container { display: flex; gap: 30px; flex: 1; align-items: stretch; margin-top: auto; margin-bottom: auto; max-height: 100%; min-height: 0; }
             
             .w-card { flex: 1; border-radius: 24px; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: flex; flex-direction: column; transition: transform 0.2s; }
             .w-card:hover { transform: scale(1.02); }
@@ -108,7 +108,7 @@ export async function renderTvHome(container) {
             .footer-btn:hover { background: rgba(30, 35, 50, 0.95); }
             .footer-icon { width: 40px; height: 40px; margin-right: 20px; display: flex; align-items: center; justify-content: center; }
             .footer-text { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-            .footer-title { font-size: 1.2rem; font-weight: bold; margin: 0 0 4px 0; }
+            .footer-title { font-size: 1.4rem; font-weight: bold; margin: 0; }
             .footer-subtitle { font-size: 0.9rem; color: #aaa; margin: 0; }
             .footer-arrow { color: #666; font-size: 1.5rem; font-weight: bold; }
         </style>
@@ -123,7 +123,7 @@ export async function renderTvHome(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.7</span></div>
+                <div class="tv-brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.8</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -136,11 +136,7 @@ export async function renderTvHome(container) {
             <div class="date-text" id="tv-date" style="font-size: 0.9rem; color: #8892a0;">Sat, 26 Sept 2026</div>
             <div class="time-text" id="tv-time" style="font-size: 1.6rem; font-weight: bold; color: white;">--:--</div>
         </div>
-        <div style="width: 1px; height: 30px; background: rgba(255,255,255,0.2);"></div>
-        <button id="btn-admin-top" style="background: transparent; border: none; color: #8892a0; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer;">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
-            <span style="font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;">Settings</span>
-        </button>
+        
         
         </div>
     </header>
@@ -195,7 +191,7 @@ export async function renderTvHome(container) {
                         <div class="footer-icon" style="color: #fff;">${iconCalendar}</div>
                         <div class="footer-text">
                             <h3 class="footer-title">TODAY</h3>
-                            <p class="footer-subtitle">View today's summary</p>
+                            
                         </div>
                         <div class="footer-arrow">&rsaquo;</div>
                     </div>
@@ -203,7 +199,7 @@ export async function renderTvHome(container) {
                         <div class="footer-icon" style="color: #fff;">${iconChart}</div>
                         <div class="footer-text">
                             <h3 class="footer-title">HISTORY</h3>
-                            <p class="footer-subtitle">View your progress</p>
+                            
                         </div>
                         <div class="footer-arrow">&rsaquo;</div>
                     </div>
@@ -211,7 +207,7 @@ export async function renderTvHome(container) {
                         <div class="footer-icon" style="color: #FFD700;">${iconTrophy}</div>
                         <div class="footer-text">
                             <h3 class="footer-title">BADGES</h3>
-                            <p class="footer-subtitle">View achievements</p>
+                            
                         </div>
                         <div class="footer-arrow">&rsaquo;</div>
                     </div>
@@ -219,7 +215,7 @@ export async function renderTvHome(container) {
                         <div class="footer-icon" style="color: #fff;">${iconGear}</div>
                         <div class="footer-text">
                             <h3 class="footer-title">SETTINGS</h3>
-                            <p class="footer-subtitle">Sound, display, etc.</p>
+                            
                         </div>
                         <div class="footer-arrow">&rsaquo;</div>
                     </div>

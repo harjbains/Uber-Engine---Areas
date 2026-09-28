@@ -123,7 +123,7 @@ export async function renderTvHome(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.48</span></div>
+                <div class="tv-brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.49</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -257,6 +257,6 @@ export async function renderTvHome(container) {
     document.getElementById('btn-mobility').addEventListener('click', () => navigate('/mobility'));
     
     const goAdmin = () => navigate('/admin');
-    document.getElementById('btn-admin-top').addEventListener('click', goAdmin);
-    document.getElementById('btn-admin-bottom').addEventListener('click', goAdmin);
+    if (document.getElementById('btn-admin-top')) document.getElementById('btn-admin-top').addEventListener('click', goAdmin);
+    if (document.getElementById('btn-admin-bottom')) document.getElementById('btn-admin-bottom').addEventListener('click', goAdmin);
 }

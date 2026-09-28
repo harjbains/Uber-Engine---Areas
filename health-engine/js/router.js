@@ -26,6 +26,14 @@ function handleRouteChange() {
     let path = window.location.hash.replace('#', '');
     if (!path) path = '/';
     
+    if (window.setTVMode) {
+        if (path === '/admin') {
+            window.setTVMode(false);
+        } else {
+            window.setTVMode(true);
+        }
+    }
+    
     const container = document.getElementById('view-container');
     container.innerHTML = ''; // Clear current view
     

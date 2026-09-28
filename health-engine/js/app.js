@@ -18,8 +18,8 @@ async function initApp() {
         if (session) {
             // Already authenticated
             showLoading(false);
-            setupRouting();
             initTVEmulation();
+            setupRouting();
             // initDiagnostics();
             initForceLatest();
         } else {

@@ -32,7 +32,7 @@ files.forEach(file => {
     code = code.replace(/<div class="rail-sub">[^<]+<\/div>/g, '');
     
     // Bump version
-    code = code.replace(/>v2\.\d+<\/span>/g, '>v2.49</span>');
+    code = code.replace(/>v2\.\d+<\/span>/g, '>v2.50</span>');
 
     fs.writeFileSync(file, code);
 });
@@ -41,7 +41,7 @@ files.forEach(file => {
 ['C:\\DEV\\health-engine\\index.html', 'C:\\DEV\\health-engine\\js\\app.js'].forEach(file => {
     if (!fs.existsSync(file)) return;
     let code = fs.readFileSync(file, 'utf8');
-    code = code.replace(/v=2\.\d+/g, 'v=2.49');
+    code = code.replace(/v=2\.\d+/g, 'v=2.50');
     fs.writeFileSync(file, code);
 });
 

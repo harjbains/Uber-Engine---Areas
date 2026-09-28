@@ -1,5 +1,4 @@
 import { initDiagnostics } from './diagnostics.js';
-import { initForceLatest } from './force-latest.js';
 import { initTVEmulation } from './tv-emu.js';
 import { initSupabase, getSupabase } from './supabase.js';
 import { setupRouting } from './router.js';
@@ -21,7 +20,7 @@ async function initApp() {
             initTVEmulation();
             setupRouting();
             // initDiagnostics();
-            initForceLatest();
+
         } else {
             // Need authentication
             showLoading(false);

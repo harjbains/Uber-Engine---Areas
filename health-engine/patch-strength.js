@@ -29,7 +29,7 @@ strength = strength.replace(/\.bb-time \{\s*display: flex;\s*flex-direction: col
 strength = strength.replace(/\.time-val \{\s*font-size: 2rem;/g, '.time-val {\n                font-size: 1.8rem;');
 
 // Bump version in title string
-strength = strength.replace(/>v2\.9<\/span>/g, '>v2.45</span>');
+strength = strength.replace(/>v2\.9<\/span>/g, '>v2.46</span>');
 
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\strength.js', strength);
 

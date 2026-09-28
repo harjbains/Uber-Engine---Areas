@@ -116,7 +116,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.45</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.46</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -623,7 +623,16 @@ function renderActiveSet(content) {
             .bb-next-t1 { font-size: 0.8rem; font-weight: 700; color: #8892a0; letter-spacing: 1.5px; }
             .bb-next-t2 { font-size: 1rem; font-weight: 700; margin-top: 0; white-space: nowrap; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
             
-        </style>
+        
+            #interaction-area { flex-direction: row !important; flex-wrap: wrap; justify-content: center; }
+            .btn-complete { flex: 1; min-width: 120px; }
+            .wp-bottom-right { align-items: stretch; justify-content: flex-end; }
+            .bb-center { align-items: center; }
+            .tv-footer { margin-top: auto; }
+            .left-rail { overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; }
+            .left-rail::-webkit-scrollbar { width: 6px; }
+            .left-rail::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+ .bb-progress, .bb-time { margin-top: 10px !important; } </style>
     `;
 
     // Rebind static header buttons

@@ -22,19 +22,19 @@ home = home.replace(/\.footer-title \{ font-size: 1\.2rem; font-weight: bold; ma
 home = home.replace(/\.cards-container \{ display: flex; gap: 30px; flex: 1; align-items: stretch; margin-top: auto; margin-bottom: auto; max-height: 600px; \}/, '.cards-container { display: flex; gap: 30px; flex: 1; align-items: stretch; margin-top: auto; margin-bottom: auto; max-height: 100%; min-height: 0; }');
 
 // Bump cache to v2.8
-home = home.replace(/>v2\.7<\/span>/g, '>v2.45</span>');
+home = home.replace(/>v2\.7<\/span>/g, '>v2.46</span>');
 
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\tv-home.js', home);
 
 // Bump cache to v2.8
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.7/g, 'v=2.45');
+indexHtml = indexHtml.replace(/v=2\.7/g, 'v=2.46');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.7/g, 'v=2.45');
+appJs = appJs.replace(/v=2\.7/g, 'v=2.46');
 fs.writeFileSync(appJsPath, appJs);
 
 console.log('Home page layout patched');

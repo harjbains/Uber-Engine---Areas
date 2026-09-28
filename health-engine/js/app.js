@@ -20,7 +20,7 @@ async function initApp() {
             showLoading(false);
             setupRouting();
             initTVEmulation();
-            initDiagnostics();
+            // initDiagnostics();
             initForceLatest();
         } else {
             // Need authentication

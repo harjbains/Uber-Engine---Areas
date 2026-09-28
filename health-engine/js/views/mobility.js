@@ -37,11 +37,9 @@ const iconClock = `<svg viewBox="0 0 24 24" fill="currentColor" width="32" heigh
 
 export async function renderMobility(container) {
     container.innerHTML = `
-        <div class="app-container tv-shell">
-            <div id="mobility-content" style="flex: 1; display: flex; flex-direction: column;">
+        <div id="mobility-content" style="width: 100%; height: 100%; display: flex; flex-direction: column;">
                 <div class="spinner" style="margin: auto;"></div>
             </div>
-        </div>
         <style>
             * { box-sizing: border-box; margin: 0; padding: 0; }
             button { outline: none; border: none; cursor: pointer; font-family: inherit; }
@@ -435,6 +433,34 @@ export async function renderMobility(container) {
         transition: all 0.2s; box-shadow: 0 4px 15px rgba(40,167,69,0.3); border: none; outline: none; cursor: pointer;
     }
     .btn-complete:hover { transform: scale(1.02); filter: brightness(1.1); }
+
+            #interaction-area { flex-direction: row !important; flex-wrap: wrap; justify-content: center; }
+            .btn-complete { flex: 1; min-width: 120px; }
+            .wp-bottom-right { align-items: stretch; justify-content: flex-end; }
+            .bb-center { align-items: center; }
+            .tv-footer { margin-top: auto; }
+            .left-rail { overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; }
+            .left-rail::-webkit-scrollbar { width: 6px; }
+            .left-rail::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+
+            /* Flex layout fix for mobility buttons */
+            .wp-bottom-right {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: wrap !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 10px !important;
+            }
+            .set-indicator, #active-timer {
+                width: 100% !important;
+                flex-shrink: 0;
+            }
+            .btn-complete {
+                flex: 1 !important;
+                min-width: 120px !important;
+                margin: 0 !important;
+            }
 </style>
     `;
 
@@ -534,7 +560,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.45</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.46</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -661,7 +687,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.45</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.46</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -722,7 +748,7 @@ function renderActiveSet(content) {
                         
                         ${ex.measurement_type === 'TIME' ? `<button class="btn-complete btn-skip" id="btn-done" style="height: 50px; font-size: 1.1rem; margin-top: 5px;">SKIP</button>` : ''}
                         
-                        ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-complete btn-howto" id="btn-howto" style="height: 50px; font-size: 1.1rem; margin-top: 5px;">HOW TO</button>` : ''}
+                        ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-complete btn-howto" id="btn-howto" style="height: 50px; font-size: 1.1rem; margin-top: 5px;">HELP</button>` : ''}
                     </div>
                 </div>
             </div>
@@ -807,10 +833,10 @@ function renderActiveSet(content) {
             const bg = document.querySelector('.wp-bg');
             if (bg.style.backgroundSize === 'contain') {
                 bg.style.backgroundSize = 'cover';
-                howtoBtn.innerHTML = 'HOW TO';
+                howtoBtn.innerHTML = 'HELP';
             } else {
                 bg.style.backgroundSize = 'contain';
-                howtoBtn.innerHTML = 'BACK TO EXERCISE';
+                howtoBtn.innerHTML = 'BACK';
             }
         });
     }
@@ -858,7 +884,7 @@ function renderRest(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.45</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.46</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>

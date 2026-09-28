@@ -21,7 +21,7 @@ export function renderCardio(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #66bb6a;">${iconRun}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #66bb6a;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.45</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #66bb6a;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.46</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -235,7 +235,9 @@ export function renderCardio(container) {
                 .bb-end-text { display: flex; flex-direction: column; }
                 .bb-end-t1 { font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; }
                 .bb-end-t2 { font-size: 0.8rem; color: #8892a0; margin-top: 2px; }
-            </style>
+            
+            .bb-center { align-items: center; }
+</style>
         `;
 
         document.getElementById('btn-home').addEventListener('click', () => navigate('/tv'));

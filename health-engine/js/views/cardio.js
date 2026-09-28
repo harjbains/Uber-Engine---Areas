@@ -21,7 +21,7 @@ export function renderCardio(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #66bb6a;">${iconRun}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #66bb6a;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.12</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #66bb6a;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.13</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -48,16 +48,16 @@ export function renderCardio(container) {
                     <main class="workout-panel" style="position: relative; overflow: hidden; width: 100%; max-width: 1400px; display: flex; flex-direction: column; align-items: center;">
                         <div class="wp-bg" style="background-image: url('${resolveAssetPath('backgrounds/treadmill-background.png')}');"></div>
                         <div class="wp-overlay"></div>
-                        <div class="wp-content" style="position: relative; z-index: 3; padding: 60px; display: flex; flex-direction: column; align-items: center; width: 100%; height: 100%;">
-                            <h1 class="exercise-name" style="text-align: center; margin-bottom: 50px;">TREADMILL RUN</h1>
+                        <div class="wp-content" style="position: relative; z-index: 3; padding: 10px 20px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; width: 100%; height: 100%;">
+                            
                             
                             <div class="controls-area">
                                 <div class="control-box box-dur">
                                     <div class="ctrl-lbl">DURATION</div>
                                     <div class="ctrl-interactive bg-green-grad">
-                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-up"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.duration}</div>
-                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-down"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 1 min</div>
                                 </div>
@@ -65,9 +65,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-dist">
                                     <div class="ctrl-lbl">DISTANCE (KM)</div>
                                     <div class="ctrl-interactive bg-blue-grad">
-                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-up"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.distance.toFixed(1)}</div>
-                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-down"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 0.1 km</div>
                                 </div>
@@ -75,9 +75,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-spd">
                                     <div class="ctrl-lbl">SPEED (KM/H)</div>
                                     <div class="ctrl-interactive bg-purple-grad">
-                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-up"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.speed.toFixed(1)}</div>
-                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-down"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 0.1 km/h</div>
                                 </div>
@@ -85,16 +85,16 @@ export function renderCardio(container) {
                                 <div class="control-box box-inc">
                                     <div class="ctrl-lbl">INCLINE (%)</div>
                                     <div class="ctrl-interactive bg-orange-grad">
-                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-up"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.incline.toFixed(1)}</div>
-                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-down"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-down"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 0.5 %</div>
                                 </div>
                             </div>
                             
-                            <div style="margin-top: 60px; width: 100%; display: flex; justify-content: center;">
-                                <button class="btn-complete" id="btn-record" style="width: 400px;">
+                            <div style="margin-top: 20px; width: 100%; display: flex; justify-content: center;">
+                                <button class="btn-complete" id="btn-record" style="width: 300px; height: 60px; font-size: 1.2rem; border-radius: 12px; padding: 0;">
                                     ${iconCheck} SAVE WORKOUT
                                 </button>
                             </div>
@@ -144,10 +144,10 @@ export function renderCardio(container) {
                 .controls-area { display: flex; gap: 15px; justify-content: center; flex-wrap: nowrap; margin-bottom: auto; }
                 
                 .control-box {
-                    width: 195px;
-                    height: 250px;
-                    border-radius: 20px;
-                    padding: 15px;
+                    width: 155px;
+                    height: 180px;
+                    border-radius: 16px;
+                    padding: 10px;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -158,11 +158,15 @@ export function renderCardio(container) {
                 .box-spd { border: 1px solid rgba(200, 150, 255, 0.12); }
                 .box-inc { border: 1px solid rgba(255, 165, 0, 0.12); }
                 
-                .ctrl-lbl { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 12px; color: white; text-align: center; white-space: nowrap; }
+                .ctrl-lbl {
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                    margin-bottom: 8px; color: white; text-align: center; white-space: nowrap; }
                 
                 .ctrl-interactive {
                     width: 100%;
-                    height: 150px;
+                    height: 100px;
                     border-radius: 16px;
                     display: flex;
                     flex-direction: column;
@@ -186,13 +190,13 @@ export function renderCardio(container) {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 2.8rem;
+                    font-size: 1.8rem;
                     font-weight: 800;
                     color: white;
                     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
                 }
                 
-                .ctrl-sub { font-size: 0.85rem; color: #d1d5db; margin-top: 15px; height: 20px; }
+                .ctrl-sub { font-size: 0.75rem; color: #8892a0; margin-top: 8px; height: 15px; }
                 
                 .btn-complete {
                     background-color: #28a745;

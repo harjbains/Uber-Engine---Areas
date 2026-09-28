@@ -1,4 +1,4 @@
-import { initDiagnostics } from './diagnostics.js?v=2.12';
+import { initDiagnostics } from './diagnostics.js?v=2.13';
 import { initTVEmulation } from './tv-emu.js?v=2.4';
 import { initSupabase, getSupabase } from './supabase.js';
 import { setupRouting } from './router.js';

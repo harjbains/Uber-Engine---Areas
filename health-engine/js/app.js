@@ -1,7 +1,7 @@
 import { initDiagnostics } from './diagnostics.js?v=2.38';
 import { initTVEmulation } from './tv-emu.js?v=2.38';
-import { initSupabase, getSupabase } from './supabase.js';
-import { setupRouting } from './router.js';
+import { initSupabase, getSupabase } from './supabase.js?v=2.39';
+import { setupRouting } from './router.js?v=2.39';
 
 // Initialize Application
 async function initApp() {

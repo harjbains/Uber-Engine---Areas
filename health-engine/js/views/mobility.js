@@ -82,7 +82,7 @@ export async function renderMobility(container) {
             .stat-label { font-size: 1rem; color: #aaa; letter-spacing: 2px; font-weight: bold; }
             .stat-val { font-size: 2rem; font-weight: bold; }
             
-            .controls-area { display: flex; gap: 20px; align-items: stretch; margin-top: auto; }
+            .controls-area { display: flex; gap: 20px; align-items: center; justify-content: center; width: 100%; margin-top: auto; }
             
             .submit-area { flex: 1; background: #13192a; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; }
             .set-indicator { font-size: 1.8rem; font-weight: bold; letter-spacing: 2px; margin-bottom: 30px; }
@@ -142,7 +142,8 @@ export async function renderMobility(container) {
             .rail-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             .rail-sub { font-size: 0.6rem; font-weight: 600; color: #8892a0; margin-top: 4px; }
             .rail-item.active .rail-sub { color: rgba(255,255,255,0.8); }
-        </style>
+          .btn-start-purple svg, .btn-complete svg, .btn-skip-sub svg { width: 20px !important; height: 20px !important; }
+</style>
     `;
 
     try {
@@ -241,7 +242,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.27</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.28</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -360,7 +361,7 @@ function renderActiveSet(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; box-sizing: border-box; gap: 30px;">
+        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100vw; min-width: 0; overflow: hidden; box-sizing: border-box; gap: 30px;">
             ${getSidebarHTML()}
             <main class="right-panel">
                 <div class="rp-bg" id="main-exercise-bg" style="background-image: url('${resolveAssetPath(ex.image_path)}');"></div>
@@ -389,7 +390,7 @@ function renderActiveSet(content) {
     if (ex.measurement_type === 'TIME') {
         state.activeTimeRemaining = ex.target_value;
         area.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 580px; justify-content: space-between; gap: 5px; box-sizing: border-box;">
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: max-content; justify-content: center; gap: 8px; box-sizing: border-box; margin: 0 auto;">
                 <div style="font-size: 0.7rem; font-weight: bold; color: #aaa; letter-spacing: 0px; white-space: nowrap;">SET <span style="color: #8a2be2; font-size: 1rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 3px;">${sideText}</span></div>
                 <div style="font-size: 1.8rem; font-weight: bold; font-family: monospace; width: auto; padding: 0; text-align: center; color: white; line-height: 1;" id="active-timer">${state.activeTimeRemaining}s</div>
                 <button class="btn-start-purple" id="btn-timer-toggle" style="margin: 0; padding: 5px 10px; font-size: 0.7rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconClock} START</button>
@@ -430,7 +431,7 @@ function renderActiveSet(content) {
         
     } else {
         area.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 580px; justify-content: space-between; gap: 5px; box-sizing: border-box;">
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: max-content; justify-content: center; gap: 8px; box-sizing: border-box; margin: 0 auto;">
                 <div style="font-size: 0.7rem; font-weight: bold; color: #aaa; letter-spacing: 0px; white-space: nowrap;">SET <span style="color: #8a2be2; font-size: 1rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 3px;">${sideText}</span></div>
                 <div style="font-size: 1.8rem; font-weight: bold; font-family: monospace; color: white; line-height: 1;">${ex.target_value} <span style="font-size: 0.8rem; color: #888;">REPS</span></div>
                 <button class="btn-complete" id="btn-done" style="margin: 0; padding: 5px 10px; font-size: 0.7rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconCheck} COMPLETE</button>
@@ -503,7 +504,7 @@ function renderRest(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; box-sizing: border-box; gap: 30px;">
+        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100vw; min-width: 0; overflow: hidden; box-sizing: border-box; gap: 30px;">
             ${getSidebarHTML()}
             <main class="right-panel" style="background: #0b101e;">
                 <div class="rp-content" style="align-items: center; justify-content: center; padding: 0;">
@@ -561,7 +562,7 @@ function renderFeedback(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; box-sizing: border-box; gap: 30px;">
+        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100vw; min-width: 0; overflow: hidden; box-sizing: border-box; gap: 30px;">
             ${getSidebarHTML()}
             <main class="right-panel" style="background: #0b101e; justify-content: center; align-items: center;">
                 <div style="background: #13192a; padding: 60px; border-radius: 24px; border: 2px solid #8a2be2; text-align: center; max-width: 1000px; box-shadow: 0 15px 50px rgba(138, 43, 226, 0.2);">

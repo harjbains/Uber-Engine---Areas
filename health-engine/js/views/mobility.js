@@ -71,7 +71,7 @@ export async function renderMobility(container) {
             .sb-sub { font-size: 0.9rem; color: #aaa; margin-top: 5px; }
             .sb-item.active .sb-sub { color: rgba(255,255,255,0.8); }
             
-            .right-panel { flex: 1; position: relative; display: flex; flex-direction: column; background: #050810; overflow: hidden; box-sizing: border-box; }
+            .right-panel { flex: 1; min-width: 0; position: relative; display: flex; flex-direction: column; background: #050810; overflow: hidden; box-sizing: border-box; }
             .rp-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-repeat: no-repeat; background-position: center; z-index: 1; opacity: 1; }
             .rp-overlay { display: none; }
             .rp-content { position: relative; z-index: 3; display: flex; flex-direction: column; height: 100%; padding: 20px; justify-content: flex-end; align-items: center; box-sizing: border-box; }
@@ -132,15 +132,15 @@ export async function renderMobility(container) {
             .fb-sub { font-size: 1rem; opacity: 0.8; font-weight: normal; }
 
             /* Left Rail */
-            .left-rail { width: 260px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; margin-right: 10px; padding: 10px; border-right: 1px solid rgba(255,255,255,0.05); }
-            .rail-item { display: flex; align-items: center; padding: 8px 12px; border-radius: 12px; background-color: #0b111e; border: 1px solid rgba(255,255,255,0.02); height: 60px; }
+            .left-rail { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 5px; margin-right: 5px; padding: 5px; border-right: 1px solid rgba(255,255,255,0.05); box-sizing: border-box; }
+            .rail-item { display: flex; align-items: center; padding: 6px 8px; border-radius: 10px; background-color: #0b111e; border: 1px solid rgba(255,255,255,0.02); height: 50px; box-sizing: border-box; }
             .rail-item.active { background-color: #8a2be2; border-color: #8a2be2; }
-            .rail-num { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #556070; color: #8892a0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.7rem; margin-right: 10px; }
+            .rail-num { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #556070; color: #8892a0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.65rem; margin-right: 5px; flex-shrink: 0; }
             .rail-item.active .rail-num { border-color: white; color: white; background-color: transparent; }
-            .rail-img { width: 48px; height: 36px; border-radius: 6px; object-fit: cover; margin-right: 10px; background-color: #15243d; }
+            .rail-img { width: 40px; height: 30px; border-radius: 6px; object-fit: cover; margin-right: 8px; flex-shrink: 0; background-color: #15243d; }
             .rail-text-col { display: flex; flex-direction: column; flex: 1; min-width: 0; }
-            .rail-title { font-size: 0.9rem; font-weight: 800; letter-spacing: 0.5px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-            .rail-sub { font-size: 0.7rem; font-weight: 600; color: #8892a0; margin-top: 4px; }
+            .rail-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .rail-sub { font-size: 0.6rem; font-weight: 600; color: #8892a0; margin-top: 4px; }
             .rail-item.active .rail-sub { color: rgba(255,255,255,0.8); }
         </style>
     `;
@@ -241,7 +241,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.24</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.25</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -360,7 +360,7 @@ function renderActiveSet(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px;">
+        <div class="main-body tv-main" style="padding: 10px 20px; min-width: 0; box-sizing: border-box;">
             ${getSidebarHTML()}
             <main class="right-panel">
                 <div class="rp-bg" id="main-exercise-bg" style="background-image: url('${resolveAssetPath(ex.image_path)}');"></div>
@@ -389,12 +389,12 @@ function renderActiveSet(content) {
     if (ex.measurement_type === 'TIME') {
         state.activeTimeRemaining = ex.target_value;
         area.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 8px 15px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 620px; justify-content: space-between; box-sizing: border-box;">
-                <div style="font-size: 0.8rem; font-weight: bold; color: #aaa; letter-spacing: 1px;">SET <span style="color: #8a2be2; font-size: 1.1rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 6px;">${sideText}</span></div>
-                <div style="font-size: 2.2rem; font-weight: bold; font-family: monospace; width: auto; padding: 0 5px; text-align: center; color: white; line-height: 1;" id="active-timer">${state.activeTimeRemaining}s</div>
-                <button class="btn-start-purple" id="btn-timer-toggle" style="margin: 0; padding: 6px 12px; font-size: 0.8rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconClock} START</button>
-                <button class="btn-skip-sub" id="btn-done" style="margin: 0; padding: 6px 12px; font-size: 0.8rem; border-radius: 50px; width: auto; max-width: none;">SKIP</button>
-                ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-skip-sub" id="btn-howto" style="margin: 0; padding: 6px 12px; font-size: 0.8rem; border-radius: 50px; background: #007bff; border: 2px solid #007bff; color: white; cursor: pointer; white-space: nowrap; width: auto; max-width: none;">HOW TO</button>` : ''}
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 580px; justify-content: space-between; gap: 5px; box-sizing: border-box;">
+                <div style="font-size: 0.7rem; font-weight: bold; color: #aaa; letter-spacing: 0px; white-space: nowrap;">SET <span style="color: #8a2be2; font-size: 1rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 3px;">${sideText}</span></div>
+                <div style="font-size: 1.8rem; font-weight: bold; font-family: monospace; width: auto; padding: 0; text-align: center; color: white; line-height: 1;" id="active-timer">${state.activeTimeRemaining}s</div>
+                <button class="btn-start-purple" id="btn-timer-toggle" style="margin: 0; padding: 5px 10px; font-size: 0.7rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconClock} START</button>
+                <button class="btn-skip-sub" id="btn-done" style="margin: 0; padding: 5px 10px; font-size: 0.7rem; border-radius: 50px; width: auto; max-width: none;">SKIP</button>
+                ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-skip-sub" id="btn-howto" style="margin: 0; padding: 5px 10px; font-size: 0.7rem; border-radius: 50px; background: #007bff; border: 2px solid #007bff; color: white; cursor: pointer; white-space: nowrap; width: auto; max-width: none;">HOW TO</button>` : ''}
             </div>
         `;
         
@@ -430,11 +430,11 @@ function renderActiveSet(content) {
         
     } else {
         area.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 8px 15px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 620px; justify-content: space-between; box-sizing: border-box;">
-                <div style="font-size: 0.8rem; font-weight: bold; color: #aaa; letter-spacing: 1px;">SET <span style="color: #8a2be2; font-size: 1.1rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 6px;">${sideText}</span></div>
-                <div style="font-size: 2.2rem; font-weight: bold; font-family: monospace; color: white; line-height: 1;">${ex.target_value} <span style="font-size: 1rem; color: #888;">REPS</span></div>
-                <button class="btn-complete" id="btn-done" style="margin: 0; padding: 6px 12px; font-size: 0.8rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconCheck} COMPLETE</button>
-                ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-skip-sub" id="btn-howto" style="margin: 0; padding: 6px 12px; font-size: 0.8rem; border-radius: 50px; background: #007bff; border: 2px solid #007bff; color: white; cursor: pointer; white-space: nowrap; width: auto; max-width: none;">HOW TO</button>` : ''}
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 580px; justify-content: space-between; gap: 5px; box-sizing: border-box;">
+                <div style="font-size: 0.7rem; font-weight: bold; color: #aaa; letter-spacing: 0px; white-space: nowrap;">SET <span style="color: #8a2be2; font-size: 1rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 3px;">${sideText}</span></div>
+                <div style="font-size: 1.8rem; font-weight: bold; font-family: monospace; color: white; line-height: 1;">${ex.target_value} <span style="font-size: 0.8rem; color: #888;">REPS</span></div>
+                <button class="btn-complete" id="btn-done" style="margin: 0; padding: 5px 10px; font-size: 0.7rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconCheck} COMPLETE</button>
+                ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-skip-sub" id="btn-howto" style="margin: 0; padding: 5px 10px; font-size: 0.7rem; border-radius: 50px; background: #007bff; border: 2px solid #007bff; color: white; cursor: pointer; white-space: nowrap; width: auto; max-width: none;">HOW TO</button>` : ''}
             </div>
         `;
         document.getElementById('btn-done').addEventListener('click', () => recordSet(ex.target_value));
@@ -503,7 +503,7 @@ function renderRest(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px;">
+        <div class="main-body tv-main" style="padding: 10px 20px; min-width: 0; box-sizing: border-box;">
             ${getSidebarHTML()}
             <main class="right-panel" style="background: #0b101e;">
                 <div class="rp-content" style="align-items: center; justify-content: center; padding: 0;">
@@ -561,7 +561,7 @@ function renderFeedback(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px;">
+        <div class="main-body tv-main" style="padding: 10px 20px; min-width: 0; box-sizing: border-box;">
             ${getSidebarHTML()}
             <main class="right-panel" style="background: #0b101e; justify-content: center; align-items: center;">
                 <div style="background: #13192a; padding: 60px; border-radius: 24px; border: 2px solid #8a2be2; text-align: center; max-width: 1000px; box-shadow: 0 15px 50px rgba(138, 43, 226, 0.2);">

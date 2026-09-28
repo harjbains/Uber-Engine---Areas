@@ -28,19 +28,19 @@ cardio = cardio.replace(/\.ctrl-sub \{ font-size: 0\.85rem; color: #d1d5db; marg
 
 
 // Bump version to 2.13
-cardio = cardio.replace(/>v2\.12<\/span>/g, '>v2.13</span>');
+cardio = cardio.replace(/>v2\.12<\/span>/g, '>v2.42</span>');
 
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\cardio.js', cardio);
 
 // Bump everything
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.12/g, 'v=2.13');
+indexHtml = indexHtml.replace(/v=2\.12/g, 'v=2.42');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.12/g, 'v=2.13');
+appJs = appJs.replace(/v=2\.12/g, 'v=2.42');
 fs.writeFileSync(appJsPath, appJs);
 
 const files = [
@@ -52,7 +52,7 @@ const files = [
 files.forEach(file => {
     if (!fs.existsSync(file)) return;
     let fc = fs.readFileSync(file, 'utf8');
-    fc = fc.replace(/>v2\.12<\/span>/g, '>v2.13</span>');
+    fc = fc.replace(/>v2\.12<\/span>/g, '>v2.42</span>');
     fs.writeFileSync(file, fc);
 });
 

@@ -6,7 +6,7 @@ const correctMobilityHeader = `
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">\${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.18</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.42</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -32,18 +32,18 @@ const correctMobilityHeader = `
 mobility = mobility.replace(/<header class="tv-header">[\s\S]*?<\/header>/, correctMobilityHeader);
 
 // Update version tags globally
-mobility = mobility.replace(/>v2\.17<\/span>/g, '>v2.18</span>');
+mobility = mobility.replace(/>v2\.17<\/span>/g, '>v2.42</span>');
 
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', mobility);
 
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.17/g, 'v=2.18');
+indexHtml = indexHtml.replace(/v=2\.17/g, 'v=2.42');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.17/g, 'v=2.18');
+appJs = appJs.replace(/v=2\.17/g, 'v=2.42');
 fs.writeFileSync(appJsPath, appJs);
 
 const files = [
@@ -55,7 +55,7 @@ const files = [
 files.forEach(file => {
     if (!fs.existsSync(file)) return;
     let fc = fs.readFileSync(file, 'utf8');
-    fc = fc.replace(/>v2\.17<\/span>/g, '>v2.18</span>');
+    fc = fc.replace(/>v2\.17<\/span>/g, '>v2.42</span>');
     fs.writeFileSync(file, fc);
 });
 

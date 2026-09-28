@@ -39,7 +39,7 @@ const activeHTML = "`" + `
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">\${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.33</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.42</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -145,7 +145,7 @@ const restHTML = "`" + `
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">\${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.33</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.42</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -233,7 +233,7 @@ const completeHTML = "`" + `
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">\${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.33</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.42</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -260,18 +260,18 @@ newMobility = replaceBlock(newMobility, 'renderActiveSet', activeHTML);
 newMobility = replaceBlock(newMobility, 'renderRest', restHTML);
 newMobility = replaceBlock(newMobility, 'renderComplete', completeHTML);
 
-newMobility = newMobility.replace(/>v2\.31<\/span>/g, '>v2.33</span>');
+newMobility = newMobility.replace(/>v2\.31<\/span>/g, '>v2.42</span>');
 
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', newMobility);
 
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.31/g, 'v=2.32');
+indexHtml = indexHtml.replace(/v=2\.31/g, 'v=2.42');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.31/g, 'v=2.32');
+appJs = appJs.replace(/v=2\.31/g, 'v=2.42');
 fs.writeFileSync(appJsPath, appJs);
 
 console.log('Mobility logic successfully transplanted into pristine strength structural clone');

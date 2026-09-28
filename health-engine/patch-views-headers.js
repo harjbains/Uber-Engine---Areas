@@ -57,25 +57,25 @@ function getNewHeader(icon, brandColor, brandText, title, sub, isHome = false) {
 // 1. HOME
 let home = fs.readFileSync('C:\\DEV\\health-engine\\js\\views\\tv-home.js', 'utf8');
 const iconDumbbell = "${iconDumbbell}";
-const homeHeader = getNewHeader(iconDumbbell, "#2196F3", "HEALTH <span style=\"color: #2196F3;\">ENGINE</span> <span style=\"font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;\">v2.51</span>", "", "", true);
+const homeHeader = getNewHeader(iconDumbbell, "#2196F3", "HEALTH <span style=\"color: #2196F3;\">ENGINE</span> <span style=\"font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;\">v2.52</span>", "", "", true);
 home = home.replace(/<!-- Header -->\s*<div class="header tv-header">[\s\S]*?<\/div>\s*<\/div>\s*<!-- Cards -->/, "<!-- Header -->\n" + homeHeader + "\n<!-- Cards -->");
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\tv-home.js', home);
 
 // 2. STRENGTH
 let strength = fs.readFileSync('C:\\DEV\\health-engine\\js\\views\\strength.js', 'utf8');
-const strengthHeader = getNewHeader(iconDumbbell, "#2196F3", "FITNESS <span style=\"color: #2196F3;\">ENGINE</span> <span style=\"font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;\">v2.51</span>", "STRENGTH WORKOUT", "Exercise ${state.currentIndex + 1} of ${state.exercises.length}", false);
+const strengthHeader = getNewHeader(iconDumbbell, "#2196F3", "FITNESS <span style=\"color: #2196F3;\">ENGINE</span> <span style=\"font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;\">v2.52</span>", "STRENGTH WORKOUT", "Exercise ${state.currentIndex + 1} of ${state.exercises.length}", false);
 strength = strength.replace(/<header class="top-bar tv-header">[\s\S]*?<\/header>/, strengthHeader);
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\strength.js', strength);
 
 // 3. CARDIO
 let cardio = fs.readFileSync('C:\\DEV\\health-engine\\js\\views\\cardio.js', 'utf8');
-const cardioHeader = getNewHeader("${iconRun}", "#66bb6a", "FITNESS <span style=\"color: #66bb6a;\">ENGINE</span> <span style=\"font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;\">v2.51</span>", "CARDIO WORKOUT", "Treadmill (Manual Entry)", false);
+const cardioHeader = getNewHeader("${iconRun}", "#66bb6a", "FITNESS <span style=\"color: #66bb6a;\">ENGINE</span> <span style=\"font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;\">v2.52</span>", "CARDIO WORKOUT", "Treadmill (Manual Entry)", false);
 cardio = cardio.replace(/<header class="top-bar tv-header">[\s\S]*?<\/header>/, cardioHeader);
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\cardio.js', cardio);
 
 // 4. MOBILITY
 let mobility = fs.readFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', 'utf8');
-const mobilityHeader = getNewHeader("${iconMobility}", "#8a2be2", "FITNESS <span style=\"color: #8a2be2;\">ENGINE</span> <span style=\"font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;\">v2.51</span>", "MOBILITY WORKFLOW", "Exercise ${state.currentIndex + 1} of ${state.exercises.length}", 'mob');
+const mobilityHeader = getNewHeader("${iconMobility}", "#8a2be2", "FITNESS <span style=\"color: #8a2be2;\">ENGINE</span> <span style=\"font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;\">v2.52</span>", "MOBILITY WORKFLOW", "Exercise ${state.currentIndex + 1} of ${state.exercises.length}", 'mob');
 mobility = mobility.replace(/<header class="top-bar tv-header">[\s\S]*?<\/header>/, mobilityHeader);
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', mobility);
 

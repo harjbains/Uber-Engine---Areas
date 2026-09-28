@@ -17,7 +17,7 @@ export async function renderHistory(container) {
                 <div class="tv-header-left">
                     <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
                     <div style="display: flex; flex-direction: column;">
-                        <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.51</span></div>
+                        <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.52</span></div>
                         <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                     </div>
                 </div>
@@ -192,7 +192,8 @@ export async function renderHistory(container) {
         
         const todayStr = new Date().toDateString();
         
-        let currentIterDate = new Date(startDate);\n        currentIterDate.setHours(12, 0, 0, 0);
+        let currentIterDate = new Date(startDate);
+        currentIterDate.setHours(12, 0, 0, 0);
         for (let i = 0; i < 42; i++) {
             const dateStr = currentIterDate.toDateString();
             const isCurrentMonth = currentIterDate.getMonth() === month;

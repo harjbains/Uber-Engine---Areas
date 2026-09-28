@@ -1,3 +1,4 @@
+import { initTVEmulation } from './tv-emu.js?v=2.4';
 import { initSupabase, getSupabase } from './supabase.js';
 import { setupRouting } from './router.js';
 
@@ -16,6 +17,7 @@ async function initApp() {
             // Already authenticated
             showLoading(false);
             setupRouting();
+            initTVEmulation();
         } else {
             // Need authentication
             showLoading(false);

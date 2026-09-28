@@ -115,7 +115,7 @@ function renderActiveSet(content) {
                 <div class="logo-area">
                     <div class="logo-icon">${iconDumbbell}</div>
                     <div class="logo-text-block">
-                        <div class="logo-title">FITNESS <span class="text-blue">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.3</span></div>
+                        <div class="logo-title">FITNESS <span class="text-blue">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.4</span></div>
                         <div class="logo-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                     </div>
                 </div>

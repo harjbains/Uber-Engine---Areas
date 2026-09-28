@@ -6,8 +6,8 @@ let currentDate = new Date(); // Start with current month
 export async function renderHistory(container) {
     const iconDumbbell = `<svg viewBox="0 0 24 24" fill="currentColor" width="100%" height="100%"><path d="M6 4h2v16H6zm12 0h2v16h-2zM2 8h2v8H2zm18 0h2v8h-2zM8 11h8v2H8z"/></svg>`;
     const iconBack = `<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>`;
-    const iconLeft = `<svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>`;
-    const iconRight = `<svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>`;
+    const iconLeft = `<svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>`;
+    const iconRight = `<svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>`;
     
     container.innerHTML = `
         <div class="app-container tv-shell" style="background: #0b101e; display: flex; flex-direction: column; overflow: hidden; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
@@ -17,7 +17,7 @@ export async function renderHistory(container) {
                 <div class="tv-header-left">
                     <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
                     <div style="display: flex; flex-direction: column;">
-                        <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.52</span></div>
+                        <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.53</span></div>
                         <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                     </div>
                 </div>
@@ -36,17 +36,17 @@ export async function renderHistory(container) {
             </header>
             
             <!-- Main Content -->
-            <main class="main-content tv-main" style="flex: 1; display: flex; flex-direction: column; padding: 15px 40px; box-sizing: border-box; min-height: 0;">
+            <main class="main-content tv-main" style="flex: 1; display: flex; flex-direction: column; padding: 5px 40px; box-sizing: border-box; min-height: 0;">
                 
                 <!-- Month Navigation -->
-                <div style="display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 15px; flex-shrink: 0;">
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 5px; flex-shrink: 0;">
                     <button id="btn-prev-month" class="hist-nav-btn">${iconLeft}</button>
-                    <h2 id="month-title" style="font-size: 2.2rem; margin: 0; min-width: 320px; text-align: center; color: white; letter-spacing: 2px;">SEPTEMBER 2026</h2>
+                    <h2 id="month-title" style="font-size: 1.5rem; margin: 0; min-width: 320px; text-align: center; color: white; letter-spacing: 2px;">SEPTEMBER 2026</h2>
                     <button id="btn-next-month" class="hist-nav-btn">${iconRight}</button>
                 </div>
                 
                 <!-- Calendar Grid -->
-                <div id="calendar-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: auto repeat(6, 1fr); gap: 8px; flex: 1; min-height: 0;">
+                <div id="calendar-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: auto repeat(6, 1fr); gap: 4px; flex: 1; min-height: 0;">
                     <!-- Headers -->
                     <div class="cal-day-header">MON</div>
                     <div class="cal-day-header">TUE</div>
@@ -59,7 +59,7 @@ export async function renderHistory(container) {
                 </div>
                 
                 <!-- Summary Strip -->
-                <div class="hist-summary" style="display: flex; justify-content: space-around; align-items: center; margin-top: 15px; background: rgba(255,255,255,0.03); padding: 12px 20px; border-radius: 12px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.05);">
+                <div class="hist-summary" style="display: flex; justify-content: space-around; align-items: center; margin-top: 5px; background: rgba(255,255,255,0.03); padding: 6px 20px; border-radius: 12px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.05);">
                     <div class="sum-item">STRENGTH <span id="sum-strength" style="color: #4bacff; font-weight: bold; margin-left: 10px;">0</span></div>
                     <div class="sum-item">CARDIO <span id="sum-cardio" style="color: #66ff66; font-weight: bold; margin-left: 10px;">0</span></div>
                     <div class="sum-item">MOBILITY <span id="sum-mobility" style="color: #d18cff; font-weight: bold; margin-left: 10px;">0</span></div>
@@ -112,20 +112,20 @@ export async function renderHistory(container) {
             }
             
             .cal-date {
-                font-size: 1.4rem;
+                font-size: 1.15rem;
                 font-weight: bold;
                 color: white;
-                margin-bottom: 6px;
+                margin-bottom: 2px;
             }
             
             .cal-dots {
                 display: flex;
-                gap: 8px;
+                gap: 6px;
             }
             
             .cal-dot {
-                width: 12px;
-                height: 12px;
+                width: 10px;
+                height: 10px;
                 border-radius: 50%;
                 background-color: rgba(0,0,0,0.5);
                 border: 1px solid rgba(255,255,255,0.1);
@@ -135,7 +135,7 @@ export async function renderHistory(container) {
             .cal-dot.m.active { background-color: #d18cff; border-color: #d18cff; box-shadow: 0 0 10px rgba(209,140,255,0.4); }
             
             .sum-item {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 color: #8892a0;
                 letter-spacing: 1px;
                 display: flex;

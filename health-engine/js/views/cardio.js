@@ -21,7 +21,7 @@ export function renderCardio(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #66bb6a;">${iconRun}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #66bb6a;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.13</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #66bb6a;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.14</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -55,9 +55,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-dur">
                                     <div class="ctrl-lbl">DURATION</div>
                                     <div class="ctrl-interactive bg-green-grad">
-                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-up"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-up"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.duration}</div>
-                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-down"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dur-down"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 1 min</div>
                                 </div>
@@ -65,9 +65,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-dist">
                                     <div class="ctrl-lbl">DISTANCE (KM)</div>
                                     <div class="ctrl-interactive bg-blue-grad">
-                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-up"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-up"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.distance.toFixed(1)}</div>
-                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-down"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="dist-down"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 0.1 km</div>
                                 </div>
@@ -75,9 +75,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-spd">
                                     <div class="ctrl-lbl">SPEED (KM/H)</div>
                                     <div class="ctrl-interactive bg-purple-grad">
-                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-up"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-up"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.speed.toFixed(1)}</div>
-                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-down"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="spd-down"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 0.1 km/h</div>
                                 </div>
@@ -85,9 +85,9 @@ export function renderCardio(container) {
                                 <div class="control-box box-inc">
                                     <div class="ctrl-lbl">INCLINE (%)</div>
                                     <div class="ctrl-interactive bg-orange-grad">
-                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-up"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-up"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
                                         <div class="ctrl-val">${state.incline.toFixed(1)}</div>
-                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-down"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
+                                        <div class="ctrl-arrow-container" tabindex="0" id="inc-down"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 18l9-12H3z" fill="white"/></svg></div>
                                     </div>
                                     <div class="ctrl-sub">Increment: 0.5 %</div>
                                 </div>
@@ -123,7 +123,7 @@ export function renderCardio(container) {
                 .logo-area { display: flex; align-items: center; gap: 15px; width: 350px; }
                 .logo-icon { color: white; }
                 .logo-text-block { display: flex; flex-direction: column; }
-                .logo-title { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; }
+                .logo-title { font-size: 1.4rem; font-weight: 900; letter-spacing: 1px; }
                 .text-green { color: #28a745; }
                 .logo-tag { font-size: 0.7rem; color: #8892a0; letter-spacing: 3px; font-weight: 700; margin-top: 2px; }
                 
@@ -144,10 +144,10 @@ export function renderCardio(container) {
                 .controls-area { display: flex; gap: 15px; justify-content: center; flex-wrap: nowrap; margin-bottom: auto; }
                 
                 .control-box {
-                    width: 155px;
-                    height: 180px;
-                    border-radius: 16px;
-                    padding: 10px;
+                    width: 125px;
+                    height: 145px;
+                    border-radius: 12px;
+                    padding: 8px;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -159,14 +159,14 @@ export function renderCardio(container) {
                 .box-inc { border: 1px solid rgba(255, 165, 0, 0.12); }
                 
                 .ctrl-lbl {
-                    font-size: 0.75rem;
+                    font-size: 0.65rem;
                     font-weight: 700;
                     letter-spacing: 0.5px;
-                    margin-bottom: 8px; color: white; text-align: center; white-space: nowrap; }
+                    margin-bottom: 6px; color: white; text-align: center; white-space: nowrap; }
                 
                 .ctrl-interactive {
                     width: 100%;
-                    height: 100px;
+                    height: 75px;
                     border-radius: 16px;
                     display: flex;
                     flex-direction: column;
@@ -190,13 +190,13 @@ export function renderCardio(container) {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 1.8rem;
+                    font-size: 1.4rem;
                     font-weight: 800;
                     color: white;
                     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
                 }
                 
-                .ctrl-sub { font-size: 0.75rem; color: #8892a0; margin-top: 8px; height: 15px; }
+                .ctrl-sub { font-size: 0.6rem; color: #8892a0; margin-top: 6px; height: 12px; }
                 
                 .btn-complete {
                     background-color: #28a745;
@@ -206,7 +206,7 @@ export function renderCardio(container) {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 1.8rem;
+                    font-size: 1.4rem;
                     font-weight: 800;
                     gap: 15px;
                     box-shadow: 0 4px 15px rgba(40,167,69,0.3);
@@ -217,11 +217,15 @@ export function renderCardio(container) {
                 
                 .bottom-bar {  background-color: #070b14; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: flex-start;  }
                 
-                .bb-btn-end { background-color: #111827; border-radius: 16px; height: 70px; padding: 0 25px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: background 0.2s; }
+                .bb-btn-end {
+                    background-color: #111827;
+                    border-radius: 12px;
+                    height: 52px;
+                    padding: 0 20px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: background 0.2s; }
                 .bb-btn-end:hover { background-color: #1a2238; }
-                .bb-end-x { font-size: 2rem; font-weight: bold; }
+                .bb-end-x { font-size: 1.6rem; font-weight: bold; }
                 .bb-end-text { display: flex; flex-direction: column; }
-                .bb-end-t1 { font-size: 1rem; font-weight: 700; letter-spacing: 1px; }
+                .bb-end-t1 { font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; }
                 .bb-end-t2 { font-size: 0.8rem; color: #8892a0; margin-top: 2px; }
             </style>
         `;

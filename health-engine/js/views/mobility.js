@@ -71,7 +71,7 @@ export async function renderMobility(container) {
             .sb-sub { font-size: 0.9rem; color: #aaa; margin-top: 5px; }
             .sb-item.active .sb-sub { color: rgba(255,255,255,0.8); }
             
-            .right-panel { flex: 1; min-width: 0; position: relative; display: flex; flex-direction: column; background: #050810; overflow: hidden; box-sizing: border-box; }
+            .right-panel { flex: 1; min-width: 0; max-width: calc(100% - 225px); position: relative; display: flex; flex-direction: column; background: #050810; overflow: hidden; box-sizing: border-box; }
             .rp-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-repeat: no-repeat; background-position: center; z-index: 1; opacity: 1; }
             .rp-overlay { display: none; }
             .rp-content { position: relative; z-index: 3; display: flex; flex-direction: column; height: 100%; padding: 20px; justify-content: flex-end; align-items: center; box-sizing: border-box; }
@@ -241,7 +241,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.25</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.26</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -360,7 +360,7 @@ function renderActiveSet(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px; min-width: 0; box-sizing: border-box;">
+        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; box-sizing: border-box;">
             ${getSidebarHTML()}
             <main class="right-panel">
                 <div class="rp-bg" id="main-exercise-bg" style="background-image: url('${resolveAssetPath(ex.image_path)}');"></div>
@@ -503,7 +503,7 @@ function renderRest(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px; min-width: 0; box-sizing: border-box;">
+        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; box-sizing: border-box;">
             ${getSidebarHTML()}
             <main class="right-panel" style="background: #0b101e;">
                 <div class="rp-content" style="align-items: center; justify-content: center; padding: 0;">
@@ -561,7 +561,7 @@ function renderFeedback(content) {
     
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px; min-width: 0; box-sizing: border-box;">
+        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; box-sizing: border-box;">
             ${getSidebarHTML()}
             <main class="right-panel" style="background: #0b101e; justify-content: center; align-items: center;">
                 <div style="background: #13192a; padding: 60px; border-radius: 24px; border: 2px solid #8a2be2; text-align: center; max-width: 1000px; box-shadow: 0 15px 50px rgba(138, 43, 226, 0.2);">
@@ -616,7 +616,7 @@ function renderComplete(content) {
     clearInterval(state.timerInterval);
     content.innerHTML = `
         ${getTopBarHTML()}
-        <div class="main-body tv-main" style="background: #0b101e; justify-content: center; align-items: center; width: 100%;">
+        <div class="main-body tv-main" style="background: #0b101e; justify-content: center; align-items: center; width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box;">
             <div style="text-align: center;">
                 <h1 style="font-size: 5rem; color: #8a2be2; margin-bottom: 20px;">MOBILITY COMPLETE</h1>
                 <p style="font-size: 2rem; color: #aaa;">Saving session data...</p>

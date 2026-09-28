@@ -104,10 +104,10 @@ export async function renderTvHome(container) {
             .btn-purple { background: #9C27B0; box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4); }
             
             .footer { display: flex; gap: 20px;  }
-            .footer-btn { flex: 1; background: rgba(20, 25, 35, 0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; display: flex; align-items: center; padding: 0 25px; cursor: pointer; transition: 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+            .footer-btn { flex: 1; background: rgba(20, 25, 35, 0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 20px; cursor: pointer; transition: 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
             .footer-btn:hover { background: rgba(30, 35, 50, 0.95); }
-            .footer-icon { width: 40px; height: 40px; margin-right: 20px; display: flex; align-items: center; justify-content: center; }
-            .footer-text { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+            .footer-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+            .footer-text { display: flex; align-items: center; justify-content: center; }
             .footer-title { font-size: 1.4rem; font-weight: bold; margin: 0; }
             .footer-subtitle { font-size: 0.9rem; color: #aaa; margin: 0; }
             .footer-arrow { color: #666; font-size: 1.5rem; font-weight: bold; }
@@ -123,7 +123,7 @@ export async function renderTvHome(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.8</span></div>
+                <div class="tv-brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.9</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -132,9 +132,9 @@ export async function renderTvHome(container) {
         </div>
         <div class="tv-header-right">
             
-        <div class="datetime" style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.1;">
-            <div class="date-text" id="tv-date" style="font-size: 0.9rem; color: #8892a0;">Sat, 26 Sept 2026</div>
-            <div class="time-text" id="tv-time" style="font-size: 1.6rem; font-weight: bold; color: white;">--:--</div>
+        <div class="datetime" style="display: flex; flex-direction: row; align-items: baseline; gap: 12px; line-height: 1;">
+            <div class="date-text" id="tv-date" style="font-size: 1.1rem; color: #8892a0;">Sat, 26 Sept 2026</div>
+            <div class="time-text" id="tv-time" style="font-size: 1.4rem; font-weight: bold; color: white;">--:--</div>
         </div>
         
         
@@ -193,7 +193,7 @@ export async function renderTvHome(container) {
                             <h3 class="footer-title">TODAY</h3>
                             
                         </div>
-                        <div class="footer-arrow">&rsaquo;</div>
+                        
                     </div>
                     <div class="footer-btn" tabindex="0">
                         <div class="footer-icon" style="color: #fff;">${iconChart}</div>
@@ -201,7 +201,7 @@ export async function renderTvHome(container) {
                             <h3 class="footer-title">HISTORY</h3>
                             
                         </div>
-                        <div class="footer-arrow">&rsaquo;</div>
+                        
                     </div>
                     <div class="footer-btn" tabindex="0">
                         <div class="footer-icon" style="color: #FFD700;">${iconTrophy}</div>
@@ -209,7 +209,7 @@ export async function renderTvHome(container) {
                             <h3 class="footer-title">BADGES</h3>
                             
                         </div>
-                        <div class="footer-arrow">&rsaquo;</div>
+                        
                     </div>
                     <div class="footer-btn" tabindex="0" id="btn-admin-bottom">
                         <div class="footer-icon" style="color: #fff;">${iconGear}</div>
@@ -217,7 +217,7 @@ export async function renderTvHome(container) {
                             <h3 class="footer-title">SETTINGS</h3>
                             
                         </div>
-                        <div class="footer-arrow">&rsaquo;</div>
+                        
                     </div>
                 </div>
                 

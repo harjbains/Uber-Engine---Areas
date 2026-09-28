@@ -1,3 +1,4 @@
+import { initDiagnostics } from './diagnostics.js?v=2.5';
 import { initTVEmulation } from './tv-emu.js?v=2.4';
 import { initSupabase, getSupabase } from './supabase.js';
 import { setupRouting } from './router.js';
@@ -18,6 +19,7 @@ async function initApp() {
             showLoading(false);
             setupRouting();
             initTVEmulation();
+            initDiagnostics();
         } else {
             // Need authentication
             showLoading(false);

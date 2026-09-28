@@ -111,23 +111,33 @@ function renderActiveSet(content) {
 
     content.innerHTML = `
 <div class="app-container tv-shell">
-            <header class="top-bar tv-header">
-                <div class="logo-area">
-                    <div class="logo-icon">${iconDumbbell}</div>
-                    <div class="logo-text-block">
-                        <div class="logo-title">FITNESS <span class="text-blue">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.6</span></div>
-                        <div class="logo-tag">STRONGER &middot; FITTER &middot; HEALTHIER</div>
-                    </div>
-                </div>
-                <div class="nav-home" tabindex="0" id="btn-home">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" style="margin-right: 8px;"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-                    Home
-                </div>
-                <div class="top-right-info">
-                    <div class="tr-title">STRENGTH WORKOUT</div>
-                    <div class="tr-sub">Exercise ${state.currentIndex + 1} of ${state.exercises.length}</div>
-                </div>
-            </header>
+            
+    <header class="tv-header">
+        <div class="tv-header-left">
+            <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
+            <div style="display: flex; flex-direction: column;">
+                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.7</span></div>
+                <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
+            </div>
+        </div>
+        <div class="tv-header-center">
+            
+        <button class="tv-nav-home" id="btn-home">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+            Home
+        </button>
+        
+        </div>
+        <div class="tv-header-right">
+            
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+            <div class="tv-right-title">STRENGTH WORKOUT</div>
+            <div class="tv-right-sub">Exercise ${state.currentIndex + 1} of ${state.exercises.length}</div>
+        </div>
+        
+        </div>
+    </header>
+    
 
             <div class="main-content tv-main">
                 

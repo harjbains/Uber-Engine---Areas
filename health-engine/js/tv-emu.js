@@ -1,11 +1,11 @@
 export function initTVEmulation() {
     const btnEnter = document.createElement('button');
     btnEnter.innerText = 'TV EMULATION';
-    btnEnter.style.cssText = 'position: fixed; top: 10px; left: 10px; z-index: 999999; background: #e63946; color: white; border: 2px solid rgba(255,255,255,0.3); padding: 10px 20px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: "Segoe UI", sans-serif; transition: 0.2s;';
+    btnEnter.style.cssText = 'position: fixed; top: 100px; left: 10px; z-index: 999999; background: #e63946; color: white; border: 2px solid rgba(255,255,255,0.3); padding: 10px 20px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: "Segoe UI", sans-serif; transition: 0.2s;';
     
     const btnExit = document.createElement('button');
     btnExit.innerText = 'EXIT TV EMULATION';
-    btnExit.style.cssText = 'display: none; position: fixed; top: 10px; left: 10px; z-index: 999999; background: #333; color: white; border: 2px solid rgba(255,255,255,0.3); padding: 10px 20px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: "Segoe UI", sans-serif; transition: 0.2s;';
+    btnExit.style.cssText = 'display: none; position: fixed; top: 100px; left: 10px; z-index: 999999; background: #333; color: white; border: 2px solid rgba(255,255,255,0.3); padding: 10px 20px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: "Segoe UI", sans-serif; transition: 0.2s;';
 
     document.body.appendChild(btnEnter);
     document.body.appendChild(btnExit);

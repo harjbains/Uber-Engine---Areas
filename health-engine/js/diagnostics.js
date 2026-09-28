@@ -1,7 +1,7 @@
 export function initDiagnostics() {
     const btnOpen = document.createElement('button');
     btnOpen.innerText = 'TV DIAGNOSTICS';
-    btnOpen.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 999999; background: #2196F3; color: white; border: 2px solid rgba(255,255,255,0.3); padding: 10px 20px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: "Segoe UI", sans-serif; transition: 0.2s;';
+    btnOpen.style.cssText = 'position: fixed; top: 100px; right: 10px; z-index: 999999; background: #2196F3; color: white; border: 2px solid rgba(255,255,255,0.3); padding: 10px 20px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: "Segoe UI", sans-serif; transition: 0.2s;';
     document.body.appendChild(btnOpen);
 
     const panel = document.createElement('div');

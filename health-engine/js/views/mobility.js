@@ -87,11 +87,11 @@ export async function renderMobility(container) {
             .submit-area { flex: 1; background: #13192a; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; }
             .set-indicator { font-size: 1.8rem; font-weight: bold; letter-spacing: 2px; margin-bottom: 30px; }
             .set-indicator span { font-size: 2.5rem; color: #8a2be2; margin: 0 5px; }
-            .btn-complete { background: #28a745; color: white; width: 100%; max-width: 400px; padding: 25px; border-radius: 16px; font-size: 2rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 15px; transition: 0.2s; box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4); }
+            .btn-complete { background: #28a745; color: white; width: auto; padding: 15px 30px; border-radius: 16px; font-size: 2rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 15px; transition: 0.2s; box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4); }
             .btn-complete:hover { filter: brightness(1.1); transform: scale(1.02); }
-            .btn-start-purple { background: #8a2be2; color: white; width: 100%; max-width: 400px; padding: 25px; border-radius: 16px; font-size: 2rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 15px; transition: 0.2s; box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4); }
+            .btn-start-purple { background: #8a2be2; color: white; width: auto; padding: 15px 30px; border-radius: 16px; font-size: 2rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 15px; transition: 0.2s; box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4); }
             .btn-start-purple:hover { filter: brightness(1.1); transform: scale(1.02); }
-            .btn-skip-sub { background: rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.2); color: white; max-width: 200px; padding: 25px; border-radius: 16px; font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+            .btn-skip-sub { background: rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.2); color: white; width: auto; padding: 15px 30px; border-radius: 16px; font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
             .btn-skip-sub:hover { background: rgba(255,255,255,0.1); }
             
             .bottom-bar { background: #070b14; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding: 15px 40px; justify-content: space-between;  position: relative; z-index: 100; }
@@ -241,7 +241,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.20</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.22</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -368,7 +368,7 @@ function renderActiveSet(content) {
                 
                 <div class="rp-content">
                     <div class="controls-area" style="margin-top: auto;">
-                        <div class="submit-area" id="interaction-area" style="flex-direction: row; justify-content: center; gap: 20px; background: transparent; padding: 0;">
+                        <div class="submit-area" id="interaction-area" style="flex-direction: row; justify-content: center; background: transparent; padding: 0; width: 100%;">
                             <!-- Injected -->
                         </div>
                     </div>
@@ -389,12 +389,12 @@ function renderActiveSet(content) {
     if (ex.measurement_type === 'TIME') {
         state.activeTimeRemaining = ex.target_value;
         area.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 15px; background: rgba(11,16,30,0.95); padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8);">
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 10px 15px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 650px; justify-content: space-between;">
                 <div style="font-size: 0.9rem; font-weight: bold; color: #aaa; letter-spacing: 1px;">SET <span style="color: #8a2be2; font-size: 1.2rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 6px;">${sideText}</span></div>
-                <div style="font-size: 2.5rem; font-weight: bold; font-family: monospace; width: 100px; text-align: center; color: white; line-height: 1;" id="active-timer">${state.activeTimeRemaining}s</div>
-                <button class="btn-start-purple" id="btn-timer-toggle" style="margin: 0; padding: 10px 20px; font-size: 1rem; border-radius: 50px; box-shadow: none;">${iconClock} START TIMER</button>
-                <button class="btn-skip-sub" id="btn-done" style="margin: 0; padding: 10px 20px; font-size: 1rem; border-radius: 50px;">SKIP</button>
-                ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-skip-sub" id="btn-howto" style="margin: 0; padding: 10px 20px; font-size: 1rem; border-radius: 50px; background: #007bff; border: 2px solid #007bff; color: white; cursor: pointer; white-space: nowrap; max-width: none;">HOW TO</button>` : ''}
+                <div style="font-size: 2.5rem; font-weight: bold; font-family: monospace; width: auto; padding: 0 10px; text-align: center; color: white; line-height: 1;" id="active-timer">${state.activeTimeRemaining}s</div>
+                <button class="btn-start-purple" id="btn-timer-toggle" style="margin: 0; padding: 8px 16px; font-size: 0.9rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconClock} START</button>
+                <button class="btn-skip-sub" id="btn-done" style="margin: 0; padding: 8px 16px; font-size: 0.9rem; border-radius: 50px; width: auto; max-width: none;">SKIP</button>
+                ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-skip-sub" id="btn-howto" style="margin: 0; padding: 8px 16px; font-size: 0.9rem; border-radius: 50px; background: #007bff; border: 2px solid #007bff; color: white; cursor: pointer; white-space: nowrap; width: auto; max-width: none;">HOW TO</button>` : ''}
             </div>
         `;
         
@@ -430,11 +430,11 @@ function renderActiveSet(content) {
         
     } else {
         area.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 15px; background: rgba(11,16,30,0.95); padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8);">
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 10px 15px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 650px; justify-content: space-between;">
                 <div style="font-size: 0.9rem; font-weight: bold; color: #aaa; letter-spacing: 1px;">SET <span style="color: #8a2be2; font-size: 1.2rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 6px;">${sideText}</span></div>
                 <div style="font-size: 2.5rem; font-weight: bold; font-family: monospace; color: white; line-height: 1;">${ex.target_value} <span style="font-size: 1.2rem; color: #888;">REPS</span></div>
-                <button class="btn-complete" id="btn-done" style="margin: 0; padding: 10px 20px; font-size: 1rem; border-radius: 50px; box-shadow: none;">${iconCheck} COMPLETE SET</button>
-                ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-skip-sub" id="btn-howto" style="margin: 0; padding: 10px 20px; font-size: 1rem; border-radius: 50px; background: #007bff; border: 2px solid #007bff; color: white; cursor: pointer; white-space: nowrap; max-width: none;">HOW TO</button>` : ''}
+                <button class="btn-complete" id="btn-done" style="margin: 0; padding: 8px 16px; font-size: 0.9rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconCheck} COMPLETE</button>
+                ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-skip-sub" id="btn-howto" style="margin: 0; padding: 8px 16px; font-size: 0.9rem; border-radius: 50px; background: #007bff; border: 2px solid #007bff; color: white; cursor: pointer; white-space: nowrap; width: auto; max-width: none;">HOW TO</button>` : ''}
             </div>
         `;
         document.getElementById('btn-done').addEventListener('click', () => recordSet(ex.target_value));

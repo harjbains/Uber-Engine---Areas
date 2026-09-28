@@ -461,6 +461,12 @@ export async function renderMobility(container) {
                 min-width: 120px !important;
                 margin: 0 !important;
             }
+
+            /* Override dots for mobility */
+            .dots-row { flex-wrap: wrap !important; gap: 6px !important; justify-content: center; }
+            .dot-col { gap: 4px !important; }
+            .dot { width: 12px !important; height: 12px !important; }
+            .dot-num { font-size: 0.75rem !important; }
 </style>
     `;
 
@@ -560,7 +566,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.47</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.48</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -687,7 +693,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.47</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.48</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -744,7 +750,7 @@ function renderActiveSet(content) {
                         ` : ''}
                         
                         <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
-                            ${ex.measurement_type === 'TIME' ? `<button class="btn-complete btn-timer" id="btn-timer-toggle" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">${iconClock} START</button>` : `<button class="btn-complete btn-timer" id="btn-done" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">${iconCheck} COMPLETE</button>`}
+                            ${ex.measurement_type === 'TIME' ? `<button class="btn-complete btn-timer" id="btn-timer-toggle" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">START</button>` : `<button class="btn-complete btn-timer" id="btn-done" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">${iconCheck} COMPLETE</button>`}
                             
                             ${ex.measurement_type === 'TIME' ? `<button class="btn-complete btn-skip" id="btn-skip-timer" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">SKIP</button>` : ''}
                             
@@ -768,11 +774,11 @@ function renderActiveSet(content) {
         <div class="bb-center">
             <div class="bb-progress">
                 <div class="bb-lbl">WORKOUT PROGRESS</div>
-                <div class="bb-dots">
+                <div class="dots-row">
                     ${state.exercises.map((e, idx) => `
-                        <div class="bb-dot-col">
-                            <div class="bb-dot ${idx < state.currentIndex ? 'completed' : idx === state.currentIndex ? 'active' : ''} ${idx === state.currentIndex ? 'sb-item' : ''}"></div>
-                            <div class="bb-dot-num">${idx + 1}</div>
+                        <div class="dot-col">
+                            <div class="dot ${idx <= state.currentIndex ? 'active' : ''}"></div>
+                            <div class="dot-num ${idx <= state.currentIndex ? 'hl' : ''}">${idx + 1}</div>
                         </div>
                     `).join('')}
                 </div>
@@ -807,10 +813,10 @@ function renderActiveSet(content) {
             if (isRunning) {
                 isRunning = false;
                 clearInterval(state.timerInterval);
-                toggleBtn.innerHTML = `${iconClock} RESUME`;
+                toggleBtn.innerHTML = `RESUME`;
             } else {
                 isRunning = true;
-                toggleBtn.innerHTML = `${iconClock} PAUSE`;
+                toggleBtn.innerHTML = `PAUSE`;
                 state.timerInterval = setInterval(() => {
                     state.activeTimeRemaining--;
                     if (timerDisplay) timerDisplay.textContent = state.activeTimeRemaining + 's';
@@ -892,7 +898,7 @@ function renderRest(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.47</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.48</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -954,11 +960,11 @@ function renderRest(content) {
         <div class="bb-center">
             <div class="bb-progress">
                 <div class="bb-lbl">WORKOUT PROGRESS</div>
-                <div class="bb-dots">
+                <div class="dots-row">
                     ${state.exercises.map((e, idx) => `
-                        <div class="bb-dot-col">
-                            <div class="bb-dot ${idx < state.currentIndex ? 'completed' : idx === state.currentIndex ? 'active' : ''} ${idx === state.currentIndex ? 'sb-item' : ''}"></div>
-                            <div class="bb-dot-num">${idx + 1}</div>
+                        <div class="dot-col">
+                            <div class="dot ${idx <= state.currentIndex ? 'active' : ''}"></div>
+                            <div class="dot-num ${idx <= state.currentIndex ? 'hl' : ''}">${idx + 1}</div>
                         </div>
                     `).join('')}
                 </div>

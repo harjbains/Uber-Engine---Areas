@@ -1,8 +1,8 @@
-import { renderTvHome } from './views/tv-home.js?v=2.39';
-import { renderAdmin } from './views/admin.js?v=2.39';
-import { renderStrength } from './views/strength.js?v=2.39';
-import { renderCardio } from './views/cardio.js?v=2.39';
-import { renderMobility } from './views/mobility.js?v=2.39';
+import { renderTvHome } from './views/tv-home.js';
+import { renderAdmin } from './views/admin.js';
+import { renderStrength } from './views/strength.js';
+import { renderCardio } from './views/cardio.js';
+import { renderMobility } from './views/mobility.js';
 
 const routes = {
     '/': renderTvHome,

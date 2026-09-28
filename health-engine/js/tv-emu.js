@@ -17,11 +17,11 @@ export function initTVEmulation() {
 
     function updateEmuScale() {
         if (!isEmuMode) return;
-        const scaleX = window.innerWidth / 1920;
-        const scaleY = window.innerHeight / 1080;
+        const scaleX = window.innerWidth / 960;
+        const scaleY = window.innerHeight / 480;
         const scale = Math.min(scaleX, scaleY);
         // Shrink slightly to leave a tiny bit of breathing room if strictly requested? 
-        // No, prompt says: "Scale the complete 1920x1080 viewport proportionally so that it fits inside the PC browser window."
+        // No, prompt says: "Scale the complete 960x480 viewport proportionally so that it fits inside the PC browser window."
         appRoot.style.transform = `translate(-50%, -50%) scale(${scale})`;
     }
 
@@ -32,13 +32,13 @@ export function initTVEmulation() {
         
         document.body.style.backgroundColor = '#000';
         
-        appRoot.style.width = '1920px';
-        appRoot.style.height = '1080px';
+        appRoot.style.width = '960px';
+        appRoot.style.height = '480px';
         appRoot.style.position = 'fixed';
         appRoot.style.top = '50%';
         appRoot.style.left = '50%';
         appRoot.style.transformOrigin = 'center center';
-        // Add a subtle border or glow to strictly delineate the 1920x1080 canvas
+        // Add a subtle border or glow to strictly delineate the 960x480 canvas
         appRoot.style.boxShadow = '0 0 0 2px rgba(255,255,255,0.1), 0 0 50px rgba(0,0,0,0.8)';
         
         updateEmuScale();

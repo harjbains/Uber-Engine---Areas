@@ -12,7 +12,7 @@ export function initDiagnostics() {
     function getEmulationMode() {
         const root = document.getElementById('app-root');
         if (!root) return 'UNKNOWN';
-        return root.style.width === '1920px' ? 'ON' : 'OFF';
+        return root.style.width === '960px' ? 'ON' : 'OFF';
     }
 
     function renderData() {

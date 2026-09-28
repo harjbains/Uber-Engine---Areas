@@ -21,7 +21,7 @@ export function renderCardio(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #66bb6a;">${iconRun}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #66bb6a;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.15</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #66bb6a;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.16</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -146,7 +146,7 @@ export function renderCardio(container) {
                 .control-box {
                     flex: 1;
                     min-width: 0;
-                    max-width: 160px;
+                    max-width: 190px;
                     height: 145px;
                     border-radius: 12px;
                     padding: 8px;
@@ -205,7 +205,7 @@ export function renderCardio(container) {
                     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
                 }
                 
-                .ctrl-sub { font-size: 0.55rem; color: #8892a0; margin-top: 6px; height: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; text-align: center; }
+                .ctrl-sub { font-size: 0.65rem; color: #8892a0; margin-top: 6px; text-align: center; line-height: 1.2; }
                 
                 .btn-complete {
                     background-color: #28a745;

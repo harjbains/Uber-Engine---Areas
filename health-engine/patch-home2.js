@@ -27,18 +27,18 @@ home = home.replace(/<div class="footer-arrow">&rsaquo;<\/div>/g, '');
 // 3. Fix max-height issue with cards in tv-home.js
 // Wait, I already fixed .cards-container height, let's make sure it doesn't wrap
 // I'll bump to v2.9
-home = home.replace(/>v2\.8<\/span>/g, '>v2.46</span>');
+home = home.replace(/>v2\.8<\/span>/g, '>v2.47</span>');
 
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\tv-home.js', home);
 
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.8/g, 'v=2.46');
+indexHtml = indexHtml.replace(/v=2\.8/g, 'v=2.47');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.8/g, 'v=2.46');
+appJs = appJs.replace(/v=2\.8/g, 'v=2.47');
 fs.writeFileSync(appJsPath, appJs);
 
 console.log('Home page layout 2 patched');

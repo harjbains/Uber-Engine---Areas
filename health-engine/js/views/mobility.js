@@ -560,7 +560,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.46</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.47</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -687,7 +687,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.46</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.47</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -741,14 +741,15 @@ function renderActiveSet(content) {
                         
                         ${ex.measurement_type === 'TIME' ? `
                             <div style="font-size: 3.5rem; font-weight: bold; font-family: monospace; color: white; text-align: center; margin-top: -10px; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);" id="active-timer">${state.activeTimeRemaining}s</div>
-                            <button class="btn-complete btn-timer" id="btn-timer-toggle">${iconClock} START</button>
-                        ` : `
-                            <button class="btn-complete btn-timer" id="btn-done">${iconCheck} COMPLETE</button>
-                        `}
+                        ` : ''}
                         
-                        ${ex.measurement_type === 'TIME' ? `<button class="btn-complete btn-skip" id="btn-done" style="height: 50px; font-size: 1.1rem; margin-top: 5px;">SKIP</button>` : ''}
-                        
-                        ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-complete btn-howto" id="btn-howto" style="height: 50px; font-size: 1.1rem; margin-top: 5px;">HELP</button>` : ''}
+                        <div style="display: flex; flex-direction: row; gap: 10px; width: 100%;">
+                            ${ex.measurement_type === 'TIME' ? `<button class="btn-complete btn-timer" id="btn-timer-toggle" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">${iconClock} START</button>` : `<button class="btn-complete btn-timer" id="btn-done" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">${iconCheck} COMPLETE</button>`}
+                            
+                            ${ex.measurement_type === 'TIME' ? `<button class="btn-complete btn-skip" id="btn-skip-timer" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">SKIP</button>` : ''}
+                            
+                            ${ex.name.toLowerCase().includes('adductor') ? `<button class="btn-complete btn-howto" id="btn-howto" style="flex: 1; height: 60px; font-size: 1.1rem; margin: 0; padding: 0;">HELP</button>` : ''}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -796,6 +797,7 @@ function renderActiveSet(content) {
     const timerDisplay = document.getElementById('active-timer');
     const toggleBtn = document.getElementById('btn-timer-toggle');
     const doneBtn = document.getElementById('btn-done');
+      const skipBtn = document.getElementById('btn-skip-timer');
     const howtoBtn = document.getElementById('btn-howto');
     
     let isRunning = false;
@@ -821,6 +823,12 @@ function renderActiveSet(content) {
         });
     }
     
+    if (skipBtn) {
+        skipBtn.addEventListener('click', () => {
+            clearInterval(state.timerInterval);
+            completeMobilitySet();
+        });
+    }
     if (doneBtn) {
         doneBtn.addEventListener('click', () => {
             clearInterval(state.timerInterval);
@@ -884,7 +892,7 @@ function renderRest(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.46</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.47</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>

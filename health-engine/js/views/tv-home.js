@@ -57,7 +57,7 @@ export async function renderTvHome(container) {
         <style>
             .home-layout {  display: flex; flex-direction: column;  box-sizing: border-box; background: url('${bgUrl}') no-repeat center center/cover; position: relative; color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
             .home-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 15, 30, 0.7); backdrop-filter: blur(8px); z-index: 0; }
-            .home-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; justify-content: center; }
+            .home-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; justify-content: flex-start; }
             
             .header { display: flex; justify-content: space-between; align-items: flex-start;  }
             .brand { display: flex; align-items: center; gap: 15px; }
@@ -123,7 +123,7 @@ export async function renderTvHome(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.46</span></div>
+                <div class="tv-brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.47</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>

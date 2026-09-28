@@ -116,7 +116,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.9</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.10</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -182,7 +182,7 @@ function renderActiveSet(content) {
                                     <div class="ctrl-sub">Increment: ${ex.progression_increment_kg} kg</div>
                                 </div>
                                 <div class="control-box box-reps">
-                                    <div class="ctrl-lbl">REPS COMPLETED</div>
+                                    <div class="ctrl-lbl">REPS</div>
                                     <div class="ctrl-interactive bg-purple-grad">
                                         <div class="ctrl-arrow-container" id="btn-reps-up"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 6l9 12H3z" fill="white"/></svg></div>
      <div class="ctrl-val">${state.currentReps}</div>
@@ -444,7 +444,8 @@ function renderActiveSet(content) {
                 letter-spacing: 1.5px;
             }
             .stat-val {
-                font-size: 2.2rem;
+                font-size: 1.6rem;
+                white-space: nowrap;
                 font-weight: 800;
             }
             
@@ -569,9 +570,9 @@ function renderActiveSet(content) {
             
             .bb-btn-end {
                 background-color: #111827;
-                border-radius: 16px;
-                height: 70px;
-                padding: 0 25px;
+                border-radius: 12px;
+                height: 52px;
+                padding: 0 20px;
                 display: flex;
                 align-items: center;
                 gap: 15px;
@@ -590,17 +591,19 @@ function renderActiveSet(content) {
             
             .bb-center {
                 display: flex;
-                gap: 80px;
+                gap: 40px;
             }
             .bb-progress {
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 2px;
+                padding: 0 10px;
             }
             .bb-time {
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 2px;
+                padding: 0 10px;
             }
             .bb-lbl {
                 font-size: 0.8rem;
@@ -638,7 +641,7 @@ function renderActiveSet(content) {
                 color: white;
             }
             .time-val {
-                font-size: 2rem;
+                font-size: 1.8rem;
                 font-weight: 800;
                 font-family: monospace;
                 letter-spacing: 2px;
@@ -647,9 +650,9 @@ function renderActiveSet(content) {
             
             .bb-btn-next {
                 background-color: #111827;
-                border-radius: 16px;
-                height: 70px;
-                padding: 0 25px;
+                border-radius: 12px;
+                height: 52px;
+                padding: 0 20px;
                 display: flex;
                 align-items: center;
                 gap: 25px;
@@ -660,7 +663,7 @@ function renderActiveSet(content) {
                 text-align: right;
             }
             .bb-next-t1 { font-size: 0.8rem; font-weight: 700; color: #8892a0; letter-spacing: 1.5px; }
-            .bb-next-t2 { font-size: 1.1rem; font-weight: 700; margin-top: 2px; }
+            .bb-next-t2 { font-size: 1rem; font-weight: 700; margin-top: 0; white-space: nowrap; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
             
         </style>
     `;

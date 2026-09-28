@@ -1,0 +1,421 @@
+
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+            button { outline: none; border: none; cursor: pointer; font-family: inherit; }
+            
+            /* Global */
+            .app-container {
+                
+                
+                background-color: #050810;
+                color: white;
+                font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
+            .text-blue { color: #007bff; }
+            
+            /* Top Bar */
+            .top-bar {
+                
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+            }
+            .logo-area { display: flex; align-items: center; gap: 15px; width: 380px; }
+            .logo-icon { color: #007bff; display: flex; align-items: center; justify-content: center; }
+            .logo-title { font-size: 1.8rem; font-weight: 800; letter-spacing: 1px; line-height: 1.2; }
+            .logo-tag { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #8892a0; }
+            
+            .nav-home { display: flex; align-items: center; font-size: 1.2rem; color: #8892a0; cursor: pointer; flex: 1; }
+            
+            .top-right-info { display: flex; flex-direction: column; text-align: right; }
+            .tr-title { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; }
+            .tr-sub { font-size: 1.15rem; color: #8892a0; margin-top: 4px; font-weight: 500; }
+            
+            /* Main Content Layer */
+            .main-content {
+                display: flex;
+                flex: 1;
+                
+                gap: 30px;
+                 /* 90 top + 110 bottom = 200 */
+            }
+            
+            /* Left Rail */
+            .left-rail {
+                width: 380px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .rail-item {
+                display: flex;
+                align-items: center;
+                padding: 10px 15px;
+                border-radius: 12px;
+                background-color: #0b111e;
+                border: 1px solid rgba(255,255,255,0.02);
+                height: 80px;
+            }
+            .rail-item:hover:not(.active) {
+                background-color: #121927;
+                border-color: rgba(255,255,255,0.08);
+            }
+            .rail-item.active {
+                background-color: #007bff;
+                border-color: #007bff;
+            }
+            .rail-num {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                border: 2px solid #556070;
+                color: #8892a0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 1rem;
+                flex-shrink: 0;
+            }
+            .rail-item.active .rail-num {
+                background-color: #050810;
+                border-color: transparent;
+                color: white;
+            }
+            .rail-img {
+                width: 65px;
+                height: 45px;
+                border-radius: 6px;
+                object-fit: cover;
+                margin: 0 15px;
+                filter: brightness(0.6);
+            }
+            .rail-item.active .rail-img {
+                filter: brightness(1);
+            }
+            .rail-text-col {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .rail-title {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: #8892a0;
+            }
+            .rail-item.active .rail-title { color: white; }
+            .rail-sub {
+                font-size: 0.8rem;
+                color: #556070;
+                margin-top: 4px;
+            }
+            .rail-item.active .rail-sub { color: rgba(255,255,255,0.8); }
+            
+            /* Workout Panel with Full Background */
+            .workout-panel {
+                flex: 1;
+                border: 1px solid rgba(255,255,255,0.05);
+                border-radius: 24px;
+                position: relative;
+                overflow: hidden;
+            }
+            .wp-bg {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background-image: url('${resolveAssetPath('strength/squat.webp')}');
+                background-size: cover;
+                background-position: top center;
+                z-index: 1;
+            }
+            .wp-overlay {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                /* Fading from top right to bottom left, plus a left edge guard */
+                background: 
+                    linear-gradient(225deg, rgba(13,19,35,0) 0%, rgba(13,19,35,0.8) 50%, rgba(13,19,35,1) 85%),
+                    linear-gradient(to right, rgba(13,19,35,1) 0%, rgba(13,19,35,0.7) 35%, rgba(13,19,35,0) 100%);
+                z-index: 2;
+            }
+            .wp-content {
+                position: relative;
+                z-index: 3;
+                padding: 40px;
+                display: flex;
+                gap: 40px;
+                height: 100%;
+                width: 100%;
+            }
+            
+            .wp-left {
+                flex: 1.2;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-width: 0;
+            }
+            .wp-top-left {
+                min-width: 0;
+            }
+            .wp-right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+            
+            /* Top Left */
+            .exercise-name {
+                font-size: 4.2rem;
+                font-weight: 900;
+                letter-spacing: 2px;
+                margin-bottom: 30px;
+                line-height: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+            }
+            .stats-row {
+                display: flex;
+                gap: 40px;
+            }
+            .stat-divider {
+                width: 2px;
+                background-color: rgba(255,255,255,0.15);
+                margin: 5px 0;
+                border-radius: 2px;
+            }
+            .stat-col {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            .stat-lbl {
+                font-size: 0.85rem;
+                color: #8892a0;
+                font-weight: 700;
+                letter-spacing: 1.5px;
+            }
+            .stat-val {
+                font-size: 2.2rem;
+                font-weight: 800;
+            }
+            
+            /* Bottom Left */
+            .wp-bottom-left {
+                display: flex;
+                gap: 20px;
+            }
+            
+            .control-box {
+                width: 260px;
+                height: 350px;
+                border-radius: 20px;
+                padding: 25px 25px 20px 25px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #0d1b33;
+            }
+            .box-weight { border: 1px solid rgba(150, 200, 255, 0.12); }
+            .box-reps { border: 1px solid rgba(200, 150, 255, 0.12); }
+            
+            .ctrl-lbl {
+                font-size: 0.95rem;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                margin-bottom: 20px;
+                color: white;
+            }
+            
+            .ctrl-interactive {
+                width: 100%;
+                height: 230px;
+                border-radius: 16px;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                overflow: hidden;
+                box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+            }
+            .bg-blue-grad { background: linear-gradient(180deg, #1e87f0 0%, #00b3ff 100%); }
+            .bg-purple-grad { background: linear-gradient(180deg, #8b45f7 0%, #bb6df9 100%); }
+            
+            .ctrl-arrow-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            
+            .ctrl-val {
+                background-color: #15243d;
+                margin: 0 4px;
+                
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 4.5rem;
+                font-weight: 800;
+                color: white;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            }
+            
+            .ctrl-sub {
+                font-size: 0.85rem;
+                color: #d1d5db;
+                margin-top: 15px;
+                height: 20px;
+            }
+            
+            /* Right Side Elements */
+            .wp-bottom-right {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .set-indicator {
+                background-color: #050810;
+                border-radius: 16px;
+                height: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+                font-weight: 700;
+                color: #8892a0;
+                letter-spacing: 2px;
+                border: 1px solid rgba(255,255,255,0.02);
+            }
+            .set-num-hl {
+                color: #007bff;
+                font-size: 2.2rem;
+                font-weight: 900;
+                margin: 0 10px;
+            }
+            .btn-complete {
+                background-color: #28a745;
+                color: white;
+                border-radius: 16px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                font-weight: 800;
+                gap: 15px;
+                box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+            }
+            
+            /* Bottom Bar */
+            .bottom-bar {
+                
+                background-color: #070b14;
+                border-top: 1px solid rgba(255,255,255,0.05);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+            }
+            
+            .bb-btn-end {
+                background-color: #111827;
+                border-radius: 16px;
+                height: 70px;
+                padding: 0 25px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                cursor: pointer;
+            }
+            .bb-end-x {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            .bb-end-text {
+                display: flex;
+                flex-direction: column;
+            }
+            .bb-end-t1 { font-size: 1rem; font-weight: 700; letter-spacing: 1px; }
+            .bb-end-t2 { font-size: 0.8rem; color: #8892a0; margin-top: 2px; }
+            
+            .bb-center {
+                display: flex;
+                gap: 80px;
+            }
+            .bb-progress {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .bb-time {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .bb-lbl {
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: #8892a0;
+                letter-spacing: 2px;
+            }
+            .dots-row {
+                display: flex;
+                gap: 15px;
+                align-items: center;
+            }
+            .dot-col {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+            }
+            .dot {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                border: 2px solid #556070;
+            }
+            .dot.active {
+                background-color: #007bff;
+                border-color: #007bff;
+            }
+            .dot-num {
+                font-size: 0.8rem;
+                color: #556070;
+                font-weight: 700;
+            }
+            .dot-num.hl {
+                color: white;
+            }
+            .time-val {
+                font-size: 2rem;
+                font-weight: 800;
+                font-family: monospace;
+                letter-spacing: 2px;
+                line-height: 1;
+            }
+            
+            .bb-btn-next {
+                background-color: #111827;
+                border-radius: 16px;
+                height: 70px;
+                padding: 0 25px;
+                display: flex;
+                align-items: center;
+                gap: 25px;
+            }
+            .bb-next-text {
+                display: flex;
+                flex-direction: column;
+                text-align: right;
+            }
+            .bb-next-t1 { font-size: 0.8rem; font-weight: 700; color: #8892a0; letter-spacing: 1.5px; }
+            .bb-next-t2 { font-size: 1.1rem; font-weight: 700; margin-top: 2px; }
+            
+        

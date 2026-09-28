@@ -1,39 +1,12 @@
 const fs = require('fs');
+const { execSync } = require('child_process');
 
-const strengthCode = fs.readFileSync('C:\\DEV\\health-engine\\js\\views\\strength.js', 'utf8');
-let newMobility = fs.readFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', 'utf8');
+execSync('git restore js/views/mobility.js');
 
-const strengthStylesMatch = strengthCode.match(/<style>([\s\S]*?)<\/style>/);
-let newStyles = strengthStylesMatch[1];
-newStyles += `
-    .sb-item.active { background-color: #8a2be2 !important; border-color: #8a2be2 !important; box-shadow: 0 4px 15px rgba(138,43,226,0.3) !important; }
-    .btn-timer { background-color: #8a2be2; box-shadow: 0 4px 15px rgba(138,43,226,0.3); }
-    .btn-skip { background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); box-shadow: none; }
-    .btn-howto { background-color: #007bff; box-shadow: 0 4px 15px rgba(0,123,255,0.3); }
-`;
-newMobility = newMobility.replace(/<style>[\s\S]*?<\/style>/, `<style>${newStyles}</style>`);
+let code = fs.readFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', 'utf8');
 
-function replaceBlock(source, funcName, newHTML) {
-    const searchStr = `function ${funcName}(content) {`;
-    const funcStart = source.indexOf(searchStr);
-    if (funcStart === -1) return source;
-    
-    const innerHTMLStart = source.indexOf('content.innerHTML = `', funcStart);
-    if (innerHTMLStart === -1) return source;
-    
-    let innerHTMLEnd = source.indexOf('`;', innerHTMLStart);
-    if (innerHTMLEnd === -1) {
-        innerHTMLEnd = source.indexOf('`\n', innerHTMLStart);
-        if(innerHTMLEnd === -1) return source;
-        innerHTMLEnd += 1;
-    } else {
-        innerHTMLEnd += 2;
-    }
-    
-    return source.substring(0, innerHTMLStart) + newHTML + source.substring(innerHTMLEnd);
-}
-
-const activeHTML = "`" + `
+// The replacement template strings
+const activeHTMLStr = "`\n" + `
 <div class="app-container tv-shell">
     <header class="tv-header">
         <div class="tv-header-left">
@@ -44,7 +17,7 @@ const activeHTML = "`" + `
             </div>
         </div>
         <div class="tv-header-center">
-            <button class="tv-nav-home" id="btn-home">
+            <button class="tv-nav-home" id="btn-top-home">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
                 Home
             </button>
@@ -137,9 +110,9 @@ const activeHTML = "`" + `
         
         <div class="bb-btn-next" tabindex="0" style="visibility: hidden;"></div>
     </footer>
-</div>` + "`" + ";";
+</div>` + "\`;";
 
-const restHTML = "`" + `
+const restHTMLStr = "`\n" + `
 <div class="app-container tv-shell">
     <header class="tv-header">
         <div class="tv-header-left">
@@ -225,9 +198,9 @@ const restHTML = "`" + `
         
         <div class="bb-btn-next" tabindex="0" style="visibility: hidden;"></div>
     </footer>
-</div>` + "`" + ";";
+</div>` + "\`;";
 
-const completeHTML = "`" + `
+const completeHTMLStr = "`\n" + `
 <div class="app-container tv-shell">
     <header class="tv-header">
         <div class="tv-header-left">
@@ -254,24 +227,131 @@ const completeHTML = "`" + `
             <button class="btn-complete btn-timer" id="btn-finish-workflow" style="margin: 0 auto; padding: 20px 60px;">RETURN TO HOME</button>
         </div>
     </div>
-</div>` + "`" + ";";
+</div>` + "\`;";
 
-newMobility = replaceBlock(newMobility, 'renderActiveSet', activeHTML);
-newMobility = replaceBlock(newMobility, 'renderRest', restHTML);
-newMobility = replaceBlock(newMobility, 'renderComplete', completeHTML);
+// Replace the render functions ENTIRELY
+const renderActiveSetBody = `
+    const ex = state.exercises[state.currentIndex];
+    const sideText = state.currentSide === 'NONE' ? '' : \` (\${state.currentSide})\`;
+    
+    // Default fallback to 0 if undefined
+    if (state.activeTimeRemaining === undefined) state.activeTimeRemaining = ex.target_value;
+    
+    content.innerHTML = ${activeHTMLStr}
+    
+    updateElapsedTimer();
+    bindSidebarAndNext();
+    
+    document.getElementById('btn-top-home').addEventListener('click', () => navigate('/tv'));
+    document.getElementById('btn-end-workout').addEventListener('click', () => { state.mode = 'COMPLETE'; renderCurrentState(); });
+    
+    const timerDisplay = document.getElementById('active-timer');
+    const toggleBtn = document.getElementById('btn-timer-toggle');
+    const doneBtn = document.getElementById('btn-done');
+    const howtoBtn = document.getElementById('btn-howto');
+    
+    let isRunning = false;
+    
+    if (ex.measurement_type === 'TIME' && toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(state.timerInterval);
+                toggleBtn.innerHTML = \`\$\{iconClock\} RESUME\`;
+            } else {
+                isRunning = true;
+                toggleBtn.innerHTML = \`\$\{iconClock\} PAUSE\`;
+                state.timerInterval = setInterval(() => {
+                    state.activeTimeRemaining--;
+                    if (timerDisplay) timerDisplay.textContent = state.activeTimeRemaining + 's';
+                    if (state.activeTimeRemaining <= 0) {
+                        clearInterval(state.timerInterval);
+                        completeMobilitySet();
+                    }
+                }, 1000);
+            }
+        });
+    }
+    
+    if (doneBtn) {
+        doneBtn.addEventListener('click', () => {
+            clearInterval(state.timerInterval);
+            completeMobilitySet();
+        });
+    }
+    
+    if (howtoBtn) {
+        howtoBtn.addEventListener('click', () => {
+            const bg = document.querySelector('.wp-bg');
+            if (bg.style.backgroundSize === 'contain') {
+                bg.style.backgroundSize = 'cover';
+                howtoBtn.innerHTML = 'HOW TO';
+            } else {
+                bg.style.backgroundSize = 'contain';
+                howtoBtn.innerHTML = 'BACK TO EXERCISE';
+            }
+        });
+    }
+`;
 
-newMobility = newMobility.replace(/>v2\.31<\/span>/g, '>v2.33</span>');
+const renderRestBody = `
+    const ex = state.exercises[state.currentIndex];
+    const sideText = state.currentSide === 'NONE' ? '' : \` (\${state.currentSide})\`;
+    
+    content.innerHTML = ${restHTMLStr}
+    
+    updateElapsedTimer();
+    bindSidebarAndNext();
+    
+    document.getElementById('btn-end-workout').addEventListener('click', () => { state.mode = 'COMPLETE'; renderCurrentState(); });
+    document.getElementById('btn-skip-rest').addEventListener('click', () => {
+        clearInterval(state.timerInterval);
+        state.mode = 'ACTIVE';
+        renderCurrentState();
+    });
+`;
 
-fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', newMobility);
+const renderCompleteBody = `
+    content.innerHTML = ${completeHTMLStr}
+    document.getElementById('btn-finish-workflow').addEventListener('click', () => navigate('/tv'));
+`;
 
+code = code.replace(/function renderActiveSet\(content\) \{[\s\S]*?function recordSet/g, `function renderActiveSet(content) { ${renderActiveSetBody} }\n\nfunction recordSet`);
+code = code.replace(/function renderRest\(content\) \{[\s\S]*?function renderComplete/g, `function renderRest(content) { ${renderRestBody} }\n\nfunction renderComplete`);
+code = code.replace(/function renderComplete\(content\) \{[\s\S]*?function bindSidebarAndNext/g, `function renderComplete(content) { ${renderCompleteBody} }\n\nfunction bindSidebarAndNext`);
+
+
+// Replace styles
+const strengthCode = fs.readFileSync('C:\\DEV\\health-engine\\js\\views\\strength.js', 'utf8');
+const strengthStylesMatch = strengthCode.match(/<style>([\s\S]*?)<\/style>/);
+let newStyles = strengthStylesMatch[1];
+newStyles += `
+    .sb-item.active { background-color: #8a2be2 !important; border-color: #8a2be2 !important; box-shadow: 0 4px 15px rgba(138,43,226,0.3) !important; }
+    .btn-timer { background-color: #8a2be2; box-shadow: 0 4px 15px rgba(138,43,226,0.3); }
+    .btn-skip { background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); box-shadow: none; }
+    .btn-howto { background-color: #007bff; box-shadow: 0 4px 15px rgba(0,123,255,0.3); }
+    .btn-complete {
+        background-color: #28a745; color: white; border-radius: 16px; height: 70px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem; font-weight: 700; letter-spacing: 1px;
+        transition: all 0.2s; box-shadow: 0 4px 15px rgba(40,167,69,0.3); border: none; outline: none; cursor: pointer;
+    }
+    .btn-complete:hover { transform: scale(1.02); filter: brightness(1.1); }
+`;
+code = code.replace(/<style>[\s\S]*?<\/style>/, `<style>${newStyles}</style>`);
+code = code.replace(/>v2\.32<\/span>/g, '>v2.33</span>');
+
+fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', code);
+
+// Update versions
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.31/g, 'v=2.32');
+indexHtml = indexHtml.replace(/v=2\.32/g, 'v=2.33');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.31/g, 'v=2.32');
+appJs = appJs.replace(/v=2\.32/g, 'v=2.33');
 fs.writeFileSync(appJsPath, appJs);
 
-console.log('Mobility logic successfully transplanted into pristine strength structural clone');
+console.log('Final rewrite applied with hardcoded string literals to avoid undefined vars');

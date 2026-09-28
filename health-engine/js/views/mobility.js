@@ -116,8 +116,6 @@ export async function renderMobility(container) {
             .rail-title { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.2px; color: white; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.2; padding-right: 2px; }
             .rail-item.active .rail-title { color: white; }
             
-            .rail-item.active 
-            
             /* Workout Panel with Full Background */
             .workout-panel {
                 flex: 1;

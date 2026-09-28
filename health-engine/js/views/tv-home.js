@@ -123,7 +123,7 @@ export async function renderTvHome(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.50</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.51</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -195,10 +195,10 @@ export async function renderTvHome(container) {
                         </div>
                         
                     </div>
-                    <div class="footer-btn" tabindex="0">
-                        <div class="footer-icon" style="color: #fff;">${iconChart}</div>
-                        <div class="footer-text">
-                            <h3 class="footer-title">HISTORY</h3>
+                    <div class="footer-btn" tabindex="0" id="btn-history">
+                          <div class="footer-icon" style="color: #fff;">${iconChart}</div>
+                          <div class="footer-text">
+                              <h3 class="footer-title">HISTORY</h3>
                             
                         </div>
                         
@@ -259,4 +259,5 @@ export async function renderTvHome(container) {
     const goAdmin = () => navigate('/admin');
     if (document.getElementById('btn-admin-top')) document.getElementById('btn-admin-top').addEventListener('click', goAdmin);
     if (document.getElementById('btn-admin-bottom')) document.getElementById('btn-admin-bottom').addEventListener('click', goAdmin);
+    if (document.getElementById('btn-history')) document.getElementById('btn-history').addEventListener('click', () => navigate('/history'));
 }

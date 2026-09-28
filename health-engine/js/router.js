@@ -3,6 +3,7 @@ import { renderAdmin } from './views/admin.js';
 import { renderStrength } from './views/strength.js';
 import { renderCardio } from './views/cardio.js';
 import { renderMobility } from './views/mobility.js';
+import { renderHistory } from './views/history.js';
 
 const routes = {
     '/': renderTvHome,
@@ -11,6 +12,7 @@ const routes = {
     '/strength': renderStrength,
     '/cardio': renderCardio,
     '/mobility': renderMobility,
+    '/history': renderHistory,
 };
 
 export function setupRouting() {

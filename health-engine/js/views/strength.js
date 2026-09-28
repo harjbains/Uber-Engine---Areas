@@ -21,7 +21,7 @@ export async function renderStrength(container) {
     const iconDumbbell = `<svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40"><path d="M6 4h2v16H6zm12 0h2v16h-2zM2 8h2v8H2zm18 0h2v8h-2zM8 11h8v2H8z"/></svg>`;
     const iconCheck = `<svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
 
-    container.innerHTML = `<div id="strength-content" style=" ">Loading...</div>`;
+    container.innerHTML = `<div id="strength-content" style="width: 100%; height: 100%; display: flex; flex-direction: column;">Loading...</div>`;
 
     try {
         const { data: user } = await getSupabase().auth.getUser();
@@ -116,7 +116,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.42</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.44</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>

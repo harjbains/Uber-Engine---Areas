@@ -31,18 +31,18 @@ cardio = cardio.replace(/font-size: 4\.5rem;/g, 'font-size: 2.8rem;');
 cardio = cardio.replace(/AVG SPEED \(KM\/H\)/, 'SPEED (KM/H)');
 cardio = cardio.replace(/DURATION \(MIN\)/, 'DURATION');
 
-cardio = cardio.replace(/>v2\.10<\/span>/g, '>v2.42</span>');
+cardio = cardio.replace(/>v2\.10<\/span>/g, '>v2.44</span>');
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\cardio.js', cardio);
 
 // Bump everything
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.10/g, 'v=2.42');
+indexHtml = indexHtml.replace(/v=2\.10/g, 'v=2.44');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.10/g, 'v=2.42');
+appJs = appJs.replace(/v=2\.10/g, 'v=2.44');
 fs.writeFileSync(appJsPath, appJs);
 
 const files = [
@@ -54,7 +54,7 @@ const files = [
 files.forEach(file => {
     if (!fs.existsSync(file)) return;
     let fc = fs.readFileSync(file, 'utf8');
-    fc = fc.replace(/>v2\.10<\/span>/g, '>v2.42</span>');
+    fc = fc.replace(/>v2\.10<\/span>/g, '>v2.44</span>');
     fs.writeFileSync(file, fc);
 });
 

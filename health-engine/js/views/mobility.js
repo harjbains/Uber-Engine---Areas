@@ -43,106 +43,433 @@ export async function renderMobility(container) {
             </div>
         </div>
         <style>
-            * { box-sizing: border-box; }
+            * { box-sizing: border-box; margin: 0; padding: 0; }
             button { outline: none; border: none; cursor: pointer; font-family: inherit; }
             
-            .top-bar { display: flex; justify-content: space-between; align-items: center;  background: #070b14; border-bottom: 1px solid rgba(255,255,255,0.05); }
-            .brand { display: flex; align-items: center; gap: 15px; }
-            .brand-icon { width: 40px; height: 40px; color: #8a2be2; }
-            .brand-title { margin: 0; font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
-            .brand-tag { font-size: 0.7rem; color: #888; letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
-            .btn-home { background: transparent; color: #aaa; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
-            .btn-home:hover { color: #fff; }
-            .top-right { text-align: right; }
-            .top-right-title { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
-            .top-right-sub { font-size: 0.9rem; color: #888; }
+            /* Global */
+            .app-container {
+                
+                
+                background-color: #050810;
+                color: white;
+                font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
+            .text-blue { color: #007bff; }
             
-            .main-body { display: flex; flex: 1; overflow: hidden; }
+            /* Top Bar */
+            .top-bar {
+                
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+            }
+            .logo-area { display: flex; align-items: center; gap: 15px; width: 380px; }
+            .logo-icon { color: #007bff; display: flex; align-items: center; justify-content: center; }
+            .logo-title { font-size: 1.8rem; font-weight: 800; letter-spacing: 1px; line-height: 1.2; }
+            .logo-tag { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #8892a0; }
             
-            .sidebar { width: 380px; background: #0b101e; padding: 20px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; border-right: 1px solid rgba(255,255,255,0.05); }
-            .sb-item { display: flex; align-items: center; gap: 15px; padding: 15px; border-radius: 12px; background: #13192a; transition: 0.2s; border: 1px solid transparent; }
-            .sb-item.active { background: #8a2be2; }
-            .sb-item.completed { opacity: 0.5; }
-            .sb-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid rgba(255,255,255,0.3); font-size: 1rem; }
-            .sb-item.active .sb-num { border-color: white; background: #6b21b0; }
-            .sb-img { width: 64px; height: 48px; border-radius: 8px; object-fit: cover; }
-            .sb-info { display: flex; flex-direction: column; }
-            .sb-name { font-size: 1.2rem; font-weight: bold; }
-            .sb-sub { font-size: 0.9rem; color: #aaa; margin-top: 5px; }
-            .sb-item.active .sb-sub { color: rgba(255,255,255,0.8); }
+            .nav-home { display: flex; align-items: center; font-size: 1.2rem; color: #8892a0; cursor: pointer; flex: 1; }
             
-            .right-panel { flex: 1; min-width: 0; max-width: calc(100% - 410px); position: relative; display: flex; flex-direction: column; background: #050810; overflow: hidden; box-sizing: border-box; border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; }
-            .rp-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-repeat: no-repeat; background-position: center; z-index: 1; opacity: 1; }
-            .rp-overlay { display: none; }
-            .rp-content { position: relative; z-index: 3; display: flex; flex-direction: column; height: 100%; padding: 20px; justify-content: flex-end; align-items: center; box-sizing: border-box; }
+            .top-right-info { display: flex; flex-direction: column; text-align: right; }
+            .tr-title { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; }
+            .tr-sub { font-size: 1.15rem; color: #8892a0; margin-top: 4px; font-weight: 500; }
             
-            .rp-header { font-size: 2.5rem; font-weight: 800; margin: 0 0 15px 0; letter-spacing: 2px; text-transform: uppercase; text-align: center; }
-            .stats-row { display: flex; gap: 60px; margin-bottom: auto; }
-            .stat-box { display: flex; flex-direction: column; gap: 8px; }
-            .stat-label { font-size: 1rem; color: #aaa; letter-spacing: 2px; font-weight: bold; }
-            .stat-val { font-size: 2rem; font-weight: bold; }
+            /* Main Content Layer */
+            .main-content {
+                display: flex;
+                flex: 1;
+                
+                gap: 30px;
+                 /* 90 top + 110 bottom = 200 */
+            }
             
-            .controls-area { display: flex; gap: 20px; align-items: center; justify-content: center; width: 100%; margin-top: auto; }
-            
-            .submit-area { flex: 1; background: #13192a; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; }
-            .set-indicator { font-size: 1.8rem; font-weight: bold; letter-spacing: 2px; margin-bottom: 30px; }
-            .set-indicator span { font-size: 2.5rem; color: #8a2be2; margin: 0 5px; }
-            .btn-complete { background: #28a745; color: white; width: auto; padding: 15px 30px; border-radius: 16px; font-size: 2rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 15px; transition: 0.2s; box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4); }
-            .btn-complete:hover { filter: brightness(1.1); transform: scale(1.02); }
-            .btn-start-purple { background: #8a2be2; color: white; width: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 4px; transition: 0.2s; box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4); box-sizing: border-box; flex-shrink: 1; min-width: 0; }
-            .btn-start-purple:hover { filter: brightness(1.1); transform: scale(1.02); }
-            .btn-skip-sub { background: rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.2); color: white; width: auto; padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; justify-content: center; transition: 0.2s; box-sizing: border-box; flex-shrink: 1; min-width: 0; }
-            .btn-skip-sub:hover { background: rgba(255,255,255,0.1); }
-            
-            .bottom-bar { background: #070b14; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding: 15px 40px; justify-content: space-between;  position: relative; z-index: 100; }
-            .btn-end { background: #13192a; border-radius: 12px; height: 52px; padding: 0 20px; display: flex; align-items: center; gap: 15px; transition: 0.2s; text-align: left; }
-            .btn-end:hover { background: #1a2238; }
-            .btn-end-icon { font-size: 1.5rem; font-weight: bold; }
-            .btn-end-text { font-size: 0.9rem; font-weight: bold; }
-            .btn-end-sub { font-size: 0.75rem; color: #aaa; font-weight: normal; }
-            
-            .prog-center { display: flex; align-items: center; gap: 60px; }
-            .prog-block { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-            .prog-title { font-size: 0.8rem; color: #aaa; letter-spacing: 2px; font-weight: bold; }
-            .prog-dots { display: flex; gap: 15px; align-items: center; }
-            .p-dot-col { display: flex; flex-direction: column; align-items: center; gap: 5px; }
-            .p-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #444; }
-            .p-dot.filled { background: #8a2be2; border-color: #8a2be2; }
-            .p-dot.current { border-color: #8a2be2; }
-            .p-num { font-size: 0.7rem; color: #666; }
-            .p-num.active { color: #8a2be2; font-weight: bold; }
-            
-            .total-time-val { font-size: 2.2rem; font-weight: bold; font-family: monospace; letter-spacing: 2px; }
-            
-            .next-block { background: #13192a; border-radius: 12px; height: 52px; padding: 0 20px; display: flex; align-items: center; gap: 20px; }
-            .next-text { display: flex; flex-direction: column; text-align: right; }
-            .next-title { font-size: 0.8rem; color: #aaa; font-weight: bold; letter-spacing: 1px; }
-            .next-val { font-size: 1.1rem; font-weight: bold; }
-            
-            .rest-huge { font-size: 12rem; font-weight: bold; font-family: monospace; color: #8a2be2; text-shadow: 0 10px 40px rgba(138, 43, 226, 0.4); margin: 20px 0; line-height: 1; }
-            
-            .huge-timer { font-size: 10rem; font-weight: bold; font-family: monospace; color: white; text-shadow: 0 10px 40px rgba(0,0,0,0.5); margin-bottom: 20px; line-height: 1; }
-            
-            .fb-grid { display: flex; justify-content: center; gap: 20px; margin: 40px 0; }
-            .btn-fb { border-radius: 16px; padding: 30px; width: 220px; font-size: 2rem; font-weight: bold; color: white; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: 0.2s; box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
-            .btn-fb:hover { filter: brightness(1.1); transform: scale(1.05); }
-            .btn-fb-keep { background: #28a745; }
-            .btn-fb-unsure { background: #fd7e14; }
-            .btn-fb-drop { background: #dc3545; }
-            .fb-sub { font-size: 1rem; opacity: 0.8; font-weight: normal; }
-
             /* Left Rail */
-            .left-rail { width: 380px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
-            .rail-item { display: flex; align-items: center; padding: 10px 15px; border-radius: 12px; background-color: #0b111e; border: 1px solid rgba(255,255,255,0.02); height: 80px; box-sizing: border-box; }
-            .rail-item.active { background-color: #8a2be2; border-color: #8a2be2; }
-            .rail-num { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #556070; color: #8892a0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; margin-right: 15px; flex-shrink: 0; }
-            .rail-item.active .rail-num { border-color: white; color: white; background-color: transparent; }
-            .rail-img { width: 80px; height: 50px; border-radius: 6px; object-fit: cover; margin-right: 15px; flex-shrink: 0; background-color: #15243d; }
-            .rail-text-col { display: flex; flex-direction: column; flex: 1; min-width: 0; }
-            .rail-title { font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-            .rail-sub { font-size: 0.85rem; font-weight: 600; color: #8892a0; margin-top: 4px; }
+            .left-rail {
+                width: 380px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .rail-item {
+                display: flex;
+                align-items: center;
+                padding: 10px 15px;
+                border-radius: 12px;
+                background-color: #0b111e;
+                border: 1px solid rgba(255,255,255,0.02);
+                height: 80px;
+            }
+            .rail-item:hover:not(.active) {
+                background-color: #121927;
+                border-color: rgba(255,255,255,0.08);
+            }
+            .rail-item.active {
+                background-color: #007bff;
+                border-color: #007bff;
+            }
+            .rail-num {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                border: 2px solid #556070;
+                color: #8892a0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 1rem;
+                flex-shrink: 0;
+            }
+            .rail-item.active .rail-num {
+                background-color: #050810;
+                border-color: transparent;
+                color: white;
+            }
+            .rail-img {
+                width: 65px;
+                height: 45px;
+                border-radius: 6px;
+                object-fit: cover;
+                margin: 0 15px;
+                filter: brightness(0.6);
+            }
+            .rail-item.active .rail-img {
+                filter: brightness(1);
+            }
+            .rail-text-col {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .rail-title {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: #8892a0;
+            }
+            .rail-item.active .rail-title { color: white; }
+            .rail-sub {
+                font-size: 0.8rem;
+                color: #556070;
+                margin-top: 4px;
+            }
             .rail-item.active .rail-sub { color: rgba(255,255,255,0.8); }
-          .btn-start-purple svg, .btn-complete svg, .btn-skip-sub svg { width: 14px !important; height: 14px !important; flex-shrink: 0; }
+            
+            /* Workout Panel with Full Background */
+            .workout-panel {
+                flex: 1;
+                border: 1px solid rgba(255,255,255,0.05);
+                border-radius: 24px;
+                position: relative;
+                overflow: hidden;
+            }
+            .wp-bg {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background-image: url('${resolveAssetPath('strength/squat.webp')}');
+                background-size: cover;
+                background-position: top center;
+                z-index: 1;
+            }
+            .wp-overlay {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                /* Fading from top right to bottom left, plus a left edge guard */
+                background: 
+                    linear-gradient(225deg, rgba(13,19,35,0) 0%, rgba(13,19,35,0.8) 50%, rgba(13,19,35,1) 85%),
+                    linear-gradient(to right, rgba(13,19,35,1) 0%, rgba(13,19,35,0.7) 35%, rgba(13,19,35,0) 100%);
+                z-index: 2;
+            }
+            .wp-content {
+                position: relative;
+                z-index: 3;
+                padding: 40px;
+                display: flex;
+                gap: 40px;
+                height: 100%;
+                width: 100%;
+            }
+            
+            .wp-left {
+                flex: 1.2;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-width: 0;
+            }
+            .wp-top-left {
+                min-width: 0;
+            }
+            .wp-right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+            
+            /* Top Left */
+            .exercise-name {
+                font-size: 4.2rem;
+                font-weight: 900;
+                letter-spacing: 2px;
+                margin-bottom: 30px;
+                line-height: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+            }
+            .stats-row {
+                display: flex;
+                gap: 40px;
+            }
+            .stat-divider {
+                width: 2px;
+                background-color: rgba(255,255,255,0.15);
+                margin: 5px 0;
+                border-radius: 2px;
+            }
+            .stat-col {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            .stat-lbl {
+                font-size: 0.85rem;
+                color: #8892a0;
+                font-weight: 700;
+                letter-spacing: 1.5px;
+            }
+            .stat-val {
+                font-size: 1.6rem;
+                white-space: nowrap;
+                font-weight: 800;
+            }
+            
+            /* Bottom Left */
+            .wp-bottom-left {
+                display: flex;
+                gap: 20px;
+            }
+            
+            .control-box {
+                width: 260px;
+                height: 350px;
+                border-radius: 20px;
+                padding: 25px 25px 20px 25px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #0d1b33;
+            }
+            .box-weight { border: 1px solid rgba(150, 200, 255, 0.12); }
+            .box-reps { border: 1px solid rgba(200, 150, 255, 0.12); }
+            
+            .ctrl-lbl {
+                font-size: 0.95rem;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                margin-bottom: 20px;
+                color: white;
+            }
+            
+            .ctrl-interactive {
+                width: 100%;
+                height: 230px;
+                border-radius: 16px;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                overflow: hidden;
+                box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+            }
+            .bg-blue-grad { background: linear-gradient(180deg, #1e87f0 0%, #00b3ff 100%); }
+            .bg-purple-grad { background: linear-gradient(180deg, #8b45f7 0%, #bb6df9 100%); }
+            
+            .ctrl-arrow-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            
+            .ctrl-val {
+                background-color: #15243d;
+                margin: 0 4px;
+                
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 4.5rem;
+                font-weight: 800;
+                color: white;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            }
+            
+            .ctrl-sub {
+                font-size: 0.85rem;
+                color: #d1d5db;
+                margin-top: 15px;
+                height: 20px;
+            }
+            
+            /* Right Side Elements */
+            .wp-bottom-right {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .set-indicator {
+                background-color: #050810;
+                border-radius: 16px;
+                height: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+                font-weight: 700;
+                color: #8892a0;
+                letter-spacing: 2px;
+                border: 1px solid rgba(255,255,255,0.02);
+            }
+            .set-num-hl {
+                color: #007bff;
+                font-size: 2.2rem;
+                font-weight: 900;
+                margin: 0 10px;
+            }
+            .btn-complete {
+                background-color: #28a745;
+                color: white;
+                border-radius: 16px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                font-weight: 800;
+                gap: 15px;
+                box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+            }
+            
+            /* Bottom Bar */
+            .bottom-bar {
+                
+                background-color: #070b14;
+                border-top: 1px solid rgba(255,255,255,0.05);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+            }
+            
+            .bb-btn-end {
+                background-color: #111827;
+                border-radius: 12px;
+                height: 52px;
+                padding: 0 20px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                cursor: pointer;
+            }
+            .bb-end-x {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            .bb-end-text {
+                display: flex;
+                flex-direction: column;
+            }
+            .bb-end-t1 { font-size: 1rem; font-weight: 700; letter-spacing: 1px; }
+            .bb-end-t2 { font-size: 0.8rem; color: #8892a0; margin-top: 2px; }
+            
+            .bb-center {
+                display: flex;
+                gap: 40px;
+            }
+            .bb-progress {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                padding: 0 10px;
+            }
+            .bb-time {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                padding: 0 10px;
+            }
+            .bb-lbl {
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: #8892a0;
+                letter-spacing: 2px;
+            }
+            .dots-row {
+                display: flex;
+                gap: 15px;
+                align-items: center;
+            }
+            .dot-col {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+            }
+            .dot {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                border: 2px solid #556070;
+            }
+            .dot.active {
+                background-color: #007bff;
+                border-color: #007bff;
+            }
+            .dot-num {
+                font-size: 0.8rem;
+                color: #556070;
+                font-weight: 700;
+            }
+            .dot-num.hl {
+                color: white;
+            }
+            .time-val {
+                font-size: 1.8rem;
+                font-weight: 800;
+                font-family: monospace;
+                letter-spacing: 2px;
+                line-height: 1;
+            }
+            
+            .bb-btn-next {
+                background-color: #111827;
+                border-radius: 12px;
+                height: 52px;
+                padding: 0 20px;
+                display: flex;
+                align-items: center;
+                gap: 25px;
+            }
+            .bb-next-text {
+                display: flex;
+                flex-direction: column;
+                text-align: right;
+            }
+            .bb-next-t1 { font-size: 0.8rem; font-weight: 700; color: #8892a0; letter-spacing: 1.5px; }
+            .bb-next-t2 { font-size: 1rem; font-weight: 700; margin-top: 0; white-space: nowrap; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
+            
+        
+    .sb-item.active { background-color: #8a2be2 !important; border-color: #8a2be2 !important; box-shadow: 0 4px 15px rgba(138,43,226,0.3) !important; }
+    .btn-timer { background-color: #8a2be2; box-shadow: 0 4px 15px rgba(138,43,226,0.3); }
+    .btn-skip { background-color: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); box-shadow: none; }
+    .btn-howto { background-color: #007bff; box-shadow: 0 4px 15px rgba(0,123,255,0.3); }
 </style>
     `;
 
@@ -242,7 +569,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.31</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.32</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -359,25 +686,7 @@ function renderActiveSet(content) {
     const ex = state.exercises[state.currentIndex];
     const sideText = state.currentSide === 'NONE' ? '' : ` (${state.currentSide})`;
     
-    content.innerHTML = `
-        ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100vw; min-width: 0; overflow: hidden; box-sizing: border-box; gap: 30px;">
-            ${getSidebarHTML()}
-            <main class="right-panel">
-                <div class="rp-bg" id="main-exercise-bg" style="background-image: url('${resolveAssetPath(ex.image_path)}');"></div>
-                <div class="rp-overlay"></div>
-                
-                <div class="rp-content">
-                    <div class="controls-area" style="margin-top: auto;">
-                        <div class="submit-area" id="interaction-area" style="flex-direction: row; justify-content: center; background: transparent; padding: 0; width: 100%;">
-                            <!-- Injected -->
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-        ${getBottomBarHTML()}
-    `;
+    content.innerHTML = activeHTML;
     
     updateElapsedTimer();
     bindSidebarAndNext();
@@ -502,25 +811,7 @@ function renderRest(content) {
     const ex = state.exercises[state.currentIndex];
     const sideText = (ex.per_side && state.currentSide === 'LEFT') ? ' (RIGHT)' : '';
     
-    content.innerHTML = `
-        ${getTopBarHTML()}
-        <div class="main-body tv-main" style="padding: 10px 20px; width: 100%; max-width: 100vw; min-width: 0; overflow: hidden; box-sizing: border-box; gap: 30px;">
-            ${getSidebarHTML()}
-            <main class="right-panel" style="background: #0b101e;">
-                <div class="rp-content" style="align-items: center; justify-content: center; padding: 0;">
-                    <div class="stat-label">REST RECOVERY</div>
-                    <div class="rest-huge" id="rest-display">${formatTime(state.restTimeRemaining)}</div>
-                    <div style="background: #13192a; padding: 25px 50px; border-radius: 16px; text-align: center; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.05);">
-                        <div class="stat-label" style="margin-bottom: 10px;">UP NEXT</div>
-                        <div style="font-size: 2rem; font-weight: bold;">${ex.name}${sideText}</div>
-                        <div style="color: #8a2be2; font-weight: bold; margin-top: 5px;">SET ${(ex.per_side && state.currentSide==='LEFT') ? state.currentSet : state.currentSet + 1} OF ${ex.sets}</div>
-                    </div>
-                    <button class="btn-skip-sub" id="btn-skip-rest" style="padding: 20px 60px;">SKIP REST</button>
-                </div>
-            </main>
-        </div>
-        ${getBottomBarHTML()}
-    `;
+    content.innerHTML = restHTML;
     updateElapsedTimer();
     bindSidebarAndNext();
     
@@ -615,15 +906,7 @@ function advanceExercise() {
 
 function renderComplete(content) {
     clearInterval(state.timerInterval);
-    content.innerHTML = `
-        ${getTopBarHTML()}
-        <div class="main-body tv-main" style="background: #0b101e; justify-content: center; align-items: center; width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box; gap: 30px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05);">
-            <div style="text-align: center;">
-                <h1 style="font-size: 5rem; color: #8a2be2; margin-bottom: 20px;">MOBILITY COMPLETE</h1>
-                <p style="font-size: 2rem; color: #aaa;">Saving session data...</p>
-            </div>
-        </div>
-    `;
+    content.innerHTML = completeHTML;
     saveAndExit();
 }
 

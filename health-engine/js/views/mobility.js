@@ -71,7 +71,7 @@ export async function renderMobility(container) {
             .sb-sub { font-size: 0.9rem; color: #aaa; margin-top: 5px; }
             .sb-item.active .sb-sub { color: rgba(255,255,255,0.8); }
             
-            .right-panel { flex: 1; min-width: 0; max-width: calc(100% - 250px); position: relative; display: flex; flex-direction: column; background: #050810; overflow: hidden; box-sizing: border-box; border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; }
+            .right-panel { flex: 1; min-width: 0; max-width: calc(100% - 410px); position: relative; display: flex; flex-direction: column; background: #050810; overflow: hidden; box-sizing: border-box; border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; }
             .rp-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-repeat: no-repeat; background-position: center; z-index: 1; opacity: 1; }
             .rp-overlay { display: none; }
             .rp-content { position: relative; z-index: 3; display: flex; flex-direction: column; height: 100%; padding: 20px; justify-content: flex-end; align-items: center; box-sizing: border-box; }
@@ -132,15 +132,15 @@ export async function renderMobility(container) {
             .fb-sub { font-size: 1rem; opacity: 0.8; font-weight: normal; }
 
             /* Left Rail */
-            .left-rail { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 5px; margin-right: 0px; padding: 5px; border-right: none; box-sizing: border-box; }
-            .rail-item { display: flex; align-items: center; padding: 6px 8px; border-radius: 10px; background-color: #0b111e; border: 1px solid rgba(255,255,255,0.02); height: 50px; box-sizing: border-box; }
+            .left-rail { width: 380px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
+            .rail-item { display: flex; align-items: center; padding: 10px 15px; border-radius: 12px; background-color: #0b111e; border: 1px solid rgba(255,255,255,0.02); height: 80px; box-sizing: border-box; }
             .rail-item.active { background-color: #8a2be2; border-color: #8a2be2; }
-            .rail-num { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #556070; color: #8892a0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.65rem; margin-right: 5px; flex-shrink: 0; }
+            .rail-num { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #556070; color: #8892a0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; margin-right: 15px; flex-shrink: 0; }
             .rail-item.active .rail-num { border-color: white; color: white; background-color: transparent; }
-            .rail-img { width: 40px; height: 30px; border-radius: 6px; object-fit: cover; margin-right: 8px; flex-shrink: 0; background-color: #15243d; }
+            .rail-img { width: 80px; height: 50px; border-radius: 6px; object-fit: cover; margin-right: 15px; flex-shrink: 0; background-color: #15243d; }
             .rail-text-col { display: flex; flex-direction: column; flex: 1; min-width: 0; }
-            .rail-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-            .rail-sub { font-size: 0.6rem; font-weight: 600; color: #8892a0; margin-top: 4px; }
+            .rail-title { font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .rail-sub { font-size: 0.85rem; font-weight: 600; color: #8892a0; margin-top: 4px; }
             .rail-item.active .rail-sub { color: rgba(255,255,255,0.8); }
           .btn-start-purple svg, .btn-complete svg, .btn-skip-sub svg { width: 20px !important; height: 20px !important; }
 </style>
@@ -242,7 +242,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.28</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.29</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -390,7 +390,7 @@ function renderActiveSet(content) {
     if (ex.measurement_type === 'TIME') {
         state.activeTimeRemaining = ex.target_value;
         area.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: max-content; justify-content: center; gap: 8px; box-sizing: border-box; margin: 0 auto;">
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 450px; flex-wrap: wrap; justify-content: center; gap: 10px; box-sizing: border-box; margin: 0 auto;">
                 <div style="font-size: 0.7rem; font-weight: bold; color: #aaa; letter-spacing: 0px; white-space: nowrap;">SET <span style="color: #8a2be2; font-size: 1rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 3px;">${sideText}</span></div>
                 <div style="font-size: 1.8rem; font-weight: bold; font-family: monospace; width: auto; padding: 0; text-align: center; color: white; line-height: 1;" id="active-timer">${state.activeTimeRemaining}s</div>
                 <button class="btn-start-purple" id="btn-timer-toggle" style="margin: 0; padding: 5px 10px; font-size: 0.7rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconClock} START</button>
@@ -431,7 +431,7 @@ function renderActiveSet(content) {
         
     } else {
         area.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: max-content; justify-content: center; gap: 8px; box-sizing: border-box; margin: 0 auto;">
+            <div style="display: flex; align-items: center; gap: 10px; background: rgba(11,16,30,0.95); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(138,43,226,0.3); box-shadow: 0 5px 20px rgba(0,0,0,0.8); width: 100%; max-width: 450px; flex-wrap: wrap; justify-content: center; gap: 10px; box-sizing: border-box; margin: 0 auto;">
                 <div style="font-size: 0.7rem; font-weight: bold; color: #aaa; letter-spacing: 0px; white-space: nowrap;">SET <span style="color: #8a2be2; font-size: 1rem;">${state.currentSet}</span> OF ${ex.sets} <span style="color: white; margin-left: 3px;">${sideText}</span></div>
                 <div style="font-size: 1.8rem; font-weight: bold; font-family: monospace; color: white; line-height: 1;">${ex.target_value} <span style="font-size: 0.8rem; color: #888;">REPS</span></div>
                 <button class="btn-complete" id="btn-done" style="margin: 0; padding: 5px 10px; font-size: 0.7rem; border-radius: 50px; box-shadow: none; width: auto; max-width: none;">${iconCheck} COMPLETE</button>

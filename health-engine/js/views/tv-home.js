@@ -24,25 +24,18 @@ export async function renderTvHome(container) {
     try {
         const { data: user } = await getSupabase().auth.getUser();
         if (user.user) {
-            const fetchLatest = async (table) => {
+                        const fetchLatest = async (table, dateCol = 'completed_at') => {
                 const { data } = await getSupabase().from(table)
-                    .select('completed_at')
+                    .select(dateCol)
                     .eq('owner_id', user.user.id)
-                    .order('completed_at', { ascending: false }).limit(1);
-                return data && data.length > 0 ? new Date(data[0].completed_at) : null;
-            };
-            
-            const formatDate = (date) => {
-                if (!date) return null;
-                const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-                const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-                return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
+                    .order(dateCol, { ascending: false }).limit(1);
+                return data && data.length > 0 ? new Date(data[0][dateCol]) : null;
             };
             
             const [sDate, cDate, mDate] = await Promise.all([
-                fetchLatest('health_strength_sessions'),
-                fetchLatest('health_cardio_sessions'),
-                fetchLatest('health_mobility_sessions')
+                fetchLatest('health_strength_sessions', 'completed_at'),
+                fetchLatest('health_cardio_sessions', 'performed_at'),
+                fetchLatest('health_mobility_sessions', 'completed_at')
             ]);
             
             if (sDate) strengthStatus = `Last session: <span style="color: #4bacff; font-weight: 500;">${formatDate(sDate)}</span>`;
@@ -123,7 +116,7 @@ export async function renderTvHome(container) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.59</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.60</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>

@@ -17,7 +17,7 @@ export async function renderHistory(container) {
                 <div class="tv-header-left">
                     <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
                     <div style="display: flex; flex-direction: column;">
-                        <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.59</span></div>
+                        <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.60</span></div>
                         <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
                     </div>
                 </div>
@@ -174,12 +174,12 @@ export async function renderHistory(container) {
         
         const [sData, cData, mData] = await Promise.all([
             getSupabase().from('health_strength_sessions').select('completed_at').eq('owner_id', user.user.id).gte('completed_at', startDate.toISOString()).lt('completed_at', endDate.toISOString()),
-            getSupabase().from('health_cardio_sessions').select('completed_at').eq('owner_id', user.user.id).gte('completed_at', startDate.toISOString()).lt('completed_at', endDate.toISOString()),
+            getSupabase().from('health_cardio_sessions').select('performed_at').eq('owner_id', user.user.id).gte('performed_at', startDate.toISOString()).lt('performed_at', endDate.toISOString()),
             getSupabase().from('health_mobility_sessions').select('completed_at').eq('owner_id', user.user.id).gte('completed_at', startDate.toISOString()).lt('completed_at', endDate.toISOString())
         ]);
         
         const sDates = (sData.data || []).map(r => new Date(r.completed_at).toDateString());
-        const cDates = (cData.data || []).map(r => new Date(r.completed_at).toDateString());
+        const cDates = (cData.data || []).map(r => new Date(r.performed_at).toDateString());
         const mDates = (mData.data || []).map(r => new Date(r.completed_at).toDateString());
         
         let sumS = 0, sumC = 0, sumM = 0;

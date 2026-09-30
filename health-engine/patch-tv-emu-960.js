@@ -17,7 +17,7 @@ console.log('TV Emulation updated to 960x480');
 // Bump cache to v2.6
 let indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.5/g, 'v=2.55');
+indexHtml = indexHtml.replace(/v=2\.5/g, 'v=2.56');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const files = [
@@ -32,8 +32,8 @@ const files = [
 files.forEach(file => {
     if (!fs.existsSync(file)) return;
     let fc = fs.readFileSync(file, 'utf8');
-    fc = fc.replace(/v=2\.5/g, 'v=2.55'); // for app.js imports
-    fc = fc.replace(/>v2\.5<\/span>/g, '>v2.55</span>'); // for titles
+    fc = fc.replace(/v=2\.5/g, 'v=2.56'); // for app.js imports
+    fc = fc.replace(/>v2\.5<\/span>/g, '>v2.56</span>'); // for titles
     fs.writeFileSync(file, fc);
 });
 

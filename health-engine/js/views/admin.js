@@ -10,7 +10,7 @@ export function renderAdmin(container) {
                         <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M6 4h2v16H6zm12 0h2v16h-2zM2 8h2v8H2zm18 0h2v8h-2zM8 11h8v2H8z"/></svg>
                     </div>
                     <div>
-                        <h1 style="margin: 0; font-size: 1.5rem; letter-spacing: 1px; color: white;">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></h1>
+                        <h1 style="margin: 0; font-size: 1.5rem; letter-spacing: 1px; color: white;">HEALTH <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.56</span></h1>
                         <div style="font-size: 0.75rem; color: #888; letter-spacing: 2px; margin-top: 2px;">ADMINISTRATION</div>
                     </div>
                 </div>

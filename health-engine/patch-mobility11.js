@@ -27,18 +27,18 @@ mobility = mobility.replace(
 );
 
 // Bump version
-mobility = mobility.replace(/>v2\.27<\/span>/g, '>v2.55</span>');
+mobility = mobility.replace(/>v2\.27<\/span>/g, '>v2.56</span>');
 
 fs.writeFileSync('C:\\DEV\\health-engine\\js\\views\\mobility.js', mobility);
 
 const indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=2\.27/g, 'v=2.55');
+indexHtml = indexHtml.replace(/v=2\.27/g, 'v=2.56');
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
 const appJsPath = 'C:\\DEV\\health-engine\\js\\app.js';
 let appJs = fs.readFileSync(appJsPath, 'utf8');
-appJs = appJs.replace(/v=2\.27/g, 'v=2.55');
+appJs = appJs.replace(/v=2\.27/g, 'v=2.56');
 fs.writeFileSync(appJsPath, appJs);
 
 const files = [
@@ -50,7 +50,7 @@ const files = [
 files.forEach(file => {
     if (!fs.existsSync(file)) return;
     let fc = fs.readFileSync(file, 'utf8');
-    fc = fc.replace(/>v2\.27<\/span>/g, '>v2.55</span>');
+    fc = fc.replace(/>v2\.27<\/span>/g, '>v2.56</span>');
     fs.writeFileSync(file, fc);
 });
 

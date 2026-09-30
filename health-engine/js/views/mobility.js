@@ -566,7 +566,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.56</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -693,7 +693,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.56</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -843,23 +843,54 @@ function renderActiveSet(content) {
     }
     
     
+    
     if (howtoBtn) {
         howtoBtn.addEventListener('click', () => {
-            const bg = document.querySelector('.wp-bg');
-            if (bg.style.backgroundSize === 'contain') {
-                bg.style.backgroundSize = 'cover';
-                bg.style.backgroundImage = `url('${resolveAssetPath(ex.image_path)}')`;
-                howtoBtn.innerHTML = 'HELP';
-            } else {
-                bg.style.backgroundSize = 'contain';
-                const parts = ex.image_path.split('.');
-                const ext = parts.pop();
-                const howtoPath = `${parts.join('.')}-howto.${ext}`;
-                bg.style.backgroundImage = `url('${resolveAssetPath(howtoPath)}')`;
-                howtoBtn.innerHTML = 'BACK';
-            }
+            const parts = ex.image_path.split('.');
+            const ext = parts.pop();
+            const howtoPath = `${parts.join('.')}-howto.${ext}`;
+            const imgUrl = resolveAssetPath(howtoPath);
+            
+            const modal = document.createElement('div');
+            modal.id = 'howto-modal';
+            modal.style.position = 'absolute';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(10, 15, 30, 0.98)';
+            modal.style.zIndex = '9999';
+            modal.style.display = 'flex';
+            modal.style.flexDirection = 'column';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.padding = '20px';
+            modal.style.boxSizing = 'border-box';
+            
+            modal.innerHTML = `
+                <style>
+                    #btn-close-howto:focus {
+                        transform: scale(1.05);
+                        border: 2px solid white;
+                        box-shadow: 0 0 20px rgba(255,255,255,0.5);
+                    }
+                </style>
+                <div style="flex: 1; width: 100%; background-image: url('${imgUrl}'); background-size: contain; background-position: center; background-repeat: no-repeat; margin-bottom: 20px;"></div>
+                <button id="btn-close-howto" class="btn-complete" style="background-color: #007bff; width: 250px; height: 60px; font-size: 1.4rem; flex-shrink: 0; box-shadow: 0 4px 15px rgba(0,123,255,0.4); outline: none; border-radius: 12px; font-weight: bold; cursor: pointer; color: white; border: 2px solid transparent;">CLOSE HELP</button>
+            `;
+            
+            document.querySelector('.app-container').appendChild(modal);
+            
+            const closeBtn = document.getElementById('btn-close-howto');
+            closeBtn.focus();
+            
+            closeBtn.addEventListener('click', () => {
+                modal.remove();
+                howtoBtn.focus();
+            });
         });
     }
+
 
  }
 
@@ -905,7 +936,7 @@ function renderRest(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.55</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.56</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>

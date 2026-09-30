@@ -21,11 +21,11 @@ const files = [
 files.forEach(file => {
     if (!fs.existsSync(file)) return;
     let fc = fs.readFileSync(file, 'utf8');
-    fc = fc.replace(/>v1\.9<\/span>/g, '>v2.56</span>');
+    fc = fc.replace(/>v1\.9<\/span>/g, '>v2.57</span>');
     fs.writeFileSync(file, fc);
 });
 
 let indexHtmlPath = 'C:\\DEV\\health-engine\\index.html';
 let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-indexHtml = indexHtml.replace(/v=1\.9/g, 'v=2.56');
+indexHtml = indexHtml.replace(/v=1\.9/g, 'v=2.57');
 fs.writeFileSync(indexHtmlPath, indexHtml);

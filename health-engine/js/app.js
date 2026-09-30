@@ -107,6 +107,10 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.keyCode === 13 || e.key === ' ') {
         const el = document.activeElement;
         if (el && typeof el.click === 'function') {
+            // Do not steal spaces from input fields
+            if (e.key === ' ' && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)) {
+                return; // Let normal typing happen
+            }
             e.preventDefault();
             el.click();
         }

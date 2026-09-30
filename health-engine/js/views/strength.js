@@ -116,7 +116,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #2196F3;">${iconDumbbell}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.57</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #2196F3;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.58</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -851,10 +851,14 @@ async function saveAndExit() {
         const { data: user } = await getSupabase().auth.getUser();
         if (!user.user) throw new Error("Not authenticated");
         
+        const completedDate = new Date();
+        const startedDate = new Date(completedDate.getTime() - (duration * 1000));
+        
         const { data: session, error: sErr } = await getSupabase().from('health_strength_sessions').insert({
             owner_id: user.user.id,
             elapsed_seconds: duration,
-            completed_at: new Date().toISOString(),
+            started_at: startedDate.toISOString(),
+            completed_at: completedDate.toISOString(),
             status: 'completed'
         }).select().single();
         if (sErr) throw sErr;

@@ -566,7 +566,7 @@ function getTopBarHTML() {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.60</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.61</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -693,7 +693,7 @@ function renderActiveSet(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.60</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.61</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
@@ -876,7 +876,7 @@ function renderActiveSet(content) {
                     }
                 </style>
                 <div style="flex: 1; width: 100%; background-image: url('${imgUrl}'); background-size: contain; background-position: center; background-repeat: no-repeat; margin-bottom: 20px;"></div>
-                <button id="btn-close-howto" class="btn-complete" style="background-color: #007bff; width: 250px; height: 60px; font-size: 1.4rem; flex-shrink: 0; box-shadow: 0 4px 15px rgba(0,123,255,0.4); outline: none; border-radius: 12px; font-weight: bold; cursor: pointer; color: white; border: 2px solid transparent;">CLOSE HELP</button>
+                <button id="btn-close-howto" style="background-color: #007bff; width: 250px; height: 60px; font-size: 1.4rem; flex-shrink: 0; box-shadow: 0 4px 15px rgba(0,123,255,0.4); outline: none; border-radius: 12px; font-weight: bold; cursor: pointer; color: white; border: 2px solid transparent; display: flex; align-items: center; justify-content: center; flex: 0 0 60px !important;">CLOSE HELP</button>
             `;
             
             document.querySelector('.app-container').appendChild(modal);
@@ -936,7 +936,7 @@ function renderRest(content) {
         <div class="tv-header-left">
             <div class="tv-brand-icon" style="color: #8a2be2;">${iconMobility}</div>
             <div style="display: flex; flex-direction: column;">
-                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.60</span></div>
+                <div class="tv-brand-title">FITNESS <span style="color: #8a2be2;">ENGINE</span> <span style="font-size: 0.4em; color: #8892a0; margin-left: 8px; vertical-align: middle;">v2.61</span></div>
                 <div class="tv-brand-sub">STRONGER &middot; FITTER &middot; HEALTHIER</div>
             </div>
         </div>
